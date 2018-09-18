@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="video-live.css" />
+        <link rel="stylesheet" href="../../top.css" />
+        <script src="../../lib/layui/layui.all.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../lib/layui/layui.js"></script>
+        <style>
+            .layui-flow-more {
+                margin-left: 25%;
+            }
+
+            .being-live p {
+                line-height: 30px;
+                border-bottom: 1px solid gainsboro;
+                text-indent: 1rem;
+                color: grey;
+            }
+            .highlights p{
+                line-height: 30px;
+                border-bottom: 1px solid gainsboro;
+                text-indent: 1rem;
+                color: grey;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="top"> </div>
+        <div class="layui-container">
+            <div class="video-live-body">
+                <!-- 内容 -->
+                <!--图片-->
+                <!--id="living"-->
+                <div id="futureLive">  </div>
+                <h1 style="margin-top: 2%;">正在直播</h1><hr>
+                <div class="being-live">
+                    <div class="layui-row">
+                        <div class="layui-col-md12" id="living">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlights" id="pastLive">
+                    <h1  style="margin-top: 2%;">精彩回放</h1><hr />
+                    <div class="layui-row">
+                        <div class="layui-col-md12">
+                            <div class="layui-col-md3" style="border: 1px solid gainsboro;margin-right: 1%;">
+                                <div><img src="../../img/a1.jpg" style="width: 100%;" /></div>
+                                <div>
+                                    <p style="color: #000000; background-color: gainsboro;"><i class="layui-icon">&#xe600;</i> 标题</p>
+                                    <p>时间</p>
+                                    <p>发起人：网络中心</p>
+                                    <p style="color: #000000;float: right;margin-right: 10%;"><i class="layui-icon">&#xe658;</i>回放</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row" id="flooter"> </div>
+        <script type="text/javascript" src="../../lib/base.js"></script>
+        <script type="text/javascript" src="../../util.js"></script>
+        <script type="text/javascript" src="video-live.js"></script>
+    </body>
+
+</html>

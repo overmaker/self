@@ -1,0 +1,2 @@
+set path=./jre1.8.0_162/bin
+keytool -genkey -alias self_site_certificate -validity 365 -keystore self-site-ssecacerts -keyalg RSA -storepass Oracle11g -keypass Oracle11g -J"-Duser.language=en" < "input.dat"

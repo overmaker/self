@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.others.mybatis.mapper.AboutMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.others.entity.About">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="type" column="type" />
+        <result property="introduction" column="introduction" />
+    </resultMap>
+    <insert id="insertAbout">
+        INSERT INTO kepu_self_about(type,introduction)
+        VALUES (#{type},#{introduction});
+    </insert>
+    <update id="updateAbout">
+        UPDATE kepu_self_about
+        SET gmt_modified=NOW(),
+        type=#{type},
+        introduction=#{introduction} 
+        WHERE id=#{id}
+    </update>
+    <delete id="deleteAbout">
+        DELETE FROM kepu_self_about WHERE id=#{id}
+    </delete>
+    <select id="selectById" resultMap="resultMap">
+        SELECT id,
+        gmt_create,
+        gmt_modified,
+        type,
+        introduction 
+        FROM kepu_self_about WHERE id = #{id}
+    </select>
+    <select id="selectAll" resultMap="resultMap">
+        SELECT id,
+        gmt_create,
+        gmt_modified,
+        type,
+        introduction 
+        FROM kepu_self_about
+        ORDER BY gmt_create DESC
+    </select>
+    <select id="selectByType" resultMap="resultMap">
+        SELECT * FROM kepu_self.kepu_self_about 
+        where type like "%什么是SELF+%"
+    </select>
+</mapper>

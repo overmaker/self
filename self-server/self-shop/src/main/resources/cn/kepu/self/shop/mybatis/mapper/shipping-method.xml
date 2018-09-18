@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.shop.mybatis.mapper.ShippingMethodMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.shop.entity.ShippingMethod">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="name" column="name" />
+        <result property="logistics_company" column="logistics_company" />
+        <result property="first_weight" column="first_weight" />
+        <result property="continue_weight" column="continue_weight" />
+        <result property="first_price" column="first_price" />
+        <result property="continue_price" column="continue_price" />
+    </resultMap>
+    <insert id="insertShippingMethod">
+        INSERT INTO kepu_self_shipping_method (name,logistics_company,first_weight,continue_weight,first_price,continue_price) 
+        VALUES (#{name},#{logistics_company},#{first_weight},#{continue_weight},#{first_price},#{continue_price});
+    </insert>
+    <update id="updateShippingMethod">
+        UPDATE kepu_self_shipping_method 
+        <set> 
+            gmt_modified = NOW(),
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="logistics_company != null and logistics_company != ''">
+                logistics_company = #{logistics_company},
+            </if>
+            <if test="first_weight != null and first_weight != ''">
+                first_weight = #{first_weight},
+            </if>
+            <if test="continue_weight != null and continue_weight != ''">
+                continue_weight = #{continue_weight},
+            </if>
+            <if test="first_price != null and first_price != ''">
+                first_price = #{first_price},
+            </if>
+            <if test="continue_price != null and continue_price != ''">
+                continue_price = #{continue_price},
+            </if>
+            id = #{id}
+        </set> 
+        WHERE id=#{id};
+    </update>
+    <delete id="deleteShippingMethod">
+        DELETE FROM kepu_self_shipping_method WHERE id = #{id};
+    </delete>
+    <select id="findById" resultMap="resultMap">
+        SELECT id, 
+        gmt_create, 
+        gmt_modified, 
+        name, 
+        logistics_company, 
+        first_weight, 
+        continue_weight, 
+        first_price, 
+        continue_price 
+        FROM kepu_self_shipping_method
+        WHERE id = #{id}
+    </select>
+    <select id="findShippingMethod" resultMap="resultMap">
+        SELECT id, 
+        gmt_create, 
+        gmt_modified, 
+        name, 
+        logistics_company, 
+        first_weight, 
+        continue_weight, 
+        first_price, 
+        continue_price 
+        FROM kepu_self_shipping_method
+        <where>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%',#{name},'%')
+            </if>
+        </where>
+        ORDER BY gmt_create DESC
+    </select>
+</mapper>

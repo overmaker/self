@@ -1,0 +1,31 @@
+body {
+    background: #F6F6F6;
+}
+
+.textes p {
+    line-height: 25px;
+    font-size: 13px;
+    text-align: left;
+}
+
+.information p {
+    line-height: 45px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.information input {
+    text-indent: 1rem;
+    width: 586px;
+    height: 25px;
+    font-family: 'Arial Normal', 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    text-decoration: none;
+    color: #000000;
+    text-align: left;
+}
+.information .inpt {
+    text-indent: 3rem;
+}

@@ -1,0 +1,25 @@
+.product-title {
+    font-weight: 400;
+    font-size: 17px;
+    width: auto;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.myTop{
+    font-size: 17px;
+    overflow: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-top: 6px;
+}
+.myTop a{
+    color: #000000;
+    margin: 15px;   
+}
+.myTop a:hover{
+    color: white;
+    margin: 15px;
+}
+#product{
+    margin-top: 30px;
+}

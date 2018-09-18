@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+    
+    <aop:config proxy-target-class="true">
+        <aop:aspect ref="dao-aspect">
+            <aop:pointcut expression="execution(* cn.kepu.self.shop.daoimpl..*(..))" id="shop-dao-pointcut"/>
+            <aop:before pointcut-ref="shop-dao-pointcut" method="before"/>
+            <aop:after-returning pointcut-ref="shop-dao-pointcut" method="afterReturning"/>
+            <aop:after-throwing pointcut-ref="shop-dao-pointcut" method="afterThrowing" throwing="err"/>
+        </aop:aspect>
+    </aop:config>
+    
+    <!-- 商品分类 -->
+    <bean id="productTypeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.shop.mybatis.mapper.ProductTypeMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="productTypeDaoImpl" class="cn.kepu.self.shop.daoimpl.ProductTypeDaoImpl"
+          p:productTypeMapper-ref="productTypeMapper" />
+    
+    <bean class="cn.kepu.self.shop.service.ProductTypeService" factory-method="getInstance"
+          p:productTypeDao-ref="productTypeDaoImpl" />  
+    
+    <!-- 商品 -->
+    <bean id="productMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.shop.mybatis.mapper.ProductMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="productDaoImpl" class="cn.kepu.self.shop.daoimpl.ProductDaoImpl">
+        <constructor-arg index="0" ref="productMapper" />
+        <constructor-arg index="1" ref="productInfoMapper" />
+        <constructor-arg index="2" ref="jdbcTemplate" />
+        <constructor-arg index="3" ref="transactionTemplate" />
+    </bean>
+    <bean class="cn.kepu.self.shop.service.ProductService" factory-method="getInstance"
+          p:productDao-ref="productDaoImpl" /> 
+    
+    <!-- 商品信息 -->
+    <bean id="productInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.shop.mybatis.mapper.ProductInfoMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="productInfoDaoImpl" class="cn.kepu.self.shop.daoimpl.ProductInfoDaoImpl"
+          p:productInfoMapper-ref="productInfoMapper" />
+    
+    <bean class="cn.kepu.self.shop.service.ProductInfoService" factory-method="getInstance"
+          p:productInfoDao-ref="productInfoDaoImpl" /> 
+    
+    <!-- 订单 -->
+    <bean id="orderMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.shop.mybatis.mapper.OrderMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="orderDaoImpl" class="cn.kepu.self.shop.daoimpl.OrderDaoImpl">
+        <constructor-arg index="0" ref="orderMapper" />
+        <constructor-arg index="1" ref="productInfoMapper" />
+        <constructor-arg index="2" ref="transactionTemplate" />
+    </bean>
+    
+    <bean class="cn.kepu.self.shop.service.OrderService" factory-method="getInstance"
+          p:orderDao-ref="orderDaoImpl" /> 
+    
+    <!-- 配送方式 -->
+    <bean id="shippingMethodMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.shop.mybatis.mapper.ShippingMethodMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="shippingMethodDaoImpl" class="cn.kepu.self.shop.daoimpl.ShippingMethodDaoImpl"
+          p:shippingMethodMapper-ref="shippingMethodMapper" />
+    
+    <bean class="cn.kepu.self.shop.service.ShippingMethodService" factory-method="getInstance"
+          p:shippingMethodDao-ref="shippingMethodDaoImpl" />
+    
+</beans>

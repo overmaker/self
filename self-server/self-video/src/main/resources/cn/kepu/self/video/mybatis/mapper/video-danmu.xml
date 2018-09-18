@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+                                        
+<mapper namespace="cn.kepu.self.video.mybatis.mapper.DanmuMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.video.entity.Danmu">
+        <id property="id" column="id"  />
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP" />
+        <result property="duringTime" column="during_time" jdbcType="TIMESTAMP" />
+        <result property="content" column="content" />
+        <result property="word" column="word" />
+        <result property="enable" column="enable" />
+        <result property="video.id" column="id" />
+        <result property="user.userName" column="userName" />
+        <result property="userInfo.nickName" column="nickname" />
+        <result property="userInfo.photo" column="photo" />
+    </resultMap>
+    <insert id="insertDanmu">
+        INSERT INTO kepu_self_video_danmu
+        ( user,video,during_time,content, enable)
+        VALUES (#{user.id}, #{video.id},#{duringTime}, #{content}, 
+        (SELECT (case when (SELECT COUNT(1) FROM kepu_self_sensitive_words WHERE locate(word, #{content})>0)>0 then 0  else 1 end) ));
+    </insert>
+    <delete id="deleteDanmu">
+        DELETE FROM kepu_self_video_danmu WHERE id = #{id};
+    </delete>
+    <select id="selectDanmu" resultMap="resultMap">
+        SELECT  d.*,                              
+        i.nickname AS nickname,
+        i.photo AS photo
+        FROM kepu_self_video_danmu d
+        left join kepu_self.kepu_self_sensitive_words  b
+        on d.content like  concat('%' ,b.word ,'%')
+        INNER JOIN kepu_self_video v ON d.video = v.id
+        INNER JOIN kepu_self_user u ON d.user = u.id
+        INNER JOIN kepu_self_user_info i ON d.user = i.id
+        <where>                   
+            <if test="video.id != null">
+                AND v.id = #{video.id}
+            </if>
+            <!--            <if test="content != null and content != ''">
+                AND d.content LIKE CONCAT('%',#{content},'%')
+            </if>-->
+            <!--            <if test="user.id != null">
+                AND d.user = #{user.id}
+            </if>-->
+            <!--            <if test='duringTimeStart!=null  and duringTimeEnd!=null '>
+                AND   d.during_time between #{duringTimeStart} and #{duringTimeEnd}
+            </if>-->
+        </where>  and  d.enable=1
+        ORDER BY during_time DESC
+    </select>
+    <!--后台审核-->
+    <select id="adminVideoDanmu" resultMap="resultMap">
+        SELECT * FROM kepu_self_video_danmu   where enable=0 order by video
+    </select>
+    <update id="adminChangeDanmu" >
+        update kepu_self_video_danmu set enable=1 where id= #{id}
+    </update>
+    <!--    即时弹幕审核-->
+    <select id="danmuCheck" parameterType="string" resultType="Integer">
+        SELECT COUNT(1) FROM kepu_self_sensitive_words WHERE locate(word, #{content})
+    </select>
+</mapper>

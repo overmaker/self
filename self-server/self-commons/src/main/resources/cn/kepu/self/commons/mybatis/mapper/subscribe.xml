@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.commons.mybatis.mapper.SubscribeMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.commons.entity.Subscribe">
+        <id property="id" column="id"  />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="email" column="email" />
+        <result property="interval" column="interval" />
+    </resultMap>
+    <insert id="insertSubscribe">
+        INSERT INTO kepu_self_subscribe(email,`interval`) VALUES (#{email},#{interval}) 
+        ON DUPLICATE KEY UPDATE gmt_modified=NOW(),email=#{email},`interval`=#{interval};
+    </insert>
+    <delete id="deleteSubscribe">
+        DELETE FROM kepu_self_subscribe WHERE email = #{email};
+    </delete>
+    <select id="selSubscribe" resultMap="resultMap" >
+        SELECT    email
+        FROM  kepu_self_subscribe
+        ORDER BY gmt_create DESC
+    </select>
+    <!--    <where>
+        email!= null 
+    </where>-->
+    <!--    ORDER BY v.gmt_create DESC-->
+
+</mapper>

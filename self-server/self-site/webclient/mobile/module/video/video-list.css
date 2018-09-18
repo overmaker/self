@@ -1,0 +1,23 @@
+.mui-media-object {
+    position: relative; 
+}
+img {
+    display: block; 
+}
+
+.vip {
+   /* height: 25%;
+    width: 25%;*/
+    position: absolute;
+    top: 6px;
+    right: 1px;
+}
+.aui-card-list{
+    margin-bottom: 0;
+}
+.weui-loadmore{
+    margin: 1em auto;
+}
+#video-comment-list-area{
+    height: 150px !important;
+}

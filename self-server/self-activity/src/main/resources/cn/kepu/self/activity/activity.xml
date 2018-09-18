@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+    
+    <aop:config proxy-target-class="true">
+        <aop:aspect ref="dao-aspect">
+            <aop:pointcut expression="execution(* cn.kepu.self.activity.daoimpl..*(..))" id="activity-dao-pointcut"/>
+            <aop:before pointcut-ref="activity-dao-pointcut" method="before"/>
+            <aop:after-returning pointcut-ref="activity-dao-pointcut" method="afterReturning"/>
+            <aop:after-throwing pointcut-ref="activity-dao-pointcut" method="afterThrowing" throwing="err"/>
+        </aop:aspect>
+    </aop:config>
+    
+    <!-- 活动模板 -->
+    <bean id="activityTemplateMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.activity.mybatis.mapper.ActivityTemplateMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="activityTemplateDaoImpl" class="cn.kepu.self.activity.daoimpl.ActivityTemplateDaoImpl"
+          p:activityTemplateMapper-ref="activityTemplateMapper" />
+    
+    <bean class="cn.kepu.self.activity.service.ActivityTemplateService" factory-method="getInstance"
+          p:activityTemplateDAO-ref="activityTemplateDaoImpl" /> 
+    <!-- 活动申请 -->
+    <bean id="activityApplyMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.activity.mybatis.mapper.ActivityApplyMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="activityApplyDaoImpl" class="cn.kepu.self.activity.daoimpl.ActivityApplyDaoImpl"
+          p:activityApplyMapper-ref="activityApplyMapper" />
+    
+    <bean class="cn.kepu.self.activity.service.ActivityApplyService" factory-method="getInstance"
+          p:activityApplyDao-ref="activityApplyDaoImpl" /> 
+    
+    <!-- 活动 -->
+    <bean id="activityMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.activity.mybatis.mapper.ActivityMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="activityInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.activity.mybatis.mapper.ActivityInfoMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <!-- 活动票种 -->
+    <bean id="ticketMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.activity.mybatis.mapper.TicketMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="activityDaoImpl" class="cn.kepu.self.activity.daoimpl.ActivityDaoImpl">
+        <constructor-arg index="0" ref="activityMapper" />
+        <constructor-arg index="1" ref="activityInfoMapper" />
+        <constructor-arg index="2" ref="ticketMapper" />
+        <constructor-arg index="3" ref="jdbcTemplate" />
+        <constructor-arg index="4" ref="transactionTemplate" />
+    </bean>
+    
+    <bean class="cn.kepu.self.activity.service.ActivityService" factory-method="getInstance"
+          p:activityDao-ref="activityDaoImpl" />
+    <!-- 用户购票 -->
+    <bean id="userTicketMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.activity.mybatis.mapper.UserTicketMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="userTicketDaoImpl" class="cn.kepu.self.activity.daoimpl.UserTicketDaoImpl"
+          p:userTicketMapper-ref="userTicketMapper" />
+    
+    <bean class="cn.kepu.self.activity.service.UserTicketService" factory-method="getInstance"
+          p:appId="${weixin.appid}"
+          p:mchId="${weixin.mchid}"
+          p:apiKey="${weixin.apikey}"
+          p:notifyURL="${weixin.join.pay_notify_url}"
+          p:smtpHost="${mail.smtp.host}"
+          p:userName="${mail.smtp.username}"
+          p:password="${mail.smtp.password}"
+          p:userTicketDao-ref="userTicketDaoImpl" />  
+    
+    <!-- 活动信息 -->
+    <bean id="activityInfoDaoImpl" class="cn.kepu.self.activity.daoimpl.ActivityInfoDaoImpl"
+          p:activityInfoMapper-ref="activityInfoMapper" />
+    
+    <bean class="cn.kepu.self.activity.service.ActivityInfoService" factory-method="getInstance"
+          p:activityInfoDao-ref="activityInfoDaoImpl" /> 
+    
+    <!-- 活动分类 -->
+    <bean id="activityTypeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.activity.mybatis.mapper.ActivityTypeMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="activityTypeDaoImpl" class="cn.kepu.self.activity.daoimpl.ActivityTypeDaoImpl"
+          p:activityTypeMapper-ref="activityTypeMapper" />
+    
+    <bean class="cn.kepu.self.activity.service.ActivityTypeService" factory-method="getInstance"
+          p:activityTypeDao-ref="activityTypeDaoImpl" />   
+    
+    <!-- 活动主题 -->
+    <bean id="activityThemeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.activity.mybatis.mapper.ActivityThemeMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="activityThemeDaoImpl" class="cn.kepu.self.activity.daoimpl.ActivityThemeDaoImpl">
+        <constructor-arg index="0" ref="activityThemeMapper" />
+    </bean>
+    
+    <bean class="cn.kepu.self.activity.service.ActivityThemeService" factory-method="getInstance"
+          p:activityThemeDao-ref="activityThemeDaoImpl" /> 
+    
+    <bean id="ticketDaoImpl" class="cn.kepu.self.activity.daoimpl.TicketDaoImpl"
+          p:ticketMapper-ref="ticketMapper" />
+    
+    <bean class="cn.kepu.self.activity.service.TicketService" factory-method="getInstance"
+          p:ticketDao-ref="ticketDaoImpl" /> 
+    
+    <!-- 活动评论 -->
+    <bean id="activityCommentMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.activity.mybatis.mapper.ActivityCommentMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="activityCommentDaoImpl" class="cn.kepu.self.activity.daoimpl.ActivityCommentDaoImpl">
+        <constructor-arg index="0" ref="activityCommentMapper" />
+        <constructor-arg index="1" ref="jdbcTemplate" />
+        <constructor-arg index="2" ref="transactionTemplate" />
+    </bean>
+    
+    <bean class="cn.kepu.self.activity.service.ActivityCommentService" factory-method="getInstance"
+          p:activityCommentDao-ref="activityCommentDaoImpl" />
+    
+    <!-- 活动报道 -->
+    <bean id="activityReportMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.activity.mybatis.mapper.ActivityReportMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="activityReportDaoImpl" class="cn.kepu.self.activity.daoimpl.ActivityReportDaoImpl"
+          p:activityReportMapper-ref="activityReportMapper" />
+    
+    <bean class="cn.kepu.self.activity.service.ActivityReportService" factory-method="getInstance"
+          p:activityReportDao-ref="activityReportDaoImpl" />  
+    
+    <!-- SELF+公示 -->
+    <bean id="publicityMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.activity.mybatis.mapper.PublicityMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="publicityDaoImpl" class="cn.kepu.self.activity.daoimpl.PublicityDaoImpl"
+          p:publicityMapper-ref="publicityMapper" />
+    
+    <bean class="cn.kepu.self.activity.service.PublicityService" factory-method="getInstance"
+          p:publicityDao-ref="publicityDaoImpl" />
+    
+    <!-- 活动报名 -->
+    <bean id="activityJoinMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.activity.mybatis.mapper.ActivityJoinMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="activityJoinDAOImpl" class="cn.kepu.self.activity.daoimpl.ActivityJoinDAOImpl">
+        <constructor-arg index="0" ref="activityJoinMapper" />
+    </bean>
+    <bean class="cn.kepu.self.activity.service.ActivityJoinService" factory-method="getInstance"
+          p:activityJoinDAO-ref="activityJoinDAOImpl"
+          p:activityDao-ref="activityDaoImpl" />
+</beans>

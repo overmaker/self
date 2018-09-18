@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.activity.mybatis.mapper.ActivityReportMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.activity.entity.ActivityReport">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="title" column="title" />
+        <result property="reportTime" column="report_time" />
+        <result property="introduction" column="introduction" />
+        <result property="content" column="content" />
+        <result property="activity.id" column="aid" />
+        <result property="activity.title" column="atitle" />
+        <result property="thumbnail" column="thumbnail" />
+        <result property="media" column="media" />
+    </resultMap>
+    <insert id="insertActivityReport">
+        INSERT INTO kepu_self_activity_report (title,report_time,introduction,content,activity,thumbnail,media)
+        VALUES(#{title},#{reportTime},#{introduction},#{content},#{activity.id},#{thumbnail},#{media})
+    </insert>
+    <update id="updateActivityReport">
+        UPDATE kepu_self_activity_report
+        SET gmt_modified = NOW(),
+            title = #{title},
+            report_time = #{reportTime},
+            introduction = #{introduction},
+            content = #{content},
+            thumbnail = #{thumbnail},
+            media = #{media},
+            activity = #{activity.id}
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteActivityReport">
+        DELETE FROM kepu_self_activity_report WHERE id = #{id};
+    </delete>
+    <select id="findById" resultMap="resultMap">
+        SELECT ar.id,
+        ar.gmt_create,
+        ar.gmt_modified,
+        ar.title,
+        ar.report_time,
+        ar.introduction,
+        ar.content,
+        ar.media,
+        ar.thumbnail,
+        a.id aid,
+        a.title atitle
+        FROM kepu_self_activity_report ar
+        INNER JOIN kepu_self_activity a ON a.id = ar.activity
+        WHERE ar.id = #{id}
+    </select>
+    <select id="selectActivityReport" resultMap="resultMap">
+        SELECT ar.id,
+        ar.gmt_create,
+        ar.gmt_modified,
+        ar.title,
+        ar.report_time,
+        ar.introduction,
+        ar.content,
+        ar.media,
+        ar.thumbnail,
+        a.id aid,
+        a.title atitle
+        FROM kepu_self_activity_report ar
+        INNER JOIN kepu_self_activity a ON a.id = ar.activity
+        <where>
+            <if test="title != null and title != ''">
+                AND ar.title LIKE CONCAT('%',#{title},'%')
+            </if>
+        </where>
+        ORDER BY ar.gmt_create DESC
+    </select>
+    
+    <select id="selectActivityReport1" resultMap="resultMap">
+        SELECT ar.id,
+        ar.gmt_create,
+        ar.gmt_modified,
+        ar.title,
+        ar.report_time,
+        ar.introduction,
+        ar.content,
+        ar.media,
+        ar.thumbnail,
+        a.id aid,
+        a.title atitle
+        FROM kepu_self_activity_report ar
+        INNER JOIN kepu_self_activity a ON a.id = ar.activity
+        WHERE ar.activity = #{arg0}
+        ORDER BY ar.gmt_create DESC
+    </select>
+</mapper>

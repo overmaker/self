@@ -1,0 +1,80 @@
+body {
+    background: #FCFBF7;
+} 
+.lecturer-reconmmend-body{
+    width: 70%;
+    margin: auto;
+}
+/* 内容 */
+.commend {
+    /*width: 80%;
+    padding: 50px 150px;*/
+    background: white;
+    color:gray;
+    height: 700px;
+}
+.commend-left {
+    float: left;
+    width: 15%;
+    text-align: center;
+    border-right: 2px solid #E2E2E2;
+    height: 630px;;
+}
+.commend-right {
+    float: right;
+    width: 82%;
+}
+.commend-title {
+    font-size: 13px;
+    color:black;
+    font-weight: bold;
+}
+.commend-title hr {
+    height:3px;
+    border:none;
+}
+.commend .reconmmend {
+    color:black;
+    line-height: 22px;
+}
+.commend-right-neirong {
+    float: left;
+    text-align: right;
+    font-size: 17px;
+    width:295px;
+    margin-top:10px;
+}
+.commend-right-neirong2 {
+    float: right;
+    position: absolute;
+    right:15%;
+}
+#comment-submit {
+    width: 100px;
+    height: 35px;
+    position: relative;
+    left: 140px;
+    top:500px;
+}
+.input-group {
+    width: 360px;
+    margin-top: 10px;
+}
+a {
+    text-decoration:none;
+}
+a:hover {
+    text-decoration:none;
+}
+.comments{
+    margin-left: 40%;
+    margin-top: 5%;
+}
+.left{
+    float: left;
+    width:45%;
+}
+.right{
+    /*    float:right;*/
+}
+.style2{   color:red ;}

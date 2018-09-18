@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="cn.kepu.self.commons.mybatis.mapper.AuthMapper">
+    
+    <update id="updateUserToken">
+        UPDATE kepu_self_user SET token = #{token} WHERE uid = #{uid}
+    </update>
+    <update id="clearToken">
+        UPDATE kepu_self_user SET token = NULL WHERE token= #{token}
+    </update>
+    
+    <select id="login" resultType="java.lang.Boolean">
+        SELECT COUNT(*) FROM kepu_self_user WHERE user_name=#{username} AND user_password=#{password} AND uid LIKE 'self%'
+    </select>
+    
+    <update id="setToken">
+        UPDATE kepu_self_user SET token=#{token} WHERE user_name=#{username}
+    </update>
+</mapper>

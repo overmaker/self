@@ -1,0 +1,45 @@
+.add {
+   font-size:13px;
+   text-align: left;
+   padding: 10px 20px 10px 90px;
+}  
+.add span {
+    margin: 5px 0;
+}
+.add-submit {
+    margin-left: 220px;
+    margin-top: 20px;
+}
+
+#activity-apply-identification_pic-image {
+    width: 120px;
+    height:100px;
+    margin-right: 20px;
+    border: 1px solid #CDCDD1;
+}
+
+#activity-apply-business_license_pic-image {
+    width: 120px;
+    height:100px;
+    margin-right: 20px;
+    border: 1px solid #CDCDD1;
+}
+
+#activity-apply-activity_plan_file-image {
+    width: 120px;
+    height:100px;
+    margin-right: 20px;
+    border: 1px solid #CDCDD1;
+}
+
+.view {
+   font-size:13px;
+   text-align: left;
+   padding: 10px 20px 10px 90px;
+}  
+.view span {
+    margin: 5px 0;
+}
+.view button {
+    margin-top: 20px;
+}

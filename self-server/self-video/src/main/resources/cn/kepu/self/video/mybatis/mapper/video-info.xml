@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+                                        
+<mapper namespace="cn.kepu.self.video.mybatis.mapper.VideoInfoMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.video.entity.VideoInfo">
+        <id property="id" column="id"  />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="hitsNum" column="hits_num" />
+        <result property="likesNum" column="likes_num" />
+        <result property="commentNum" column="comment_num" />
+        <result property="score" column="score" />
+    </resultMap>
+    <insert id="insertVideoInfo">
+        INSERT INTO kepu_self_video_info (id,gmt_create,gmt_modified)  
+        VALUES (#{arg0},now(),now());
+    </insert>
+    <delete id="deleteVideoInfo">
+        DELETE FROM kepu_self_video_info WHERE id = #{arg0};
+    </delete>
+    <update id="updateVideoInfo">
+        UPDATE kepu_self_video_info SET likes_num=#{arg0},comment_num=#{arg1},score=#{arg2} WHERE id=#{arg3};
+    </update>
+    <select id="selByIdVideoInfo" resultMap="resultMap">
+        SELECT  id,
+                gmt_create,
+                gmt_modified,
+                hits_num, 
+                likes_num,
+                comment_num,
+                score
+                FROM kepu_self_video_info 
+                WHERE id = #{id}
+    </select>
+    <select id="searchVideoInfo" resultMap="resultMap">
+        SELECT  id,
+                gmt_create,
+                gmt_modified,
+                likes_num,
+                comment_num,
+                score
+                FROM kepu_self_video_info 
+                ORDER BY likes_num ASC
+    </select>
+</mapper>

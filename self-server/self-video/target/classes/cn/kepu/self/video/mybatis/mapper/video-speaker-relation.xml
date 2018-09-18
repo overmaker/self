@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+                                        
+<mapper namespace="cn.kepu.self.video.mybatis.mapper.VideoSpeakerRelationMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.video.entity.Speaker">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="name" column="name" />
+        <result property="photo" column="photo" />
+        <result property="post" column="post" />
+    </resultMap>
+    <select id="selectByVideoId" resultMap="resultMap">
+        SELECT sp.name AS name,
+               sp.photo AS photo,
+               sp.post AS post,
+               sp.id AS id,
+               sp.gmt_create AS gmt_create,
+               sp.gmt_modified AS gmt_modified
+        FROM kepu_self_video_speaker_relation r
+        INNER JOIN kepu_self_speaker sp ON r.speaker = sp.id
+        WHERE r.video = #{id}
+    </select>
+</mapper>

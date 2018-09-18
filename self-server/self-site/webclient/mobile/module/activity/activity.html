@@ -1,0 +1,78 @@
+<!--<header class="mui-bar mui-bar-nav">
+    <a id="icon-menu" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right"></a>
+    <h1 class="mui-title">活动</h1> </header>-->
+<!--搜索-->
+<div class="aui-searchbar" id="search">
+    <div class="aui-searchbar-input aui-border-radius" tapmode onclick="doSearch()"> <i class="aui-iconfont aui-icon-search"></i>
+        <form action="javascript:search();"> <input type="search" placeholder="请输入搜索内容" id="search-input"> </form>
+    </div>
+    <div class="aui-searchbar-cancel" tapmod>取消</div>
+</div>
+<div id="menu-wrapper" class="menu-wrapper hidden" style="background-color: #f2f2f2;">
+    <div id="menu" class="menu">
+        <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+                <li class="layui-this" style="width: 50%;">报道</li>
+                <li style="width: 50%;">公示</li>
+            </ul>
+            <div class="layui-tab-content" style="height: auto;">
+                <div class="layui-tab-item layui-show" id="report-list">
+                    <div class="weui-pull-to-refresh__layer">
+                        <div class="weui-pull-to-refresh__preloader"></div>
+                        <div class="down">下拉刷新</div>
+                        <div class="up">释放刷新</div>
+                        <div class="refresh">正在刷新</div>
+                    </div>
+                    <ul style="margin-top: 5%;"></ul>
+                    <div class="weui-loadmore" id="self-report-more"> <i class="weui-loading"></i> <span class="weui-loadmore__tips">正在加载</span> </div>
+                    <div class="weui-loadmore weui-loadmore_line" style="display: none;" id="self-report-none"> <span class="weui-loadmore__tips">没有更多了</span> </div>
+                </div>
+                <div class="layui-tab-item" id="selfPlus-list">
+                    <div class="weui-pull-to-refresh__layer">
+                        <div class="weui-pull-to-refresh__preloader"></div>
+                        <div class="down">下拉刷新</div>
+                        <div class="up">释放刷新</div>
+                        <div class="refresh">正在刷新</div>
+                    </div>
+                    <ul style="margin-top: 5%;"> </ul>
+                    <div class="weui-loadmore" id="self-selfPlus-more"> <i class="weui-loading"></i> <span class="weui-loadmore__tips">正在加载</span> </div>
+                    <div class="weui-loadmore weui-loadmore_line" style="display: none;" id="self-selfPlus-none"> <span class="weui-loadmore__tips">没有更多了</span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="menu-backdrop" class="menu-backdrop"></div>
+<div class="mui-content">
+    <div>
+        <!--主题-->
+        <div id="menu" class="menu bounce-in-down" style="background-color: white;height: 50px;">
+            <div class="screen">
+                <table>
+                    <tr id="theme"> </tr>
+                </table>
+            </div>
+        </div>
+        <div id="menu" class="menu" style="background-color: white;height: 50px;">
+            <div class="screen">
+                <table>
+                    <tr id="type"> </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="past-activities">
+        <div style="position: absolute; left: 0; right: 0; top: 155px; bottom: 0; overflow-y: auto;" id="activity-list">
+            <div class="weui-pull-to-refresh__layer">
+                <div class="weui-pull-to-refresh__arrow"></div>
+                <div class="weui-pull-to-refresh__preloader"></div>
+                <div class="down">下拉刷新</div>
+                <div class="refresh">正在刷新</div>
+            </div>
+            <ul class="mui-table-view mui-grid-view" style="margin-top: -9%"> </ul>
+            <div class="weui-loadmore" id="self-activity-more"> <i class="weui-loading"></i> <span class="weui-loadmore__tips">正在加载</span> </div>
+            <div class="weui-loadmore weui-loadmore_line" style="display: none;" id="self-activity-none"> <span class="weui-loadmore__tips">没有更多了</span> </div>
+        </div>
+    </div>
+</div>

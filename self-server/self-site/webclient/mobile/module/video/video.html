@@ -1,0 +1,71 @@
+<div class="mui-content" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0;">
+    <header class="mui-bar mui-bar-nav" style="padding-left: 0px;">
+        <a id="icon-menu" class="mui-action-menu mui-icon mui-icon-arrowdown mui-pull-right" style="background-color: #ebeced;"></a>
+        <div>
+            <!--搜索-->
+            <div class="aui-searchbar" id="search" style="width: 90%;">
+                <div class="aui-searchbar-input aui-border-radius" tapmode> <i class="aui-iconfont aui-icon-search"></i>
+                    <input type="search" placeholder="请输入搜索内容" id="search-input" style="height: 10px">
+                </div>
+                <!--<div class="aui-searchbar-cancel" tapmod>取消</div>-->
+            </div>
+        </div>
+    </header>
+    <div style="position: absolute; left: 0; right: 0; top: 0;">
+        <div id="menu-wrapper" class="menu-wrapper hidden">
+            <!--主题-->
+            <div id="menu" class="menu" style="background-color: white;height: 50px;">
+                <div class="screen">
+                    <table>
+                        <tbody>
+                            <tr id="theme"> </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--专辑-->
+            <div id="menu" class="menu" style="background-color: white;height: 50px;">
+                <div class="screen">
+                    <table>
+                        <tbody>
+                            <tr id="album"> </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--分类-->
+            <div id="menu" class="menu" style="background-color: white;height: 50px;">
+                <div class="screen">
+                    <table>
+                        <tbody>
+                            <tr id="type"> </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!--适合人群'-->
+            <div id="menu" class="menu" style="background-color: white;height: 50px;">
+                <div class="screen">
+                    <table>
+                        <tbody>
+                            <tr id="age"> </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="menu-backdrop" class="menu-backdrop"></div>
+    </div>
+    <div style="position: absolute; left: 0; right: 0; top: 65px; bottom: 0; overflow-y: auto;" id="video-list">
+        <div class="weui-pull-to-refresh__layer" style="height: 15px;line-height: 40px;">
+            <div class="weui-pull-to-refresh__arrow"></div>
+            <div class="weui-pull-to-refresh__preloader"></div>
+            <div class="down">下拉刷新</div>
+            <div class="up">释放刷新</div>
+            <div class="refresh">正在刷新</div>
+        </div>
+        <ul class="mui-table-view mui-grid-view"> </ul>
+        <div class="weui-loadmore" id="self-video-more"> <i class="weui-loading"></i> <span class="weui-loadmore__tips">正在加载</span> </div>
+        <div class="weui-loadmore weui-loadmore_line" style="display: none;" id="self-video-none"> <span class="weui-loadmore__tips">没有更多了</span> </div>
+    </div>
+</div>

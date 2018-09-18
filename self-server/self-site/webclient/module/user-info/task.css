@@ -1,0 +1,36 @@
+
+.task-comment table {
+    border: 1px solid #EEEEEE;
+}
+.task-comment table tr td {
+    border: 1px solid #EEEEEE;
+    text-align: center;
+    width: 290px;
+}
+.task-comment table tr th {
+    border: 1px solid #EEEEEE;
+    text-align: center;
+}
+.task-comment .input-group input {
+    width:200px;
+}
+.task-comment .task-comment-table tr td {
+    width: 300px;
+    border: 1px solid white;
+    text-align: left;
+    padding: 10px 3px;
+}
+.input-group select {
+    width: 200px;
+    height: 40px;
+    border: 1px solid #CCCCCC;
+    border-radius: 0 5px 5px 0;
+}
+.input-group #task-status {
+    height: 20px;
+}
+#submit {
+    width:70px;
+    background:#5Fb878;
+    border:1px solid #5Fb878;
+}

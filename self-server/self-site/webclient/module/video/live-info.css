@@ -1,0 +1,317 @@
+body {
+    background: #FCFBF7;
+} 
+
+/* 内容 */
+.commend {
+    background: #F1F1F1;
+    color: gray;
+
+}
+.commend .zhibo-left {
+    float: left;
+    width: 70%;
+}
+.commend .zhibo-right {
+    float:right;
+    width: 30%;
+    height: 200px;
+}
+.zhibo-left-image {
+    width: 144%;
+   /* height: 500px;*/
+}
+.zhibo-left h2 {
+    margin: 10px 0;
+    font-size: 25px;
+}
+.zhibo-left dl dd {
+    width: 142%;
+    font-size: 12px;
+    padding: 10px 10px;
+}
+.video-tubiao {
+    width:20px;
+    height:20px;
+}
+.layui-tab-title .layui-this {
+    color:white;
+    background: #FF6B58;
+    border: 1px solid #FF6B58;
+}
+.layui-tab-content {
+    border: 1px solid #FF6B58;
+    background: white;
+    padding: 0;
+}
+.jz-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 20%;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+.commend-comment {
+    width: 140%;
+    background: white;
+    padding: 13px 12px;
+}
+.commend-comment textarea {
+    width: 96%;
+    height: 90px;
+    resize: none;
+    padding: 0 10px;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+.yjz-name {
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    bottom: 65px;
+    left: 95px;
+}
+.yjz-occupation {
+    position: relative;
+    bottom: 60px;
+    left: 95px;
+}
+.zhibo-yjz  {
+    width: 100%;
+    height: 530px;
+}
+.zhibo-yjz p {
+    padding: 10px 10px;
+    color:#8A6D3B;
+}
+.yjz-info {
+    color:#FF6B58;
+    font-weight: bold;
+    padding: 5px 10px;
+    font-size:18px;
+}
+.yjz-submit {
+    width:100px;
+    height: 35px;
+    color:white;
+    background: #FF6B58;
+    border: #FF6B58;
+    border-radius: 10px;
+    margin: 0 35%;
+    margin-bottom: 20px;
+}
+.comeend-div1 {
+    /*width: 80%;*/
+    height: 690px;
+    margin: 0 2%;
+}
+.comment-div2 {
+    /*width: 80%;*/
+    height: 870px;
+    background: white;
+    /*padding: 20px 2%;
+    padding-bottom: 450px;*/
+   /* margin-top: 7%;*/
+}
+.commend-div2-left {
+    float: left;
+    width: 70%;
+    height: 200px;
+}
+.commend-div2-right {
+    float: right;
+    background: #F1F1F1;
+    width: 30%;
+}
+.huifang-logo {
+    width: 30px;
+    height: 20px;
+}
+.comment-logo2 {
+    width: 20px;
+    height: 20px;
+}
+.comment-img {
+    width: 75px;
+    height: 64px;
+}
+.zhibo-list-image {
+    width: 210px;
+    height: 100px;
+}
+.commend-div2-left table tr td {
+    width: 215px;
+    height:170px;
+}
+.div2-table tr td  dl {
+    border:2px solid #F4F4F4;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+.div2-table tr td  dl dd {
+    font-size: 13px;
+    padding: 2px 4px;
+    border:2px solid #F4F4F4;
+}
+.div2-table .zhibo-list-dd {
+    font-size: 16px;
+}
+.comment-p {
+    line-height: 30px;
+    padding: 0 15px;
+    color: black;
+}
+.commend-div2-right ul li {
+    width: 90%;
+    margin: 20px 20px;
+    height: 140px;
+    background: white;
+}
+.jz-tj-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+.yjz-tj-name {
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    bottom: 55px;
+    left: 85px;
+}
+.yjz-tj-occupation {
+    position: relative;
+    bottom: 50px;
+    left: 85px;
+    font-size: 12px;
+}
+.commend-div2-right hr {
+    height: 1px;
+    position: relative;
+    bottom: 18px;
+    width:90%;
+    margin: 0 15px;
+}
+.commend-div2-right .div1 {
+    width: 90%;
+    background: #DCDCDC;
+    color:black;
+    font-size: 14px;
+    padding: 5px 20px;
+    font-weight: bold;
+}
+.video-js {
+    width: 144%;
+    height: 500px;
+}
+.video-time {
+    opacity: 0.4;
+    background: black;
+    color:white;
+    position: relative;
+    bottom: 98px;
+    right:1px;
+    border:1px solid #000007!important;
+}
+.jt-img {
+    width: 20px;
+    height:10px;
+    float: right;
+    position: relative;
+    bottom: 20px;
+}
+a:hover {
+    color:#FF6B58;
+}
+.zhibo-comment textarea {
+    width: 90%;
+    height: 90px;
+    margin: 10px 10px;
+    resize: none;
+}
+.zhibo-comment input {
+    width: 90px;
+    height: 35px;
+    color:white;
+    margin: 0 81%;
+}
+.commend-div2-left table img:hover {
+    opacity: 0.5;
+}
+#comment-div {
+    margin: 10px 0;
+}
+#grid-demo {
+    border:3px solid #F2F2F2;
+    width: 80px;
+}
+.boxDom {
+/*    background: red;*/
+    width: 144%;
+    height: 225px;
+    position: relative;
+    overflow: hidden;
+    bottom: 91%;
+}
+.content-video-barrage {
+    background-color: black;
+    display: inline-block;
+    width: 144%;
+    height: 40px;
+    position: relative;
+    left: 0px;
+    right: 23.9%;
+    top: 100%;
+    bottom: 325px;
+    margin: auto;
+}
+.barrage-text {
+    border: none;
+    background-color: gray;
+    text-indent: 1rem;
+    width: 88%;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 5px;
+    font-size: 0.4em;
+}
+.barrage-btn {
+    border-radius: 0px 20px;
+    width: 9%;
+    height: 30px;
+    background: #f90000;
+    border: none;
+    color: #fff;
+   /* font-size: 0.4em;*/
+}
+.barrage-span {
+    width: 300px;
+    height: 40px;
+    position: absolute;
+    overflow: hidden;
+    color: #000;
+    font-size: 1.4em;
+    line-height: 1.5em;
+    cursor: pointer;
+    white-space: nowrap;
+}
+#test{
+    width: 144%;
+    height: 100px;
+    /*background-color: red;*/
+    position: relative;
+    bottom: 100%;
+    font-size: 30px;
+    text-align: center;
+    line-height: 100px;
+    color: papayawhip;
+    text-shadow: 24px -27px 4px beige;
+}
+.layui-btn-danger{
+    float: right;
+    margin-right: 2%;
+}

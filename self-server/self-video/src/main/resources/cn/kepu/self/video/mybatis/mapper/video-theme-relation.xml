@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+                                        
+<mapper namespace="cn.kepu.self.video.mybatis.mapper.VideoThemeRelationMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.video.entity.VideoTheme">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="name" column="name" />
+    </resultMap>
+    <select id="selectByVideoId" resultMap="resultMap">
+        SELECT t.name AS name,
+               t.id AS id,
+               t.gmt_create AS gmt_create,
+               t.gmt_modified AS gmt_modified
+        FROM kepu_self_video_theme_relation r
+        INNER JOIN kepu_self_video_theme t ON r.theme = t.id
+        WHERE r.video = #{id}
+    </select>
+</mapper>

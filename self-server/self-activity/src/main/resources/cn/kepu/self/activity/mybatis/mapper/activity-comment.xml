@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.activity.mybatis.mapper.ActivityCommentMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.activity.entity.ActivityComment">
+        <id property="id" column="id"  />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="comment" column="comment" />
+        <result property="word" column="word" />
+        <result property="enable" column="enable" />
+        <result property="activity.id" column="aid" />
+        <result property="activity.title" column="title" />
+        <result property="user.id" column="uid" />
+        <result property="user.userName" column="userName" />
+        <result property="userInfo.id" column="infoid" />
+        <result property="userInfo.nickName" column="nickname" />
+        <result property="userInfo.photo" column="photo" />
+    </resultMap>
+    <insert id="insertActivityComment">
+        INSERT INTO kepu_self_activity_comment (user,activity,comment,enable) VALUES (#{user.id},#{activity.id},#{comment},0);
+    </insert>
+    <delete id="deleteActivityComment">
+        DELETE FROM kepu_self_activity_comment WHERE id = #{id};
+    </delete>
+    <select id="findActivityComment" resultMap="resultMap">
+        SELECT id,gmt_create,gmt_modified,user,activity,comment FROM kepu_self_activity_comment WHERE activity = #{arg0} ORDER BY activity
+    </select>
+    <select id="findActivityCommentAll" resultMap="resultMap">
+        SELECT c.id,
+        c.gmt_create,
+        c.gmt_modified,
+        av.id AS aid,
+        av.title title,
+        u.id AS uid,
+        u.user_name username,
+        i.id AS infoid,
+        i.nickname AS nickname,
+        i.photo AS photo,
+        c.comment
+        FROM kepu_self_activity_comment c
+        INNER JOIN kepu_self_activity av ON c.activity = av.id
+        INNER JOIN kepu_self_user u ON c.user = u.id
+        INNER JOIN kepu_self_user_info i ON c.user = i.id
+        <where>
+            <if test="activity.title != null and activity.title != ''">
+                AND v.title LIKE CONCAT('%',#{activity.title},'%')
+            </if>
+            <if test="activity.id != null">
+                AND c.activity = #{activity.id}
+            </if>
+            <if test="comment != null and comment != ''">
+                AND c.comment LIKE CONCAT('%',#{comment},'%')
+            </if>
+            <if test="user.id != null">
+                AND c.user = #{user.id}
+            </if>
+        </where> and  c.enable=1
+        ORDER BY gmt_create DESC
+    </select>
+    
+      
+    <!--后台审核-->
+    <select id="adminLiveComment" resultMap="resultMap">
+        SELECT * FROM kepu_self_activity_comment   where enable=0 order by activity
+    </select>
+    
+    <select id="adminComment" resultMap="resultMap">
+        SELECT ac.id AS id,
+        ui.id AS infoid,
+        ui.photo AS photo,
+        u.id AS uid,
+        u.user_name AS userName,
+        ac.comment AS comment,
+        ac.gmt_create,
+        ac.enable AS enable,
+        at.id AS aid,
+        at.title
+        FROM kepu_self.kepu_self_activity_comment ac 
+        INNER JOIN kepu_self_user_info ui ON ac.user=ui.id
+        INNER JOIN kepu_self_user u ON ac.user=u.id
+        INNER JOIN kepu_self_activity at ON ac.activity=at.id 
+        <where>
+            <if test="activity != null and activity.title != null and activity.title != ''">
+                AND at.title LIKE CONCAT('%',#{activity.title},'%')
+            </if>
+            <if test="activity != null and activity.id != null">
+                AND at.id=#{activity.id}
+            </if>
+            <if test="user != null and user.id != null">
+                AND i.id=#{user.id}
+            </if>
+            <if test="enable != null">
+                AND enable=#{enable}
+            </if>
+        </where>
+        ORDER BY ac.gmt_create DESC
+    </select>
+    
+    <update id="adminChangeComment" >
+        update kepu_self_activity_comment set enable=1 where id= #{id}
+    </update>
+</mapper>

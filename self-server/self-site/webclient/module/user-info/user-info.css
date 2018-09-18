@@ -1,0 +1,42 @@
+body {
+    color:gray;
+}
+
+.user-info {
+    padding: 10px 40px;
+}
+.user-info div span {
+    margin: 10px 20px;
+}
+.user-info div {
+    margin: 5px 0;
+}
+.user-info .layui-input-inline  {
+    width: 40%;
+}
+.user-info button {
+    width: 100px;
+    margin: 20px 260px;
+}
+div input {
+    width: 400px;
+    height: 35px;
+    padding: 0 5px;
+    margin: 5px 0;
+    border:2px solid #EDEDED;
+}
+div select {
+    width: 400px;
+    height: 35px;
+    margin: 5px 0;
+    border:2px solid #EDEDED;
+}
+div span {
+    font-size: 18px;
+    margin: 5px 0;
+}
+div button {
+    width: 100px;
+    height: 30px;
+    margin: 10px 280px;
+}

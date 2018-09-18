@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="video-info.css" />
+        <link rel="stylesheet" href="../../css/normalize.min.css">
+        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="stylesheet" href="../../lib/video-js/video-js.min.css">
+        <link rel="stylesheet" href="../../top.css" /> 
+        <style type="text/css">
+            #weixinDiv{
+                background-color:#FFF;
+                border: 1px solid ;
+                width:300px;
+                height:300px;
+                /*下面是页面固定居中*/
+                position:fixed;
+                *position:absolute; 
+                top:50%; 
+                left:40%; 
+                margin:-50px 0 0 -50px;
+            }
+            #hideWeiXinDiv{
+                text-align: right;
+                float: right;
+                padding-right: 10px;
+                padding-top: 2px;
+            }
+            #qrcode{
+                width:200px;
+                height:200px;
+                margin: 0px auto;
+            }
+        </style>
+        <script type="text/javascript" charset="utf-8">
+            /**
+             * 关闭微信分享窗口
+             */
+            function hideWeiXin() {
+                var weixinDiv = document.getElementById("weixinDiv");
+                weixinDiv.style.display = "none";
+            }
+            function hideshareTo() {
+                var shareTo = document.getElementById("shareTo");
+                shareTo.style.display = "none";
+            }
+
+        </script>
+    </head>
+
+    <body>
+        <div id="top"> </div>
+        <div class="layui-container">
+            <div class="video-info-body">
+                <!-- 导航条  -->
+                <div class="commend">
+                    <div class="commend-left">
+                        <div class="commend-left-div1">
+                            <div class="div-video" style="margin-top: 2%;">
+                                
+                                <video id="self-video-player" class="video-js vjs-default-skin vjs-big-play-centered" width="100%"> </video>
+<!--                                <video class="video-js vjs-default-skin vjs-big-play-centered" width="100%" controls preload="auto">
+                                    <source src="http://114.115.149.5/upload/video-upload-video/06BAD93826_aaaaa.mp4" type='video/mp4'>
+                                </video>-->
+                            </div>
+                            <div id="danmu" style="pointer-events: none"></div>
+                            <div class="send_danmu_bar"  style="width: 80%;"> 弹幕&nbsp;&nbsp; <input type="checkbox" checked='checked' name="sex" id="ishide" value='is' class="chooseBtn" /> <label for="ishide" class="choose-label"></label> <input type="textarea" id="text" max=300 placeholder="发表你的看法吧..." style="height: 25px;width: 71%;text-indent: 0.5rem;" /> <button type="button" class="btn btn-success" style="padding: 0 12px; color: white; background-color: #292929;height: 27px;border: none;">发送</button> 
+                                <div id="donation" class="mod-award-popWrap dn" style="display: none;">
+                                    <div class="mod-award-pop">
+                                        <div class="award-pop-con">
+                                            <div class="award-pop-hd">
+                                                <p class="pop-hd-txt">请选择打赏金额：</p>
+                                                <a id="hideWeiXinDiv" onclick="hideWeiXin()" style="cursor: pointer;">关闭</a>
+<!--                                                <a href="javascript:(void);" class="award-pop_closeBtn" data-bigvip-reward="closeFloat"></a>-->
+                                            </div>
+                                            <div class="award-pop-bd" data-bigvip-elem="rewardInfoWrap">
+                                                <a id="0.01" href="javascript:void(0)" class="award-money" rewardcount="500" rewardtext="喜欢你" target="81df4ff6423a13e3" rseat="710251_tip"> <span class="money-nums"><cite class="nums-desc">0.01</cite>元</span> <span class="award-text">喜欢你</span> </a>
+                                                <a id="0.02" href="javascript:void(0)" class="award-money " rewardcount="520" rewardtext="么么哒" target="81df4ff6423a13e3" rseat="710251_tip"> <span class="money-nums"><cite class="nums-desc">0.02</cite>元</span> <span class="award-text">么么哒</span></a>
+                                                <a id="0.03" href="javascript:void(0)" class="award-money noBorderReward" rewardcount="600" rewardtext="666" target="81df4ff6423a13e3" rseat="710251_tip"><span class="money-nums"><cite class="nums-desc">0.03</cite>元</span><span class="award-text">666</span></a>
+                                                <a id="0.04" href="javascript:void(0)" class="award-money " rewardcount="1200" rewardtext="佩服" target="81df4ff6423a13e3" rseat="710251_tip"><span class="money-nums"><cite class="nums-desc">0.04</cite>元</span><span class="award-text">佩服</span></a>
+                                                <a id="0.05" href="javascript:void(0)" class="award-money " rewardcount="5000" rewardtext="老司机" target="81df4ff6423a13e3" rseat="710251_tip"><span class="money-nums"><cite class="nums-desc">0.05</cite>元</span><span class="award-text">老司机</span></a>
+                                                <a id="0.06" href="javascript:void(0)" class="award-money noBorderReward" rewardcount="52000" rewardtext="带我飞" target="81df4ff6423a13e3" rseat="710251_tip"><span class="money-nums"><cite class="nums-desc">0.06</cite>元</span><span class="award-text">带我飞</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="alert_box"> <img src="../../image/3.jpg" style="margin-top: 10%; width: 100%;" /> <button class="close" style="width: 20%;float: right;margin-top: 10%;margin-right: 10%;">关闭</button> </div>
+                            </div>
+                            <div  class="tubiao">
+                                <button id="reward" style="padding: 0 12px; color: white; background-color: #292929;height: 27px;border: none; margin-left: 56%;">打赏</button> &nbsp;&nbsp;&nbsp;
+                                <!--                                <button>  <img src="../../../image/laud13.png" class="video-tubiao" id="video-laud" style=" />  </button> &nbsp;&nbsp;&nbsp;-->
+                                <i class="layui-icon" style="cursor: pointer;color: white"  id="video-laud">&#xe6c6;</i>  &nbsp;&nbsp;&nbsp;
+                                <i class="layui-icon" style="cursor: pointer;color: white"  id="video-share">&#xe64c;</i>  &nbsp;&nbsp;&nbsp;
+                                <i class="layui-icon" style="cursor: pointer;color: white"  id="video-save">&#xe600;</i> </div>
+                            <!--视频介绍-->
+                            <div class="video-title">
+                                <h2></h2>
+                                <p id="intro" style="margin-top: 2%;width: 98%;"></p>
+                            </div>
+                            <!--讲师简介-->
+                            <div class="trainer-introduction">
+                                <div class="layui-row comment-div" id="speakerIntro"> </div>
+                            </div>
+                            <!--评论-->
+                            <div class="commend-comment">
+                                <div>
+                                    <h3>评论<font id="commendCount" color="gray" size="3"></font></h3> <textarea id="self-comment" rows="10" placeholder="我来说俩句..." maxlength="300"></textarea> <input type="submit" value="评论" id="comment-submit" class="layui-btn layui-btn-danger" />
+                                    <hr />
+                                    <h3>热门评论</h3> <br />
+                                    <ul> </ul>
+                                   <!-- <div id="comment-pager"></div>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="commend-right">
+                        <div class="layui-tab">
+                            <ul class="layui-tab-title">
+                                <li class="layui-this">相关视频</li>
+                                <li>同期视频</li>  </ul>
+                            <div class="layui-tab-content">
+                                <div class="layui-tab-item layui-show"  style="color: white">
+                                    <ul id="autoplayVideo"> </ul>
+                                    <span style="float: right;cursor: pointer; color: white;" id="huan">换一批</span>
+                                </div>
+                                <div class="layui-tab-item">
+                                    <ul id="sameTimeVideo"> </ul>
+                                    <span style="float: right;cursor: pointer; color: white;" id="huan1">换一批</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--分享到微信朋友圈-->
+                    <div id="weixinDiv"  style="display: none;">
+                        <div>
+                            <h3 style="float: left;">分享到微信朋友圈</h3>
+                            <a id="hideWeiXinDiv" onclick="hideWeiXin()" style="cursor: pointer;">关闭</a>
+                        </div>
+                        <div id="qrcode">
+                            <img alt="" style="">
+                        </div>
+                    </div>
+                    <!--分享-->
+                    <div id="shareTo"  style="display: none;">
+                        <h3 style="float: left;">分享:</h3>
+                        <i class="layui-icon" style="cursor: pointer;color: green"  id="weiixn">&#xe677;</i> 
+                        <i class="layui-icon" style="cursor: pointer;color: orangered"  id="weibo">&#xe675;</i> 
+                        <a id="hideshareTo" onclick="hideshareTo()" style="cursor: pointer;">关闭</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row" id="flooter"> </div>
+        <script src="../../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../lib/qrcode.min.js" charset="utf-8"></script>
+        <script src="../../lib/jquery/jquery.danmu.min.js"></script>
+        <script src="../../lib/jq-raty/jquery.raty.min.js"></script>
+        <script src="../../lib/layui/layui.all.js"></script>
+        <script type="text/javascript" src="../../lib/base.js"></script>
+        <script type="text/javascript" src="../../util.js"></script>
+        <script type="text/javascript" src="../../lib/video-js/video.min.js"></script>
+        <script type="text/javascript" src="video-info.js"></script>
+    </body>
+
+</html>

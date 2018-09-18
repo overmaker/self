@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="../../module/user-info/personal-center.css" />
+        <link rel="stylesheet" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="stylesheet" href="../../lib/video-js/video-js.min.css">
+        <link rel="stylesheet" href="../../top.css" />
+        <script type="text/javascript" src="../../lib/jquery/jquery-1.12.4.min.js"></script>
+        <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../../lib/wangEditor.min.js"></script>
+        <script type="text/javascript" src="../../lib/layui/layui.all.js"></script>
+        <script src="../../lib/layui/layui.js"></script>
+        <script type="text/javascript" src="../../lib/base.js"></script>
+        <script type="text/javascript" src="../../util.js"></script>
+        <script type="text/javascript" src="../../module/user-info/personal-center.js"></script>
+        <script>
+            layui.use('element', function() {
+                var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+            });
+        </script>
+        <style>
+            dd {
+                line-height: 36px;
+            }
+        </style>
+    </head>
+
+    <body>
+    <div id="top"></div>
+    <!-- 内容  -->
+    <div class="comment" style="width: 70%; margin: 0 auto;">
+        <div class="comment-left">
+            <div class="default-user-li" style="border-right: 1px solid gray;"> <span><img src="" draggable="false" class="default-user-image" id="my-image" ></span>
+<!--                <p class="default-name" id="my-vip" style="top: 100px;left: 23%;font-weight: bold;"></p>
+                <p class="modified-user-info" style="left: 23%">
+                    <a href='../../module/user-info/modify-information.html'>修改资料</a>
+                </p>-->
+            </div>
+            <ul>
+<!--                <li id="vipOrNot">
+                    <a href="#javascript:;" onclick="openHtml('../../module/user-info/become-vip.html')">我的订阅</a>
+                </li>-->
+                <li>
+                    <a target="true" href="../../module/user-info/modify-information.html">修改资料</a>
+                </li>
+                <li>
+                    <a href="javascript:;" onclick="openHtml('../../module/user-info/part-activity.html')">我参加的活动</a>
+                </li>
+                <li>
+                    <a href="javascript:;" onclick="openHtml('../../module/user-info/become-volunteer.html')">我看过的视频</a>
+                </li>
+                <li>
+                    <a href="javascript:;" onclick="openHtml('../../module/user-info/shoucang.html')">我的收藏</a>
+                </li>
+                <li>
+                    <a href="javascript:;" onclick="openHtml('../../module/user-info/my-recommended-speaker.html')">我推荐的演讲者</a>
+                </li>
+                <li>
+                    <a href="javascript:;" onclick="openHtml('../../module/user-info/comment.html')">我的评论</a>
+                </li>
+            </ul>
+        </div>
+        <div class="comment-right">
+            <div id="comment-html"></div>
+        </div>
+    </div>
+    <!--<div class="layui-row" id="flooter"> </div>-->
+    <div class="jingbei">中国科学院计算机网络中心&nbsp;&nbsp;版权所有&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;京ICP备09112257&nbsp;&nbsp;电话:(+86)&nbsp;01058812500&nbsp;&nbsp;邮箱:self@cnic.cn&nbsp;&nbsp;&nbsp;
+    <a href="/module/about/about.html" style="color: #b4b4b4;font-size: 16px;border-bottom: 1px solid red;">关于我们</a>
+</div>
+    </body>
+
+</html>

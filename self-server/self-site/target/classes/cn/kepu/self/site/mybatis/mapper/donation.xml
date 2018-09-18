@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.site.mybatis.mapper.Donation2Mapper">
+    <resultMap id="resultMap" type="cn.kepu.self.site.entity.Donation">
+        <id property="id" column="id"  />
+        <result property="sn" column="sn" />
+        <result property="video.id" column="vid" />
+        <result property="user.id" column="uid" />
+        <result property="total_fee" column="amount" />       
+        <result property="payFlag" column="pay_flag" />
+    </resultMap>
+    <select id="selectOrderById" resultMap="resultMap">
+        SELECT
+        id,
+        sn,
+        pay_flag
+        FROM  kepu_self_video_donation
+        WHERE id=#{id}
+    </select>
+    <insert id="insertOrder">
+        INSERT INTO kepu_self_video_donation(user,video,total_fee,sn) 
+        VALUES(#{user.id},#{video.id},#{total_fee},#{sn});
+    </insert>
+    <update id="paymentSuccess">
+        UPDATE kepu_self_video_donation SET pay_flag=1 WHERE sn=#{sn}
+    </update>
+    <select id="calculateFee" resultType="java.lang.Float">
+        SELECT total_fee
+        FROM kepu_self_video_donation 
+        WHERE id=#{id}
+    </select>
+</mapper>

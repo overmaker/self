@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" type="text/css" href="../../lib/amaze/amazeui.flat.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../lib/amaze/amazeui.min.css" />
+        <link rel="stylesheet" href="../../top.css" />
+        <link rel="stylesheet" type="text/css" href="../../module/activity/site-acivity.css" />
+        <link rel="stylesheet" href="../../css/normalize.min.css">
+        <style>
+            .layui-col-md4 ul li a {
+                color: black;
+                background-color: #FCFBF7;
+                border: none;
+            }
+            .layui-col-md4 ul li a i{
+                color: #999;
+            }
+            .am-list>li{
+                font-size: 12px;
+                border: none;
+            }
+            .layui-laypage a, .layui-laypage span{
+                background-color:  #FCFBF7;
+            }
+            .layui-laypage-default{
+                margin-top: 8%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="top"> </div>
+        <div class="layui-container">
+            <div class="layui-row">
+                <div class="screen" style="margin-top: 2%;">
+                    <table>
+                        <tbody>
+                            <tr id="theme">
+                            </tr>
+                            <tr id="type">
+                                <td>分 类：</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="layui-row layui-col-space10" style="margin-top: 2%;">
+                <!--左侧-->
+                <div class="layui-col-md8">
+                    <!--活动列表-->
+                    <div class="active-list" id="active-list">
+
+                    </div>
+                    <div id="comment-pager" style="text-align: center;"></div>
+                </div>
+                <!--右侧-->
+                <div class="layui-col-md4"  id="report-list">
+                    <!--报道-->
+                    <ul class="am-tabs-nav am-nav am-nav-tabs">
+                        <li class="am-active" style="margin: 0;width: 100%;">
+                            <a href="site-activity-report.html" style="padding: 1rem 0rem;border: none;background-color: #FCFBF7;font-size: 24px;"><span class="am-icon-file-text-o " style="margin-right: 4%;font-size: 3rem;color: #999;"></span>活动报道</a>
+                        </li>
+                    </ul>
+                    <!--报道列表-->
+                    <ul class="am-list am-margin-bottom-0" style="margin-top: -1px;"  id="report-list1">
+                    </ul>
+                    <!--<div id="report-pager"></div>-->
+                    <!--SELF公示-->
+<!--                    <ul class="am-tabs-nav am-nav am-nav-tabs" style="margin-top: 20%;">
+                        <li class="am-active" style="margin: 0;width: 100%;">
+                            <a href="site-activity-formula.html" style="padding: 1rem 0rem;border: none;background-color: #FCFBF7;font-size: 24px;"><span class="am-icon-file-audio-o " style="margin-right: 4%;font-size: 3rem;color: #999;"></span>SELF公示</a>
+                        </li>
+                    </ul>-->
+                    <!--SELF公式列表-->
+<!--                    <ul class="am-list am-margin-bottom-0" style="margin-top: -1px;"  id="publicity-list1">
+                    </ul>-->
+                    <!--<div id="publicity-pager"></div>-->
+                </div>
+            </div>
+        </div>
+        <div class="layui-row" id="flooter"> </div>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../lib/layui/layui.all.js"></script>
+        <script type="text/javascript" src="../../lib/base.js"></script>
+        <script type="text/javascript" src="../../util.js"></script>
+        <script type="text/javascript" src="site-activity.js"></script>
+    </body>
+</html>

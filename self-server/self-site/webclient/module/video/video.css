@@ -1,0 +1,137 @@
+body {
+    background: #FCFBF7;
+}
+/*.video-body{
+    width: 70%;
+    margin: auto;
+}*/
+.comment {
+    background:white;
+    /*padding: 20px 190px 80px 190px;*/
+}
+.screen {
+    color: gray;
+    /*width:98%;
+    height: 110px;*/
+    padding: 20px 12px;
+    background: #F5F5F5;
+}
+.screen table tr td {
+    color:gray;
+    padding: 10px 15px;
+}
+.screen table tr td a {
+    color: gray;
+    padding: 5px 8px;
+}
+.screen .theme {
+    background: #FF6B58;
+    color:white;
+}
+.video-left {
+    cursor:pointer;
+    float:left;
+}
+.video-right {
+    margin-right: 2%;
+    float:right;
+}
+.video-list div input {
+    height: 27px;
+    width: 200px;
+    border-radius: 8%;
+    text-indent: 1rem;
+}
+.video-header div {
+    padding-left: 100px;
+}
+.searchbox {
+    width:30px;
+    height:25px;
+    position: relative;
+    right: 36px;
+    bottom: 2.08px;
+    border-radius: 9%;
+}
+.video-header {
+    margin-top: 30px;
+    text-indent: 5px;
+}
+.all-video {
+    /*padding-top: 60px;*/
+    padding-bottom: 60px;
+    margin-left: 2%;
+}
+.all-video table tr td {
+    width: 20%;
+    height: 100%;
+    padding: 2% 1%;
+}
+.p-video-p {
+    height: 35px;
+}
+.ff-items-p-image {
+    /*    width: 18px;*/
+    height: 12px;
+    opacity: 0.4;
+    padding: 0 4px;
+}
+.ff-items-p-image2 {
+    /*    width: 18px;*/
+    height: 12px;
+    opacity: 0.4;
+    padding: 5px 3px;
+}
+img:hover {
+    opacity: 0.5;
+}
+a:hover {
+    color:rgb(255, 107, 88);
+}
+.ff-items tr td a p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.video-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 1.5%;
+}
+.video3-left {
+    float: left;
+    margin: 45px 5px;
+}
+.video3-right {
+    float: right;
+}
+.video3 .video3-left table tr td {
+    div {
+        width:100px;
+    }
+    /*    width: 202px;*/
+    height: 110px;
+    padding: 20px 5px;
+}
+.video3 .video3-left  .video-image3 {
+    width: 202px;
+    height: 110px;
+}
+.video-right-image3 {
+    width: 330px;
+    height: 290px;
+    position: absolute;
+    top:62px;
+    right: 4px;
+}
+.self-video-img {
+    width: 20%;
+    /*height: 55px;*/
+    position: relative;
+    left: 80%;
+    bottom: 130px;
+}
+element.style {
+    width: 100px;
+    cursor: pointer;
+}

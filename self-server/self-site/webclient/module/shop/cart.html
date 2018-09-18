@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+    </head>
+    <body style="background-color: white;">
+         <div  style="padding: 30px 40px;background: white;" align="center">
+            <table class="layui-table" align="center" >
+                <colgroup>
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" /></th>
+                        <th>商品图片</th>
+                        <th>商品名称</th>
+                        <th>价格</th>
+                        <th>数量</th>
+                        <th>小计</th>
+                        <th>操作</th>
+                    </tr> 
+                </thead>
+                <tbody id="cartItem">
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td><img src="../../image/bok1.png" class="img"></td>
+                        <td>傅园慧</td>
+                        <td>100.00</td>
+                        <td>20</td>
+                        <td>2000.00</td>
+                        <td><a href="#">删除</a></td>
+                    </tr>
+                </tbody>
+            </table> 
+            <div class="right">
+                <p>商品金额：30000.00</p>
+                <a href="#">清空购物车</a>
+                <a href="../../module/shop/submit-order.html"><button class="button">提交订单</button></a>
+            </div>
+        </div>
+        <script type="text/javascript" src="../../lib/base.js"></script>
+        <script type="text/javascript" src="../../util.js"></script>
+    </body>
+</html>

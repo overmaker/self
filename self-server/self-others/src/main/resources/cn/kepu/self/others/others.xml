@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+    
+    <aop:config proxy-target-class="true">
+        <aop:aspect ref="dao-aspect">
+            <aop:pointcut expression="execution(* cn.kepu.self.others.daoimpl..*(..))" id="others-dao-pointcut"/>
+            <aop:before pointcut-ref="others-dao-pointcut" method="before"/>
+            <aop:after-returning pointcut-ref="others-dao-pointcut" method="afterReturning"/>
+            <aop:after-throwing pointcut-ref="others-dao-pointcut" method="afterThrowing" throwing="err"/>
+        </aop:aspect>
+    </aop:config>
+    
+    <!-- 常见问答管理 -->
+    
+    <bean id="questionAnswerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.others.mybatis.mapper.QuestionAnswerMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="questionAnswerDaoImpl" class="cn.kepu.self.others.daoimpl.QuestionAnswerDaoImpl"
+          p:questionAnswerMapper-ref="questionAnswerMapper" />
+    
+    <bean class="cn.kepu.self.others.service.QuestionAnswerService" factory-method="getInstance"
+          p:questionAnswerDao-ref="questionAnswerDaoImpl" /> 
+    
+    <!-- 广告管理 -->
+    <bean id="advertisementMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.others.mybatis.mapper.AdvertisementMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="advertisementDaoImpl" class="cn.kepu.self.others.daoimpl.AdvertisementDaoImpl"
+          p:advertisementMapper-ref="advertisementMapper" />
+    
+    <bean class="cn.kepu.self.others.service.AdvertisementService" factory-method="getInstance"
+          p:advertisementDao-ref="advertisementDaoImpl" /> 
+    
+    <!-- 收藏管理 -->
+    <bean id="saveMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.others.mybatis.mapper.SaveMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="saveDaoImpl" class="cn.kepu.self.others.daoimpl.SaveDaoImpl"
+          p:saveMapper-ref="saveMapper" />
+    
+    <bean class="cn.kepu.self.others.service.SaveService" factory-method="getInstance"
+          p:saveDao-ref="saveDaoImpl" /> 
+    
+    <!-- 合作机构管理 -->
+    <bean id="cooperationMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.others.mybatis.mapper.CooperationMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="cooperationDaoImpl" class="cn.kepu.self.others.daoimpl.CooperationDaoImpl"
+          p:cooperationMapper-ref="cooperationMapper" />
+    
+    <bean class="cn.kepu.self.others.service.CooperationService" factory-method="getInstance"
+          p:cooperationDao-ref="cooperationDaoImpl" /> 
+    
+    <!-- 网站简介 -->
+    <bean id="knowhowMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.others.mybatis.mapper.KnowhowMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="knowhowDaoImpl" class="cn.kepu.self.others.daoimpl.KnowhowDaoImpl"
+          p:knowhowMapper-ref="knowhowMapper" />
+    
+    <bean class="cn.kepu.self.others.service.KnowhowService" factory-method="getInstance"
+          p:knowhowDao-ref="knowhowDaoImpl" /> 
+    
+    <!-- 合作媒体 -->
+    <bean id="friendshipLinkMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.others.mybatis.mapper.FriendshipLinkMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="friendshipLinkDaoImpl" class="cn.kepu.self.others.daoimpl.FriendshipLinkDaoImpl"
+          p:friendshipLinkMapper-ref="friendshipLinkMapper" />
+    
+    <bean class="cn.kepu.self.others.service.FriendshipLinkService" factory-method="getInstance"
+          p:friendshipLinkDao-ref="friendshipLinkDaoImpl" /> 
+    
+    <!-- 关于设置 -->
+    <bean id="aboutMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.others.mybatis.mapper.AboutMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="aboutDaoImpl" class="cn.kepu.self.others.daoimpl.AboutDaoImpl"
+          p:aboutMapper-ref="aboutMapper" />
+    
+    <bean class="cn.kepu.self.others.service.AboutService" factory-method="getInstance"
+          p:aboutDao-ref="aboutDaoImpl" /> 
+    
+    <!-- 资助 -->
+    <bean id="donationMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.others.mybatis.mapper.DonationMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="donationDaoImpl" class="cn.kepu.self.others.daoimpl.DonationDaoImpl"
+          p:donationMapper-ref="donationMapper" />
+    
+    <bean class="cn.kepu.self.others.service.DonationService" factory-method="getInstance"
+          p:donationDao-ref="donationDaoImpl" /> 
+    
+    <!-- 流程 -->
+    <bean id="policyMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.others.mybatis.mapper.PolicyMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="policyDaoImpl" class="cn.kepu.self.others.daoimpl.PolicyDaoImpl"
+          p:policyMapper-ref="policyMapper" />
+    
+    <bean class="cn.kepu.self.others.service.PolicyService" factory-method="getInstance"
+          p:policyDao-ref="policyDaoImpl" /> 
+    
+    <!-- 积分规则配置 -->
+    <bean id="scoreConfigMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.others.mybatis.mapper.ScoreConfigMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="scoreConfigDaoImpl" class="cn.kepu.self.others.daoimpl.ScoreConfigDaoImpl"
+          p:scoreConfigMapper-ref="scoreConfigMapper" />
+    
+    <bean class="cn.kepu.self.others.service.ScoreConfigService" factory-method="getInstance"
+          p:scoreConfigDao-ref="scoreConfigDaoImpl" /> 
+    
+</beans>

@@ -1,0 +1,435 @@
+﻿<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="../../top.css" />
+        <link rel="stylesheet" type="text/css" href="../../module/activity/site-activity-detail.css" />
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../lib/layui/layui.all.js"></script>
+        <style type="text/css">
+            html,body{margin:0;padding:0;}
+            .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+            .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+        </style>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+    </head>
+
+    <body>
+        <div id="top"> </div>
+        <!--内容-->
+        <div class="layui-container">
+            <!--活动报名-->
+            <div class="layui-row layui-col-space30" style="margin-top: 2%;margin-bottom: 40px;">
+                <div class="layui-col-md7"><img src="" style="width: 100%; height: auto;"  id="imageBig"/></div>
+                <div class="layui-col-md4" style="margin: 1%;">
+                    <h2 class="activity-title"><span id="title"></span></h2>  
+                    <p class="activity-time"><i class="layui-icon">&#xe60e;</i> <span id="startTime"></span> ～ <span id="endTime"></span> </p>
+                    <p class="activity-address"><i class="layui-icon">&#xe715;</i><span id="place"></span></p>
+                    <p class="active-people-number"><i class="layui-icon">&#xe60b;</i> 限额<span id="count"></span>人</p>
+                    <p class="active-initiator"><i class="layui-icon">&#xe606;</i><img src="../../image/logo1.png" style="width: 27px;height: 27px;margin:0px 5px;" /> 中科院SELF格致论道讲坛</p>
+                    <p style="margin-top: 5%;"> <input type="button" value="我要报名" class="active-sig-up" id="submit"/>
+                        <!--                        <button class="active-collection"><i class="layui-icon">&#xe600;</i>收藏</button> 
+                                                <span style="margin-left: 20px;">515 人浏览</span> <span style="float: right;">
+                                                    <i class="layui-icon">&#xe677;</i>分享</span> </p>-->
+                </div>
+            </div>
+            <!--活动详情-->
+            <div class="layui-row layui-col-space20">
+                <div class="layui-col-md9">
+                    <!--报名页面-->
+                    <div class="sign-up" style="width:100%; height: auto;display: none;">
+                        <div id="home_register_group_form " style="margin-left: 0px;" class="ticket-form  ticket-form--pc">
+                            <h2 style="font-size: 16px;">请填写报名表单</h2>
+                            <hr style="margin:12px 0 25px;border-top:1px solid #ddd;">
+                            <div id="event_regform_register">
+                                <form id="user_base_info_register_form" method="POST" action="/account/saveuser" style="padding-left:20px;" novalidate="novalidate"> <input type="hidden" name="webTokenValue" value="12558E57017FC40557C4C527575863259992BD184C02DA1F876D140B7E5E2801DF"> <input type="hidden" name="ex_category" value="11"> <input type="hidden" name="ex_special" value="8445339299000;6012632433302"> <input type="hidden" name="ex_country" value="中国"> <input type="hidden" name="ex_province" value="北京"> <input type="hidden" name="ex_city" value="北京">
+                                    <div class="control-group"> <label class="control-label" style="font-weight:bold;"  >姓名<font style="color:red;">&nbsp;*</font></label>
+                                        <div class="controls"><input class="input-xxlarge required" type="text"   id="ticketName"   placeholder="请填写联系人姓名" name="RealName" value="" maxlength="10"></div>
+                                    </div>
+                                    <div class="form-group"> <label class="control-label" style="font-weight:bold;">手机<font style="color:red;">&nbsp;*</font></label>
+                                        <div class="controls"><input class="input-xxlarge required" type="text"   style="width: 50%; float: left;"  id="ticketMobile"   placeholder="请填写联系手机号" name="Phone"  value=""></div>
+                                    </div>
+                                    <div class="layui-form-item"> 
+                                     <!-- <div>  <label class="control-label" style="font-weight:bold;">请输入短信验证码<font style="color:red;">&nbsp;*</font></label></div>
+                                        <input id="mobileCode"    type="text" placeholder="请输入短信验证码" class="input-xxlarge required" maxlength="11"  style="width: 50%; float: left;"> -->
+                                       <!-- <input type = "button" value = "免费获取验证码" class="layui-btn layui-btn-warm"  id="smsCode"  style="float:right;height: 34px;line-height: 34px;margin-top: -4%;margin-right: 2%;"  onclick = ""/>  </div>-->
+                                    <!--<div>  
+                                      <div>  <label class="control-label" style="font-weight:bold;">请输入验证码<font style="color:red;">&nbsp;*</font></label></div>
+                                        <input type = "text"  class="input-xxlarge required" id = "input" value="" />  
+                                        <input type = "button" id="code" onclick="createCode()"/> 
+                                        <input type = "button" value = "验证" class="layui-btn layui-btn-warm" onclick = "validate()" style="float:right;height: 34px;line-height: 34px;margin-top: -4%;margin-right: 2%;"/>  </div>-->
+                                    </div>
+                                    <div class="form-group"> <label class="control-label" style="font-weight:bold;">邮箱<font style="color:red;">&nbsp;*</font></label>
+                                        <div class="controls"><input class="input-xxlarge required" type="email"   id="ticketEmail"   placeholder="请填写邮箱" name="Email"   value=""></div>
+                                    </div>
+                                    <hr style="margin:25px 0;border-top:1px solid #eee;"> </form>
+                                <form id="event_home_register_form" method="post" action="/event/reg_submit?id=8445339299000" style="margin-bottom:0px;" novalidate="novalidate"> <input type="hidden" name="widget" value="false"> <input type="hidden" value="8445339299000" name="eid"> <input type="hidden" value="1" name="sn"> <input type="hidden" value="1" name="ordnum"> <input type="hidden" value="False" name="reqpt"> <input type="hidden" name="location"> <input type="hidden" name="country" value="中国"> <input type="hidden" name="province" value="北京"> <input type="hidden" name="city" value="北京"> <input type="hidden" name="district" value=""> <input type="hidden" name="coupon" value=""> <input type="hidden" name="regfrom" value="0"> <input type="hidden" name="gacid" id="google_analytics_client_id" value="399662161.1521595724"> <input type="hidden" name="wt_7e18b7332cb8258" value="">
+                                    <div style="clear:both;"></div> <br>
+                                    <div class="checkbox-inline" style="display: block;margin-bottom: 10px;color: #777;"> <label>
+                                            <input class="checked-true" type="checkbox"  id="xieyi"     style="width: 14px!important;height: 14px;margin-top: 0px;margin-right: 6px;">我已阅读并同意<a target="_blank" href="http://www.huodongxing.com/terms" style="color: #62b651;">《活动行用户注册协议》</a>
+                                        </label> </div>
+                                    <div class="form-actions" style="margin-bottom:0px;">
+                                        <a class="btn btn-primary btn-lg ticket-btn-group__confirm" id="submit-join"> <i class="icon-ok icon-white"></i>&nbsp;&nbsp;提&nbsp;交&nbsp;&nbsp; </a>
+                                        <a href="#" style="margin-left:20px;" class="btn btn-default btn-lg ticket-btn-group__cancel"> <i class="icon-remove"></i>&nbsp;&nbsp;取&nbsp;消&nbsp;&nbsp; </a>
+                                    </div> <br><br> </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="active-ticket-species">
+                        <div class="active-ticket-species-title"><span>活动票种...</span></div>
+                        <div>
+                            <ul name="event_tickets_thumbs" class="thumbnails" style="margin-left:0px;"  id="ticketType">
+                            </ul>
+                        </div>
+                        <div style="clear:both;"></div>
+                        <div id="event_ticket_select_details" style="color: rgb(255, 102, 79); font-size: 12px;">&nbsp;早鸟票&nbsp;-&nbsp;<b>说明：</b>限时抢购，原价199（报名条件： 企业创始人、CEO、中高层或任何团队管理人士）</div>
+                        <div id="event_ticket_order_number" class="pull-left" style="margin: 10px 0px; display: none;"> 订购数量：
+                            <input type="text"   id="ticketNum"   style="height: 20px;" />
+                            <!--                            <span>总金额：</span>
+                                                        <input type="text" placeholder="请先选择票种" id="totalFee"  readonly='readonly' style="height: 20px;"/>-->
+                        </div>
+                    </div>
+                    <!--活动内容-->
+                    <div class="active-content"><span>活动内容...</span></div>
+                    <div  id="intro">
+                        <div class="event-intro tab-content" id="eventContentAreaMain" style="margin-bottom:0px;">
+                            <div class="tab-pane fade in active" id="event_desc_page">
+                                <section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="margin-top: 10px; margin-bottom: 10px; position: static;">
+                                            <section class="" style="width: 100%;">
+                                                <section class="" style="float: left; padding-right: 3px; line-height: 1; width: 20%;">
+                                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                                        <section class="" style="text-align: center; margin-right: 0%; margin-left: 0%; position: static;">
+                                                            <section class="" style="vertical-align: middle; display: inline-block; width: 85%; overflow: hidden !important;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 56.2 47.4" style="vertical-align: middle;" width="100%">
+                                                                <g>
+                                                                <path d="M56.2,47.4V24.5H44.5c-1.2-10.9,6.1-20,6.1-20L44.7,0C34.3,7.9,33.3,24.5,33.3,24.5v22.9H56.2z" fill="#5f9cef"></path>
+                                                                <path d="M22.9,47.4V24.5H11.2c-1.2-10.9,6.1-20,6.1-20L11.5,0C1,7.9,0,24.5,0,24.5v22.9H22.9z" fill="#5f9cef"></path>
+                                                                </g>
+                                                                </svg>
+                                                            </section>
+                                                        </section>
+                                                    </section>
+                                                </section>
+                                                <section class="group-empty" style="clear: right; min-height: 4.5em !important;"></section>
+                                                <section style="clear: both;"></section>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="">
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;">SELF讲坛第27期</p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><span style="color: rgb(95, 156, 239);"><strong><span style="font-size: 32px;">时间旅行者</span></strong>
+                                                    </span>
+                                                </p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><span style="font-size: 16px;">​在我们周围，隐藏着一群时间旅行者</span></p>
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><span style="font-size: 16px;">她在世界屋脊，用引力波听宇宙秘密</span></p>
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><span style="font-size: 16px;">他触碰恐龙骨架，建造新侏罗纪公园</span></p>
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><span style="font-size: 16px;">他深入山林，阅读石头里的地球往事</span></p>
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><span style="font-size: 16px;">他寻访丝绸之路国家，记录文明之光</span></p>
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><span style="font-size: 16px;">她用镜头捕捉时光，看它残酷的温柔</span></p>
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><span style="font-size: 16px;">他抓取社交数据，找到你心里的树洞</span></p>
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><span style="font-size: 16px;"><strong>六位时间旅行者，他们运用各自技能</strong></span></p>
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><span style="font-size: 16px;"><strong>解码时间的意义</strong></span></p>
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><span style="font-size: 16px;">7月1日 北京·海淀文化馆小剧场</span></p>
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><span style="font-size: 16px;">邀你一起穿越时空</span></p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="" style="text-align: center;">
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><img src="http://cdn.huodongxing.com/file/20171009/115FF2B9FC66F1B34A7ACD7BDAC2CA57E4/30653093686584835.jpg?auth_key=1530005820-0-0-345587d2e1157770420cc39f133c77bd?auth_key=1530016357-0-0-0af239f63f6728527ff98f0b72e1999f" title="640.jpeg" alt="640.jpeg" style="width:100%;"></p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="">
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><strong>&nbsp; 演讲嘉宾：</strong></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="" style="padding-right: 10px; padding-left: 10px;">
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="text-align: center; margin-top: 10px; margin-bottom: 10px; position: static;">
+                                            <section class="" style="vertical-align: middle; display: inline-block; overflow: hidden !important;"><img src="http://cdn.huodongxing.com/file/20171009/115FF2B9FC66F1B34A7ACD7BDAC2CA57E4/98a0f6328bfca1a8f792acca34b4db22-sz_316408.jpg?auth_key=1530005820-0-0-46a445c4f34558d452d89f96edfa8ce4?auth_key=1530016357-0-0-4305bd8caabbff7244d125dee5d269f4" style="vertical-align: middle;"></section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="" style="padding-right: 10px; padding-left: 10px;">
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><strong><span style="font-size: 14px;">李虹</span></strong><span style="font-size: 14px;">&nbsp;</span><span style="font-size: 14px;">中国科学院高能物理研究所</span></p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;"><strong>“在世界屋脊倾听宇宙的初啼”</strong></p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;">中科院高能物理研究所研究员，全球海拔最高的原初引力波观测站——“阿里计划”执行副总经理。致力于宇宙微波背景辐射极化观测、原初引力波探测、宇宙起源及演化、CMB观测数据分析和参数拟合的研究。2014年入选国家基金委人才计划“优秀青年基金”资助，2015年入选“中科院青年促进会”及“卓越青年科学家”。</p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="text-align: center; margin-top: 10px; margin-bottom: 10px; position: static;">
+                                            <section class="" style="vertical-align: middle; display: inline-block; overflow: hidden !important;"><img src="http://cdn.huodongxing.com/file/20171009/115FF2B9FC66F1B34A7ACD7BDAC2CA57E4/ac5ef798575d3dfdd68632ae14b4f84a-sz_354752.jpg?auth_key=1530005820-0-0-6c8c7e75be068e258bdecbc798a82574?auth_key=1530016357-0-0-f24c87f8c5d71942d34a6148c0d2f2f7" style="vertical-align: middle;"></section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="" style="padding-right: 10px; padding-left: 10px;">
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><strong><span style="font-size: 14px;">王琦</span></strong><span style="font-size: 14px;">&nbsp;</span><span style="font-size: 14px;">英国诺丁汉大学</span></p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;"><strong>“真正的博物馆，应是拥有高情商的故事大王。”</strong></p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;">诺丁汉大学建筑与建造环境学院助理教授，博士生导师，致力于现代自然历史类博物馆建筑与观展体验设计。王琦与中科院、中国古动物馆、中国建筑设计研究院、中元国际、伦敦自然历史博物馆、牛津大学自然历史博物馆、英国国家宇航中心、以及诺丁汉自然历史博物馆等科研科普机构保持着长期稳固的合作关系。作为《2017年英国恐龙特展：中国龙——从撼地巨人到飞羽精灵》的策展人之一，获得诺丁汉大学最高学术贡献荣誉——校长勋章。</p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="text-align: center; margin-top: 10px; margin-bottom: 10px; position: static;">
+                                            <section class="" style="vertical-align: middle; display: inline-block; overflow: hidden !important;"><img src="http://cdn.huodongxing.com/file/20171009/115FF2B9FC66F1B34A7ACD7BDAC2CA57E4/610bcfce951ed21ca0757219b59b4e88-sz_503384.jpg?auth_key=1530005820-0-0-0d6d10269dc4d15cbd556ecb19dc4dcd?auth_key=1530016357-0-0-2e50210a0522101881d121c346390c4d" style="vertical-align: middle;">​</section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="" style="padding-right: 10px; padding-left: 10px;">
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><strong><span style="font-size: 14px;">李宏博</span><span style="font-size: 14px;">&nbsp;中国地质博物馆</span></strong></p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;"><strong>“揭秘一桩亿万年前的‘地质大案’”</strong></p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;">中国地质博物馆岩石矿物研究室副研究员，致力于岩浆岩岩石学、地球化学、地幔柱与大火成岩省事件的研究以及地学科普工作。发表学术论文三十余篇，科普作品曾获全国国土资源优秀科普作品奖。</p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="text-align: center; margin-top: 10px; margin-bottom: 10px; position: static;"><img src="http://cdn.huodongxing.com/file/20171009/115FF2B9FC66F1B34A7ACD7BDAC2CA57E4/30513098359288713.jpg?auth_key=1530016357-0-0-05618561975e2dd2c96b3ec6e92e98aa" title="汪.jpg" alt="汪.jpg" width="637" height="358" style="width: 637px; height: 358px;">​</section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="" style="padding-right: 10px; padding-left: 10px;">
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><strong><span style="font-size: 14px;">汪滢滢</span><span style="font-size: 14px;">&nbsp;</span></strong><span style="font-size: 14px;">独立摄影师</span></p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;"><strong>“繁花渐隐，方知人生真义。”</strong></p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;">独立摄影师，富士胶片全球签约摄影师，美国艺术摄影中心2017先锋艺术家。《四十/一九七六》、《洄》、《第四行诗》、《黄河以北》等系列摄影作品在平遥国际摄影艺术展、美国艺术摄影中心先锋艺术展、西湖艺术博览会、东京都富士摄影艺术中心等地进行展出。</p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="text-align: center; margin-top: 10px; margin-bottom: 10px; position: static;">
+                                            <section class="" style="vertical-align: middle; display: inline-block; overflow: hidden !important;"><img src="http://cdn.huodongxing.com/file/20171009/115FF2B9FC66F1B34A7ACD7BDAC2CA57E4/e9a4765604be7b1035b17b08573c0920-sz_545119.jpg?auth_key=1530005820-0-0-942898f2bff6133b3229e8cbc6616222?auth_key=1530016357-0-0-ff36aba93151a2ff450d9108af6ee09c" style="vertical-align: middle;"></section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="" style="padding-right: 10px; padding-left: 10px;">
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><strong><span style="font-size: 14px;">陈巍</span><span style="font-size: 14px;">&nbsp;</span></strong><span style="font-size: 14px;">中国科学院自然科学史研究所</span></p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;"><strong>“历史思维可以帮助我们把过去的遗迹串珠成线，织线成服。”</strong></p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;">中科院自然科学史研究所副研究员，致力于古代科技知识的跨文明比较与传播史研究。对古代丝绸之路沿线国家多次进行实地考察，著有《古代丝绸之路与技术知识传播》一书，以案例的形式，初步探索了科技知识沿着古代丝绸之路在欧亚大陆这一广阔范围内交流传播的历史，另发表相关论文数篇。</p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="text-align: center; margin-top: 10px; margin-bottom: 10px; position: static;">
+                                            <section class="" style="vertical-align: middle; display: inline-block; overflow: hidden !important;"><img src="http://cdn.huodongxing.com/file/20171009/115FF2B9FC66F1B34A7ACD7BDAC2CA57E4/c3cb982217e0eb35408ce4f59663c89c-sz_510010.jpg?auth_key=1530005820-0-0-1942b449940d9e99500f633749e0aa3a?auth_key=1530016357-0-0-0ff500a6dfb5925acb5e533b970a70fc" style="vertical-align: middle;"></section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="" style="padding-right: 10px; padding-left: 10px;">
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;"><strong><span style="font-size: 14px;">朱廷劭</span><span style="font-size: 14px;">&nbsp;</span></strong><span style="font-size: 14px;">中国科学院心理研究所</span></p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;"><strong>“跨越生死时空的心灵对话”</strong></p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;">中科院心理所研究员，博士生导师，中国科学院“百人计划”学者。朱廷劭及其团队开展心理与行为科学大数据的交叉研究，实现了对用户心理特征的及时有效的识别，为心理学研究提供了新的思路。先后主持承担国家自然科学基金委面上项目、科技部973和863、中科院A类先导专项等多项研究课题，发表论文60余篇。</p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="margin-top: 10px; margin-bottom: 10px; position: static; text-align: left;">
+                                            <section class="" style="display: inline-block;"><img style="width: 30px; vertical-align: top; margin-left: 16px; background-color: rgb(42, 40, 40);" src="http://cdn.huodongxing.com/file/20171009/115FF2B9FC66F1B34A7ACD7BDAC2CA57E4/006-activity-1-v1-img0.png?auth_key=1530005820-0-0-8b27f9e52736854c36b0dc5783f8f2dd?auth_key=1530016357-0-0-9be791ae78cab3043c5972c7f64a4505" data-ratio="1" data-w="40" _width="30px">
+                                                <section class="" style="display: inline-block; padding: 3px; margin-left: 8px;">
+                                                    <p style="margin-top: 0px; margin-bottom: 0px;"><strong>2018-7-1 周日 14:00-16:30</strong></p>
+                                                </section>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="margin-top: 10px; margin-bottom: 10px; position: static; text-align: left;">
+                                            <section class="" style="display: inline-block;"><img style="width: 30px; vertical-align: top; margin-left: 16px; background-color: rgb(42, 40, 40);" src="http://cdn.huodongxing.com/file/20171009/115FF2B9FC66F1B34A7ACD7BDAC2CA57E4/006-activity-1-v1-img1.png?auth_key=1530005820-0-0-6b62984a60303204c090af0ef544fb7b?auth_key=1530016357-0-0-7a9fb3d0adc82fc61f2109cd6f8824ee" data-ratio="1" data-w="40" _width="30px">
+                                                <section class="" style="display: inline-block; padding: 3px; margin-left: 8px;">
+                                                    <p style="margin-top: 0px; margin-bottom: 0px;"><strong>&nbsp;北京·海淀文化馆小剧场</strong></p>
+                                                </section>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="">
+                                                <p style="text-align: left; margin-top: 0px; margin-bottom: 0px;"><strong>(入场时间为13:15-13:45，13:45后禁止入场)</strong></p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="">
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;">活动主办：中国科学院计算机网络信息中心 中国科学院科学传播局</p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;">活动承办：中国科普博览</p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;">媒体支持：新华社、ChinaDaily、人民日报、央视新闻、紫光阁、共青团中央、喜马拉雅FM、微博科普、观察者网、腾讯精品课、爱奇艺、网易公开课、优酷教育、一点资讯、今日头条、中国科学报、百度知道日报、新浪科技、环球科学、瞭望智库、中科院物理所公众号</p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                    <section class="Powered-by-XIUMI V5" style="position: static;" powered-by="xiumi.us">
+                                        <section class="" style="position: static;">
+                                            <section class="">
+                                                <p style="text-align: center; margin-top: 0px; margin-bottom: 0px;">SELF格致论道介绍</p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;">“SELF格致论道”讲坛是中国科学院全力推出的公益讲坛，致力于精英思想的跨界传播，由中国科学院计算机网络信息中心和中国科学院科学传播局联合主办。SELF是 Science, Education, Life, Future的缩写，旨在以“格物致知”的精神探讨科技、教育、生活、未来的发展。SELF尝试打破过去纯粹以“知识传播”为主的科普形式，专注于思想的传播，力图从思想的源头上促进公众参与科学的积极性，打造具有中国科学院特色的、融合创新、科学与人文关怀并存的公益演讲品牌。</p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;">&nbsp;</p>
+                                                <p style="text-align: justify; margin-top: 0px; margin-bottom: 0px;">关注微信公众号/微博获取更多信息：中国科普博览、SELF格致论道讲坛</p>
+                                                <p style="margin-top: 0px; margin-bottom: 0px;"><br></p>
+                                            </section>
+                                        </section>
+                                    </section>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="commend-comment">
+                        <div>
+                            <h3>评论<font id="commendCount" color="gray" size="3"></font></h3>
+                            <textarea id="self-comment" rows="10" placeholder="我来说俩句..." maxlength="300"></textarea> 
+                            <input type="submit" value="评论" id="comment-submit" class="layui-btn layui-btn-danger" />
+                            <hr />
+                            <h3>热门评论</h3> <br />
+                            <ul> </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--右侧-->
+<!--                <div class="layui-col-md3">
+                    活动缩略图
+                    <div><h2 style="font-size: 18px;padding-bottom: 12px;">活动地点<span>（<a href="" style="font-size: 14px;">查看大图</a>）</span></h2> <img src="" style="width: 278px; height: 300px;"  id="imageSmall"/></div>
+                    活动地点
+                    <div id="activity-address">
+                        <h2 style="font-size: 18px;padding-bottom: 12px;">活动地点<span>（<a href="" style="font-size: 14px;">查看大图</a>）</span></h2> <div style="width:278px;height:300px;border:#ccc solid 1px;" id="dituContent"></div></div>
+                    活动主办方
+                </div>-->
+            </div>
+        </div>
+        <div class="layui-row" id="flooter"> </div>
+        <script type="text/javascript" src="../../lib/base.js"></script>
+        <script type="text/javascript" src="../../util.js"></script>
+        <script type="text/javascript" src="site-activity-detail.js"></script>
+        <script type="text/javascript">
+                                                    //创建和初始化地图函数：
+                                                    function initMap() {
+                                                        createMap();//创建地图
+                                                        setMapEvent();//设置地图事件
+                                                        addMapControl();//向地图添加控件
+                                                        addMarker();//向地图中添加marker
+                                                    }
+
+                                                    //创建地图函数：
+                                                    function createMap() {
+                                                        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+                                                        var point = new BMap.Point(115.949652, 28.693851);//定义一个中心点坐标
+                                                        map.centerAndZoom(point, 18);//设定地图的中心点和坐标并将地图显示在地图容器中
+                                                        window.map = map;//将map变量存储在全局
+                                                    }
+
+                                                    //地图事件设置函数：
+                                                    function setMapEvent() {
+                                                        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+                                                        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+                                                        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+                                                        map.enableKeyboard();//启用键盘上下左右键移动地图
+                                                    }
+
+                                                    //地图控件添加函数：
+                                                    function addMapControl() {
+                                                        //向地图中添加缩放控件
+                                                        var ctrl_nav = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_LEFT, type: BMAP_NAVIGATION_CONTROL_LARGE});
+                                                        map.addControl(ctrl_nav);
+                                                        //向地图中添加缩略图控件
+                                                        var ctrl_ove = new BMap.OverviewMapControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT, isOpen: 1});
+                                                        map.addControl(ctrl_ove);
+                                                        //向地图中添加比例尺控件
+                                                        var ctrl_sca = new BMap.ScaleControl({anchor: BMAP_ANCHOR_BOTTOM_LEFT});
+                                                        map.addControl(ctrl_sca);
+                                                    }
+
+                                                    //标注点数组
+                                                    var markerArr = [{title: "百恒网络", content: "电话：0791-88117053<br/>手机：15079002975", point: "115.950312|28.693447", isOpen: 1, icon: {w: 23, h: 25, l: 46, t: 21, x: 9, lb: 12}}
+                                                    ];
+                                                    //创建marker
+                                                    function addMarker() {
+                                                        for (var i = 0; i < markerArr.length; i++) {
+                                                            var json = markerArr[i];
+                                                            var p0 = json.point.split("|")[0];
+                                                            var p1 = json.point.split("|")[1];
+                                                            var point = new BMap.Point(p0, p1);
+                                                            var iconImg = createIcon(json.icon);
+                                                            var marker = new BMap.Marker(point, {icon: iconImg});
+                                                            var iw = createInfoWindow(i);
+                                                            var label = new BMap.Label(json.title, {"offset": new BMap.Size(json.icon.lb - json.icon.x + 10, -20)});
+                                                            marker.setLabel(label);
+                                                            map.addOverlay(marker);
+                                                            label.setStyle({
+                                                                borderColor: "#808080",
+                                                                color: "#333",
+                                                                cursor: "pointer"
+                                                            });
+
+                                                            (function () {
+                                                                var index = i;
+                                                                var _iw = createInfoWindow(i);
+                                                                var _marker = marker;
+                                                                _marker.addEventListener("click", function () {
+                                                                    this.openInfoWindow(_iw);
+                                                                });
+                                                                _iw.addEventListener("open", function () {
+                                                                    _marker.getLabel().hide();
+                                                                })
+                                                                _iw.addEventListener("close", function () {
+                                                                    _marker.getLabel().show();
+                                                                })
+                                                                label.addEventListener("click", function () {
+                                                                    _marker.openInfoWindow(_iw);
+                                                                })
+                                                                if (!!json.isOpen) {
+                                                                    label.hide();
+                                                                    _marker.openInfoWindow(_iw);
+                                                                }
+                                                            })()
+                                                        }
+                                                    }
+                                                    //创建InfoWindow
+                                                    function createInfoWindow(i) {
+                                                        var json = markerArr[i];
+                                                        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>" + json.content + "</div>");
+                                                        return iw;
+                                                    }
+                                                    //创建一个Icon
+                                                    function createIcon(json) {
+                                                        var icon = new BMap.Icon("http://map.baidu.com/image/us_cursor.gif", new BMap.Size(json.w, json.h), {imageOffset: new BMap.Size(-json.l, -json.t), infoWindowOffset: new BMap.Size(json.lb + 5, 1), offset: new BMap.Size(json.x, json.h)})
+                                                        return icon;
+                                                    }
+
+                                                    initMap();//创建和初始化地图
+        </script>
+    </body>
+
+</html>

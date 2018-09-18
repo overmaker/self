@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.kepu.self</groupId>
+        <artifactId>self-bom</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../self-bom/pom.xml</relativePath>
+    </parent>
+    <artifactId>self-util</artifactId>
+    <packaging>jar</packaging>
+    <name>辅助功能模块</name>
+    <description>SELF中定义的一些全局帮助类和功能函数</description>
+    <version>1.0.0</version>
+    <build>
+        <finalName>self-util</finalName>
+    </build>
+</project>

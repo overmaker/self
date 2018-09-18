@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.commons.mybatis.mapper.GuestMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.commons.entity.Guest">
+        <id property="id" column="id"  />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="name" column="name"  />
+        <result property="photo" column="photo"  />
+        <result property="mobile" column="mobile"  />
+        <result property="introduction" column="introduction"  />
+    </resultMap>
+    <insert id="insertGuest" >
+        INSERT INTO kepu_self_guest (gmt_create,gmt_modified,name,photo,mobile,introduction) 
+        VALUES (now(),now(),#{name},#{photo},#{mobile},#{introduction});
+    </insert>
+    <update id="updateGuest" >
+        UPDATE kepu_self_guest 
+        SET name = #{name},
+        photo=#{photo},
+        mobile=#{mobile},
+        introduction=#{introduction},
+        gmt_modified = now()
+        WHERE id = #{id}
+    </update>
+    <select id="findById" resultMap="resultMap">
+        SELECT id,
+        gmt_create,
+        gmt_modified,
+        name,
+        photo,
+        mobile,
+        introduction
+        FROM  kepu_self_guest 
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectGuest" resultMap="resultMap">
+        SELECT  id,
+        gmt_create,
+        gmt_modified,
+        name,
+        photo,
+        mobile,
+        introduction
+        FROM  kepu_self_guest
+        <where> 
+            <if test="name != null and name != '' ">
+                AND name LIKE CONCAT('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+    <!--    活动嘉宾-->
+    <select id="activityGuest" resultMap="resultMap">
+        SELECT * FROM kepu_self_guest where id in
+        (SELECT guest FROM kepu_self.kepu_self_activity_guest_relation where activity=#{arg0})
+    </select>
+</mapper>

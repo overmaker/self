@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.shop.mybatis.mapper.ProductMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.shop.entity.Product">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="sn" column="sn" />
+        <result property="name" column="name" />
+        <result property="introduction" column="introduction" />
+        <result property="thumbnail" column="thumbnail" />
+        <result property="image" column="image" />
+        <result property="price" column="price" />
+        <result property="weight" column="weight" />
+        <result property="score" column="score" />
+        <result property="is_recommend" column="is_recommend" />
+        <result property="is_enable" column="is_enable" />
+        <result property="type.name" column="typename" />
+        <result property="pinfo.stock" column="stock" />
+    </resultMap>
+    <insert id="addProduct"  useGeneratedKeys="true" keyProperty="id"  parameterType="cn.kepu.self.shop.entity.Product">
+        INSERT INTO kepu_self_product (gmt_create,gmt_modified,name,introduction,thumbnail,image,sn,price,weight,score,is_recommend,is_enable,type) 
+        VALUES (now(),now(),#{name},#{introduction},#{thumbnail},#{image},#{sn},#{price},#{weight},#{score},#{is_recommend},#{is_enable},#{type.id});
+    </insert>
+    <insert id="copyProduct" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO kepu_self_product (gmt_create,gmt_modified,name,introduction,thumbnail,image,sn,price,weight,score,is_recommend,is_enable,type) 
+        (SELECT gmt_create,gmt_modified,name,introduction,thumbnail,image,#{sn},price,weight,score,is_recommend,0,type FROM kepu_self_product WHERE id=#{id})
+    </insert>
+    <update id="updateProduct">
+        UPDATE kepu_self_product 
+        <set> 
+            gmt_modified = NOW(),
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="introduction != null and introduction != ''">
+                introduction = #{introduction},
+            </if>
+            <if test="thumbnail != null and thumbnail != ''">
+                thumbnail = #{thumbnail},
+            </if>
+            <if test="image != null and image != ''">
+                image = #{image},
+            </if>
+            price = #{price},
+            weight = #{weight},
+            score = #{score},
+            is_recommend = #{is_recommend},
+            is_enable = #{is_enable},
+            type = #{type.id},
+            id = #{id}
+        </set> 
+        WHERE id = #{id}
+    </update>
+    <select id="findById" resultMap="resultMap">
+        SELECT p.id, 
+        p.gmt_create, 
+        p.gmt_modified,
+        p.sn, 
+        p.name, 
+        p.introduction, 
+        p.thumbnail, 
+        p.image, 
+        p.price, 
+        p.weight, 
+        p.score, 
+        p.is_recommend, 
+        p.is_enable, 
+        pt.name typename, 
+        pi.stock stock
+        FROM kepu_self_product p
+        INNER JOIN kepu_self_product_type pt ON pt.id = p.type
+        INNER JOIN kepu_self_product_info pi ON pi.id = p.id
+        WHERE p.id = #{id}
+    </select>
+    <select id="findByType" resultMap="resultMap">
+        SELECT p.id, 
+        p.gmt_create, 
+        p.gmt_modified,
+        p.sn, 
+        p.name, 
+        p.introduction, 
+        p.thumbnail, 
+        p.image, 
+        p.price, 
+        p.weight, 
+        p.score, 
+        p.is_recommend, 
+        p.is_enable, 
+        pt.name typename, 
+        pi.stock stock
+        FROM kepu_self_product p
+        INNER JOIN kepu_self_product_type pt ON pt.id = p.type
+        INNER JOIN kepu_self_product_info pi ON pi.id = p.id
+        <where>
+            <if test="type != null and type.id > 0">
+                AND p.type = #{type.id}
+            </if>
+        </where>  
+    </select>
+    <select id="selectProduct" resultMap="resultMap">
+        SELECT p.id, 
+        p.gmt_create, 
+        p.gmt_modified,
+        p.sn, 
+        p.name, 
+        p.introduction, 
+        p.thumbnail, 
+        p.image, 
+        p.price, 
+        p.weight, 
+        p.score, 
+        p.is_recommend, 
+        p.is_enable, 
+        pt.name typename, 
+        pi.stock stock
+        FROM kepu_self_product p
+        INNER JOIN kepu_self_product_type pt ON pt.id = p.type
+        INNER JOIN kepu_self_product_info pi ON pi.id = p.id
+        <where>
+            <if test="name != null and name != ''">
+                AND p.name LIKE CONCAT('%',#{name},'%')
+            </if>
+        </where>  
+        ORDER BY gmt_create DESC
+    </select>
+</mapper>
+

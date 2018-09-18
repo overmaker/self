@@ -1,0 +1,29 @@
+<div id="live-detail" class="weui-popup__container">
+    <div class="weui-popup__overlay"></div>
+    <div class="weui-popup__modal">
+        <header class="mui-bar mui-bar-transparent">
+            <span class="mui-icon mui-icon-left-nav mui-pull-left"></span>
+            <h1 class="mui-title">返回</h1>
+        </header>
+
+        <div class="mui-content" style="margin-top: 40px;">
+            <!--静态图片-->
+            <div class="aui-card-list">
+                <div class="aui-card-list-content">
+                    <video id="self-live-player" class="video-js vjs-default-skin vjs-big-play-centered" height="200" style="width: 100%">
+                    </video>
+                </div>    
+                <div id="danmu" style="pointer-events: none"></div>
+                <div class="send_danmu_bar" >
+                    弹幕&nbsp;&nbsp; <input type="checkbox" checked='checked' name="sex"
+                                          id="ishide" value='is'  class="chooseBtn" />
+                    <label for="ishide" class="choose-label"></label>
+                    &nbsp;&nbsp;&nbsp;&nbsp; <input type="textarea" id="text" max=300 placeholder="发表你的看法吧..." style="height: 25px; width: 51%;" />
+                    <button type="button" class="btn btn-success"
+                            style="padding: 0 12px; color: white; background-color: #292929;height: 25px"
+                            >发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+                                                                                
+<mapper namespace="cn.kepu.self.commons.mybatis.mapper.UserAdvanceMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.commons.entity.UserAdvance">
+        <id property="id" column="id"  />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="identification" column="identification" />
+        <result property="identificationPic" column="identification_pic" />
+        <result property="qualificationPic" column="qualification_pic" />
+        <result property="introduction" column="introduction" />
+    </resultMap>
+    <insert id="insertOrUpdateUserAdvance">
+        INSERT INTO kepu_self_user_advance(id,
+        <if test= "identification != null">
+            identification,
+        </if>
+        <if test= "identificationPic != null">
+            identification_pic,
+        </if>
+        <if test= "qualificationPic != null">
+            qualification_pic,
+        </if>
+        <if test= "introduction != null">
+            introduction,
+        </if>
+        gmt_modified
+        )
+        VALUES
+        (#{id},
+        <if test= "identification != null">
+            #{identification},
+        </if>
+        <if test= "identificationPic != null">
+            #{identificationPic},
+        </if>
+        <if test= "qualificationPic != null">
+            #{qualificationPic},
+        </if>
+        <if test= "introduction != null">
+            #{introduction},
+        </if>
+        NOW()
+        )
+        ON DUPLICATE KEY UPDATE
+        <if test= "identification != null">
+            identification = #{identification},
+        </if>
+        <if test= "identificationPic != null">
+            identification_pic = #{identificationPic},
+        </if>
+        <if test= "qualificationPic != null">
+            qualification_pic = #{qualificationPic},
+        </if>
+        <if test= "introduction != null">
+            introduction = #{introduction},
+        </if>
+        gmt_modified = NOW();
+    </insert>
+    <delete id="deleteUserAdvance">
+         DELETE FROM kepu_self_user_advance WHERE id =#{uid};
+    </delete>
+    <select id="selectUserAdvance" resultMap="resultMap">
+        SELECT  id,
+                gmt_create,
+                gmt_modified,
+                identification,
+                identification_pic,
+                qualification_pic 
+                FROM kepu_self_user_advance
+                WHERE id = #{uid}
+    </select>
+</mapper>

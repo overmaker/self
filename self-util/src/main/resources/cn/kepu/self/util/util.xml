@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+    <!-- 定义线程池 -->
+    <bean id="cpu-thread-pool" class="cn.kepu.self.util.threadpool.SelfThreadPool" scope="singleton">
+        <constructor-arg index="0" value="${cpu-thread.minnum}" />
+        <constructor-arg index="1" value="${cpu-thread.maxnum}" />
+        <constructor-arg index="2" value="${cpu-thread.alive-seconds}" />
+        <constructor-arg index="3" value="self-cpu-thread-" />
+    </bean>
+    
+    <bean id="io-thread-pool" class="cn.kepu.self.util.threadpool.SelfThreadPool" scope="singleton">
+        <constructor-arg index="0" value="${io-thread.minnum}" />
+        <constructor-arg index="1" value="${io-thread.maxnum}" />
+        <constructor-arg index="2" value="${io-thread.alive-seconds}" />
+        <constructor-arg index="3" value="self-io-thread-" />
+    </bean>
+    
+    <bean class="cn.kepu.self.util.threadpool.SelfThreadPoolCollection" factory-method="getInstance" destroy-method="shutdownNow"
+          p:cpuThreadPool-ref="cpu-thread-pool"
+          p:ioThreadPool-ref="io-thread-pool"/>
+</beans>

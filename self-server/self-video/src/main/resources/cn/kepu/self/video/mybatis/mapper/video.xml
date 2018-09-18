@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.video.mybatis.mapper.VideoMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.video.entity.Video">
+        <id property="id" column="id"  />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="title" column="title" />
+        <result property="introduction" column="introduction" />
+        <result property="thumbnail" column="thumbnail" />
+        <result property="vip" column="is_vip" />
+        <result property="recommend" column="is_recommend" />
+        <result property="enable" column="is_enable" />
+        <result property="publishTime" column="publish_time" />
+        <result property="path" column="path" />
+        <result property="enSubtitle" column="subtitle_en" />
+        <result property="zhSubtitle" column="subtitle_zh" />
+        <result property="esSubtitle" column="subtitle_es" />
+        <result property="fullText" column="full_text" />
+        <result property="type.name" column="type_name" />
+        <result property="type.id" column="type_id"/>
+        <result property="album.name" column="album_name"  />
+        <result property="album.id" column="album_id" />
+        <result property="age" column="age" />
+        <result property="likesNum" column="likesNum" />
+        <result property="commentNum" column="commentNum" />
+        <result property="hitsNum" column="hitsNum" />
+        <result property="activityId" column="activity_id" />
+        <result property="activityName" column="activity_name" />
+        <result property="status" column="status" />
+    </resultMap>
+    <insert id="insertVideo" useGeneratedKeys="true" keyProperty="id"  parameterType="cn.kepu.self.video.entity.Video">
+        INSERT INTO kepu_self_video
+        (title,introduction,thumbnail,is_vip,is_recommend,is_enable,path,type,album,
+        <if test="enSubtitle != null">
+            subtitle_en,
+        </if>
+        <if test="zhSubtitle != null">
+            subtitle_zh,
+        </if>
+        <if test="esSubtitle != null">
+            subtitle_es,
+        </if>
+        <if test="fullText != null">
+            full_text,
+        </if>
+        <if test="activityId != null">
+            activity,
+        </if>
+        age) 
+        VALUES
+        (#{title},#{introduction},#{thumbnail},#{vip},#{recommend},#{enable},#{path},#{type.id},#{album.id},
+        <if test="enSubtitle != null">
+            #{enSubtitle},
+        </if>
+        <if test="zhSubtitle != null">
+            #{zhSubtitle},
+        </if>
+        <if test="esSubtitle != null">
+            #{esSubtitle},
+        </if>
+        <if test="fullText != null">
+            #{fullText},
+        </if>
+        <if test="activityId != null">
+            #{activityId},
+        </if>
+        #{age});
+    </insert>
+    <insert id="copyVideo" useGeneratedKeys="true" keyProperty="id" >
+        INSERT INTO kepu_self_video (title,introduction,thumbnail,is_vip,is_recommend,is_enable,path,subtitle_en,subtitle_zh,subtitle_es,full_text,type,album) 
+        (SELECT title,introduction,thumbnail,is_vip,is_recommend,0,path,subtitle_en,subtitle_zh,subtitle_es,full_text,type,album FROM kepu_self_video WHERE id=#{id})
+    </insert>
+    <insert id="insertVideoTheme">
+        INSERT INTO kepu_self_video_theme_relation
+        (video, theme)
+        VALUES
+        (#{arg0.id}, #{arg1.id});
+    </insert>
+    <insert id="insertVideoSpeaker">
+        INSERT INTO kepu_self_video_speaker_relation
+        (video, speaker)
+        VALUES
+        (#{arg0.id}, #{arg1.id});
+    </insert>
+    <!--    删除视频关系表1-2-->
+    <delete id="clearVideoTheme1">
+        DELETE FROM kepu_self_video_theme_relation WHERE video = #{id}
+    </delete>
+    <delete id="clearVideoSpeaker1">
+        DELETE FROM kepu_self_video_speaker_relation WHERE video = #{id}
+    </delete>
+    <delete id="clearVideoTheme">
+        DELETE FROM kepu_self_video_theme_relation WHERE video = #{id}
+    </delete>
+    <delete id="clearVideoSpeaker">
+        DELETE FROM kepu_self_video_speaker_relation WHERE video = #{id}
+    </delete>
+    <!--    删除视频关系表3-10-->
+    <delete id="clearVideoComment">
+        DELETE FROM kepu_self_video_comment WHERE video = #{id}
+    </delete>
+    <delete id="clearVideoDanmu">
+        DELETE FROM kepu_self_video_danmu WHERE video = #{id}
+    </delete>
+    <delete id="clearVideoDonation">
+        DELETE FROM kepu_self_video_donation WHERE video = #{id}
+    </delete>
+    <delete id="clearVideoHits">
+        DELETE FROM kepu_self_video_hits WHERE video = #{id}
+    </delete>
+    <delete id="clearVideoLikes">
+        DELETE FROM kepu_self_video_likes WHERE video = #{id}
+    </delete>
+    <delete id="clearVideoScore">
+        DELETE FROM kepu_self_video_score WHERE video = #{id}
+    </delete>
+    <delete id="clearVideoInfo">
+        DELETE FROM kepu_self_video_info WHERE id = #{id}
+    </delete>
+    <delete id="clearVideo">
+        DELETE FROM kepu_self_video WHERE id = #{id}
+    </delete>
+    <update id="updateVideo" >
+        UPDATE kepu_self_video 
+        SET title = #{title},
+        introduction=#{introduction},
+        thumbnail=#{thumbnail},
+        is_vip=#{vip},
+        is_recommend=#{recommend},
+        is_enable=#{enable},
+        path = #{path},
+        subtitle_en = #{enSubtitle},
+        subtitle_zh = #{zhSubtitle},
+        subtitle_es = #{esSubtitle},
+        full_text=#{fullText},
+        type = #{type.id},
+        album =#{album.id},
+        age =#{age},
+        <choose>
+            <when test="activityId != null">
+                activity = #{activityId},
+            </when>
+            <otherwise>
+                activity = NULL,
+            </otherwise>
+        </choose>
+        gmt_modified = NOW()
+        WHERE id = #{id}
+    </update>
+    <select id="searchVideo" resultMap="resultMap">
+        SELECT     v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.publish_time,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        t.name as type_name,
+        a.name as album_name,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum
+        FROM  kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id
+        <where>
+            <if test="title != null and title != ''">
+                AND v.title LIKE CONCAT('%',#{title},'%') 
+            </if>
+            <if test="vip != null  ">
+                AND v.is_vip = 1
+            </if>
+            <if test="recommend != null">
+                AND v.is_recommend = 1
+            </if>
+            <if test="enable != null ">
+                AND v.is_enable = 1
+            </if>
+            <if test="type.id != null and type.id > 0">
+                AND v.type = #{type.id}
+            </if>
+            <if test="album.id != null and album.id > 0">
+                AND v.album = #{album.id}
+            </if>
+        </where>
+        ORDER BY v.gmt_create DESC
+    </select>
+    <select id="advanceSearch" resultMap="resultMap">
+        SELECT
+        v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.publish_time,
+        v.status,
+        t.name as type_name,
+        a.name as album_name,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum
+        FROM  kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id
+        <where>
+            <if test="title != null and title != ''">
+                AND v.title LIKE CONCAT('%',#{title},'%') 
+            </if>
+            <if test="recommend != null">
+                AND v.is_recommend = #{recommend}
+            </if>
+            <if test="enable != null">
+                AND v.is_enable = #{enable}
+            </if>
+            <if test="status != null">
+                AND v.status = #{status}
+            </if>
+        </where>
+        ORDER BY
+        <if test="publishTimeOrder != null and publishTimeOrder &gt; 0">
+            publish_time ASC,
+        </if>
+        <if test="publishTimeOrder != null and publishTimeOrder &lt; 0">
+            publish_time DESC,
+        </if>
+        <if test="hitsOrder != null and hitsOrder &gt; 0">
+            i.hits_num ASC,
+        </if>
+        <if test="hitsOrder != null and hitsOrder &lt; 0">
+            i.hits_num DESC,
+        </if>
+        v.gmt_create DESC
+    </select>
+    <select id="selectById" resultMap="resultMap" >
+        SELECT    v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        v.age,
+        v.activity activity_id
+        FROM  kepu_self_video v
+        WHERE v.id = #{id}
+    </select>
+    <select id="selectByIdVideo" resultMap="resultMap" >
+        SELECT    v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        v.age,
+        t.name as type_name,
+        t.id as type_id,
+        a.name as album_name,
+        a.id as album_id,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum       
+        FROM  kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id 
+        WHERE v.id = #{id}
+    </select>
+    <select id="selectVideo" resultMap="resultMap" >
+        SELECT    v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        v.age,
+        t.name as type_name,
+        t.id as type_id,
+        a.name as album_name,
+        a.id as album_id,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        ac.id as activity_id,
+        ac.title as activity_name,
+        i.hits_num as hitsNum       
+        FROM  kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id 
+        INNER JOIN kepu_self_activity ac ON ac.id = v.activity
+        WHERE v.id = #{id}
+    </select>
+    
+    <select id="selectByTime" resultMap="resultMap" >
+        SELECT    v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text ,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum, 
+        i.score as Score                   
+        FROM  kepu_self_video v
+        INNER JOIN kepu_self_video_info i ON v.id=i.id
+        WHERE v.is_enable=1 AND v.status=1
+        order BY gmt_create DESC      
+    </select>
+    
+    <select id="selectByFee" resultMap="resultMap" >
+        SELECT  v.id,v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum, 
+        i.score as Score                   
+        FROM  kepu_self_video v 
+        INNER JOIN kepu_self_video_info i ON v.id=i.id
+        WHERE v.is_enable=1 AND v.status=1
+        ORDER BY i.hits_num DESC
+    </select>
+    
+    <select id="selectBySameTime" resultMap="resultMap" >
+        SELECT *   FROM kepu_self.kepu_self_video
+        WHERE 
+        DATE_FORMAT(gmt_create,'%Y-%m-%d') in
+        (select  DATE_FORMAT(gmt_create,'%Y-%m-%d')  FROM kepu_self.kepu_self_video where id = #{id}) 
+    </select>
+    
+    <select id="selectBySpeaker" resultMap="resultMap" >
+        SELECT * FROM kepu_self.kepu_self_video  v where id in
+        (SELECT video FROM kepu_self.kepu_self_video_speaker_relation where speaker=#{arg0})
+        ORDER BY v.gmt_create DESC
+    </select>
+    
+    <select id="complexSearch" resultMap="resultMap">
+        SELECT v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.age,
+        t.name as type_name,
+        t.id as type_id,
+        a.name as album_name,
+        a.id as album_id,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum, 
+        i.score as Score  
+        FROM kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id
+        <where>
+            <if test="videoThemes != null and videoThemes.length > 0">
+                <bind name="Themeslength" value="videoThemes.length"/>
+                v.id IN(SELECT video FROM(
+                <foreach collection="videoThemes" item="theme" index="index" separator="UNION ALL">               
+                    SELECT video FROM kepu_self_video_theme_relation WHERE theme=#{theme.id}
+                </foreach>
+                ) AS r GROUP BY video HAVING COUNT(video) =#{Themeslength})
+            </if>
+            <if test="title != null and title != ''">
+                AND v.title LIKE CONCAT('%',#{title},'%')
+            </if>
+            <if test="age != null and age != ''">
+                AND v.age = #{age}
+            </if>
+            
+            <if test="videoType != null and videoType.id != null">
+                AND v.type = #{videoType.id}
+            </if>
+            <if test="videoAlbum != null and videoAlbum.id != null">
+                AND v.album = #{videoAlbum.id}
+            </if>
+            AND v.is_enable=1
+            AND v.status=1
+        </where>
+        ORDER BY
+        <if test="publishTimeOrder != null and publishTimeOrder &gt; 0">
+            publish_time ASC,
+        </if>
+        <if test="publishTimeOrder != null and publishTimeOrder &lt; 0">
+            publish_time DESC,
+        </if>
+        <if test="hitsOrder != null and hitsOrder &gt; 0">
+            i.hits_num ASC,
+        </if>
+        <if test="hitsOrder != null and hitsOrder &lt; 0">
+            i.hits_num DESC,
+        </if>
+        v.gmt_create DESC
+    </select>
+    <select id="selectByActivity" resultMap="resultMap" >
+        SELECT * FROM kepu_self.kepu_self_video  v where 
+        activity= #{arg0}
+        ORDER BY v.gmt_create DESC
+    </select>
+    <!--    后台视频审核-->
+    <select id="selectByAdmin" resultMap="resultMap" >
+        SELECT v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.status,
+        v.age,
+        v.activity,
+        t.name as type_name,
+        t.id as type_id,
+        a.name as album_name,
+        a.id as album_id,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum, 
+        i.score as Score,
+        ac.title as activity_name
+        FROM kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id
+        INNER JOIN kepu_self_activity ac ON ac.id = v.activity
+        <where>
+            <if test="activityName != null and activityName != ''">
+                AND  ac.title LIKE CONCAT('%',#{activityName},'%')
+            </if>
+            <if test="status != null">
+                AND  v.status =#{status}
+            </if>
+        </where>
+    </select>
+    <update id="updateVideoCheck">
+        UPDATE kepu_self_video SET status = #{status} WHERE id=#{id};
+    </update>
+    <!--    后台视频审核从新到旧排序-->
+    <select id="selectByTime0" resultMap="resultMap">
+        SELECT v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        v.age,
+        v.activity,
+        t.name as type_name,
+        t.id as type_id,
+        a.name as album_name,
+        a.id as album_id,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum, 
+        i.score as Score  ,
+        ac.title as activity_name
+        FROM kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id
+        INNER JOIN kepu_self_activity ac ON ac.id = v.activity
+        where v.status=0 order by v.gmt_create desc
+    </select>
+    <!--    后台视频管理排序1-->
+    <select id="selectByAdmin1" resultMap="resultMap">
+        SELECT v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        v.age,
+        v.activity,
+        t.name as type_name,
+        t.id as type_id,
+        a.name as album_name,
+        a.id as album_id,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum, 
+        i.score as Score  ,
+        ac.title as activity_name
+        FROM kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id
+        INNER JOIN kepu_self_activity ac ON ac.id = v.activity
+        where    order by v.gmt_create desc
+    </select>
+    <select id="selectByAdmin2" resultMap="resultMap">
+        SELECT v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        v.age,
+        v.activity,
+        t.name as type_name,
+        t.id as type_id,
+        a.name as album_name,
+        a.id as album_id,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum, 
+        i.score as Score  ,
+        ac.title as activity_name
+        FROM kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id
+        INNER JOIN kepu_self_activity ac ON ac.id = v.activity
+        where   order by i.hits_num desc
+    </select>
+    <select id="selectByAdmin3" resultMap="resultMap">
+        SELECT v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        v.age,
+        v.activity,
+        t.name as type_name,
+        t.id as type_id,
+        a.name as album_name,
+        a.id as album_id,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum, 
+        i.score as Score  ,
+        ac.title as activity_name
+        FROM kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id
+        INNER JOIN kepu_self_activity ac ON ac.id = v.activity
+        where   order by i.hits_num 
+    </select>
+    <select id="selectByAdmin4" resultMap="resultMap">
+        SELECT v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        v.age,
+        v.activity,
+        t.name as type_name,
+        t.id as type_id,
+        a.name as album_name,
+        a.id as album_id,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum, 
+        i.score as Score  ,
+        ac.title as activity_name
+        FROM kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id
+        INNER JOIN kepu_self_activity ac ON ac.id = v.activity
+        where      v.is_enable=1
+    </select>
+    <select id="selectByAdmin5" resultMap="resultMap">
+        SELECT v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        v.age,
+        v.activity,
+        t.name as type_name,
+        t.id as type_id,
+        a.name as album_name,
+        a.id as album_id,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum, 
+        i.score as Score  ,
+        ac.title as activity_name
+        FROM kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id
+        INNER JOIN kepu_self_activity ac ON ac.id = v.activity
+        where     v.is_enable=0
+    </select>
+    <select id="selectByAdmin6" resultMap="resultMap">
+        SELECT v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        v.age,
+        v.activity,
+        t.name as type_name,
+        t.id as type_id,
+        a.name as album_name,
+        a.id as album_id,
+        i.likes_num as likesNum,
+        i.comment_num as commentNum,
+        i.hits_num as hitsNum, 
+        i.score as Score  ,
+        ac.title as activity_name
+        FROM kepu_self_video v
+        INNER JOIN kepu_self_video_album a ON a.id = v.album
+        INNER JOIN kepu_self_video_type t ON t.id = v.type
+        INNER JOIN kepu_self_video_info i ON i.id = v.id
+        INNER JOIN kepu_self_activity ac ON ac.id = v.activity
+        where   v.is_recommend=1
+    </select>
+    <!--    微纪录-->
+    <select id="selectMicro" resultMap="resultMap">
+        SELECT v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        v.age,
+        v.activity        
+        FROM kepu_self.kepu_self_video v inner join kepu_self_video_type ty on v.type=ty.id
+        where v.is_enable=1 and ty.name like"%微纪录%"  
+    </select>
+    <!--煮酒论道-->
+    <select id="selectDao" resultMap="resultMap">
+        SELECT v.id,
+        v.gmt_create,
+        v.gmt_modified,
+        v.title,
+        v.introduction,
+        v.thumbnail,
+        v.is_vip,
+        v.is_recommend,
+        v.is_enable,
+        v.path,
+        v.subtitle_en,
+        v.subtitle_zh,
+        v.subtitle_es,
+        v.full_text,
+        v.age,
+        v.activity        
+        FROM kepu_self.kepu_self_video v inner join kepu_self_video_type ty on v.type=ty.id
+        where v.is_enable=1 and ty.name like"%煮酒论道%"  
+    </select>
+</mapper>

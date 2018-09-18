@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.video.mybatis.mapper.SpeakerRecommendMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.video.entity.SpeakerRecommend">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="speakerName" column="speaker_name" />
+        <result property="reason" column="reason" />
+        <result property="references" column="references" />
+        <result property="checked" column="checked" />
+        <result property="user.userName" column="userName" />
+        <result property="mobile" column="mobile" />
+        <result property="unit" column="unit" />
+    </resultMap>
+    <insert id="insertSpeakerRecommend" >
+        INSERT INTO kepu_self_speaker_recommend (gmt_create,gmt_modified,speaker_name,reason,`references`,mobile,unit) 
+        VALUES (now(),now(),#{speakerName},#{reason},#{references},#{mobile},#{unit});
+    </insert>
+    <update id="updateSpeakerRecommend">
+        UPDATE kepu_self_speaker_recommend 
+        SET checked=#{checked},
+        gmt_modified = now()
+        WHERE id = #{id}
+    </update>
+    <select id="findById" resultMap="resultMap">
+        SELECT sr.id,
+        sr.gmt_create,
+        sr.gmt_modified,
+        sr.speaker_name,
+        sr.reason,
+        sr.`references`,
+        sr.checked, 
+        u.user_name userName, 
+        ui.mobile mobile
+        FROM kepu_self_speaker_recommend sr
+        INNER JOIN kepu_self_user u ON u.id = sr.`references`
+        INNER JOIN kepu_self_user_info ui ON ui.id = u.id
+        WHERE sr.id = #{id}
+    </select>
+    <select id="selectSpeakerRecommend" resultMap="resultMap">
+        SELECT sr.id,
+        sr.gmt_create,
+        sr.gmt_modified,
+        sr.speaker_name,
+        sr.reason,
+        sr.`references`,
+        sr.checked, 
+        u.user_name userName, 
+        ui.mobile mobile
+        FROM kepu_self_speaker_recommend sr
+        INNER JOIN kepu_self_user u ON u.id = sr.`references`
+        INNER JOIN kepu_self_user_info ui ON ui.id = u.id
+        <where>
+            <if test="references != null">
+                AND sr.`references` LIKE CONCAT('%',#{references},'%') 
+            </if>
+            <if test="speakerName != null and speakerName != ''">
+                AND sr.speaker_name LIKE CONCAT('%',#{speakerName},'%') 
+            </if>
+        </where>
+        ORDER BY sr.gmt_create DESC
+    </select>
+</mapper>

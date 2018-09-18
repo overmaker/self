@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="OFF">
+    <Properties>
+        <Property name="log-path">logs</Property>
+    </Properties>
+    <Appenders>
+        <RollingFile name="self-admin" fileName="${log-path}/self-admin.log" filePattern="${log-path}/self-admin-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p %c{10} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="30 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingFile>
+        <RollingFile name="system-log" fileName="${log-path}/system.log" filePattern="${log-path}/system-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p %c{10} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="20 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Logger name="cn.kepu.self" level="info" additivity="false">
+            <AppenderRef ref="self-admin"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="system-log"/>
+        </Root>
+    </Loggers>
+</Configuration>

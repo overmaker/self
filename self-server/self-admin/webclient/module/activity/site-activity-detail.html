@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="layui/css/layui.css" />
+        <link rel="stylesheet" type="text/css" href="site-activity-detail.css" />
+        <style type="text/css">
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .iw_poi_title {
+                color: #CC5522;
+                font-size: 14px;
+                font-weight: bold;
+                overflow: hidden;
+                padding-right: 13px;
+                white-space: nowrap
+            }
+            
+            .iw_poi_content {
+                font: 12px arial, sans-serif;
+                overflow: visible;
+                padding-top: 4px;
+                white-space: -moz-pre-wrap;
+                word-wrap: break-word
+            }
+        </style>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+    </head>
+
+    <body>
+    <div class="layui-container">
+        <!--活动报名-->
+        <div class="layui-row layui-col-space20" style="margin-top: 2%;margin-bottom: 40px;">
+            <div class="layui-col-md5"><img src="img/4.png" id="imageBig" style="width: 100%;"></div>
+            <div class="layui-col-md7">
+                <h2 class="activity-title">【活动报名】 <span id="title"></span></h2>
+                <p class="activity-time"><i class="layui-icon">&#xe60e;</i> <span id="startTime"></span> ～ <span id="endTime"></span> </p>
+                <p class="activity-address"><i class="layui-icon">&#xe715;</i><span id="place"></span></p>
+                <p class="active-people-number"><i class="layui-icon">&#xe60b;</i> 限额<span id="count"></span>人</p>
+                <p class="active-initiator"><i class="layui-icon">&#xe606;</i><img src="../../img/logo1.png" style="width: 27px;height: 27px;margin:0px 5px;"><span id="sponsor"></span></p>
+                <p style="margin-top: 5%;"> <input type="button" value="我要报名" class="active-sig-up"></p>
+            </div>
+        </div>
+        <!--活动详情-->
+        <div class="layui-row layui-col-space20">
+            <div class="layui-col-md9">
+                <div class="active-ticket-species">
+                    <div class="active-ticket-species-title"><span>活动票种...</span></div>
+                    <div>
+                        <ul name="event_tickets_thumbs" class="thumbnails" style="margin-left:0px;" id="ticketType">
+                            <li style="margin-left:0px;margin-right:1%;margin-bottom:5px;cursor:pointer;width:32%;float:left;" status1="joinning">
+                                <div class="thumbnail" status="joinning" fee="0" id="20">
+                                    <table style="border:none;width:100%;">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding:0px;">
+                                                    <h4 class=";clearfix'" style="margin:4px 0 0 0;"><span class="pull-left">¥0</span></h4></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="caption" style="color:#777;padding:0px;">
+                                        <ul style="list-style:none;margin:0;padding:0;">
+                                            <li style="font-size:12px;">
+                                                <table style="border:none;width:100%;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="padding:0px;">
+                                                                <div style="width:165px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">情侣票&nbsp;&nbsp;&nbsp;售票中</div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div id="event_ticket_select_details" style="color: rgb(255, 102, 79); font-size: 12px;">&nbsp;早鸟票&nbsp;-&nbsp;<b>说明：</b>限时抢购，原价199（报名条件： 企业创始人、CEO、中高层或任何团队管理人士）</div>
+                    <div id="event_ticket_order_number" class="pull-left" style="margin: 10px 0px; display: none;"> 订购数量： <input type="text" id="ticketNum" style="height: 20px;" placeholder="限购1到1张，必填！"></div>
+                </div>
+                <!--活动内容-->
+                <div class="active-content"><span>活动内容...</span></div>
+                <div id="intro">
+                    <div class="event-intro tab-content" id="eventContentAreaMain" style="margin-bottom:0px;">
+                        <div class="tab-pane fade in active" id="event_desc_page">
+                            <section id="full-text">
+                                
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <div class="commend-comment">
+                    <div>
+                        <h3>评论<font id="commendCount" color="gray" size="3">(0)</font></h3> <textarea id="self-comment" rows="10" placeholder="我来说俩句..." maxlength="300"></textarea> <input type="submit" value="评论" class="layui-btn layui-btn-danger">
+                        <hr>
+                        <h3>热门评论</h3> <br>
+                        <ul></ul>
+                    </div>
+                </div>
+            </div>
+            <!--右侧-->
+<!--            <div class="layui-col-md3">-->
+                <!--活动缩略图-->
+<!--                <div>
+                    <h2 style="font-size: 18px;padding-bottom: 12px;">活动地点<span>（<a href="" style="font-size: 14px;">查看大图</a>）</span></h2> <img src="https://192.168.1.111:29006/upload/activity-upload-thumbnail/FE922EB188_abentangwan.jpg" style="width: 278px; height: 300px;" id="imageSmall"></div>
+            </div>-->
+        </div>
+    </div>
+    </body>
+
+</html>

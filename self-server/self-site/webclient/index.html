@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/ft-carousel.css" />
+        <link rel="stylesheet" href="top.css" />
+        <link rel="stylesheet" type="text/css" href="media/media.css" />
+        <style type="text/css">
+            dd {
+                line-height: 36px;
+            }
+            /*.module-index {
+                width: 70%;
+                margin: auto;
+            }*/
+        </style>
+        <script type="text/javascript">
+            var ua = navigator.userAgent;
+            var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+            var isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
+            var isAndroid = ua.match(/(Android)\s+([\d.]+)/);
+            var isMobile = isIphone || isAndroid;
+            if (isMobile) {
+                window.location.href = "/mobile/index.html";
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="module-index">
+            <div id="top"> </div>
+            <div class="layui-row" id="comment">
+                <div class="layui-col-xs15">
+                    <!-- 轮播图 -->
+                    <div class="div-example">
+                        <div class="example">
+                            <div class="layui-container" style="height: 100%;">
+                                <div class="layui-carousel" id="carousel"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-container">
+                        <!-- 最新视频 -->
+                        <div class="remmoend-video">
+                            <div style='width:100%'>
+                                <h2>
+                                    <strong>最新演讲</strong>
+                                    <a href="/module/video/video.html" style='font-size: 14px;float:right;margin-top:5px;'>更多&nbsp;
+                                        <img src='/image/gengduo2.png' class='gengduo2'></a>
+                                </h2><br/> </div>
+                            <table id="table" style="width: 100%;height: 520px;"> </table>
+                        </div>
+                        <!--  演讲集-->
+                        <div class="TEDto">
+                            <div>
+                                <h2>
+                                    <strong>&nbsp;主题演讲</strong>
+                                    <a href="/module/video/video.html" style='font-size: 14px;float: right;'>更多&nbsp;
+                                        <img src='/image/gengduo2.png' class='gengduo2'></a>
+                                </h2><br /> </div>
+                            <table style="width: 100%;" id="table1">
+                            </table>
+                        </div>
+                        <!--煮酒论道-->
+                        <div class="Micro">
+                            <div>
+                                <h2>
+                                    <strong>&nbsp;煮酒论道</strong>
+                                    <a href="/module/video/video.html?type=3" style='font-size: 14px;float: right;'>更多&nbsp;
+                                        <img src='/image/gengduo2.png' class='gengduo2'></a>
+                                </h2><br /> </div>
+                            <div class="layui-row" style="background-color: red;">
+                                <div id="myCarousel" class="carousel slide">
+                                    <!-- 轮播（Carousel）指标 -->
+                                    <ol class="carousel-indicators" style="margin-left: -25%;">
+                                        <li data-target="#myCarousel" data-slide-to="0" class="active" style="background-color: gray;border: gray;"></li>
+                                        <li data-target="#myCarousel" data-slide-to="1" style="background-color: gray;border: gray;"></li>
+                                        <li data-target="#myCarousel" data-slide-to="2" style="background-color: gray;border: gray;"></li>
+                                    </ol>
+                                    <div class="carousel-inner" style="background-color: white;height: 100%;" id="dao"> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--  微记录 -->
+                        <div class="Micro">
+                            <div>
+                                <h2>
+                                    <strong>&nbsp;微记录</strong>
+                                    <a href="/module/video/video.html?type=5" style='font-size: 14px;float: right;'>更多&nbsp;
+                                        <img src='/image/gengduo2.png' class='gengduo2'></a>
+                                </h2><br /> </div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md6">
+                                <a href=""  class="c-preview" style="height: 382px;"  id="href0">
+                                    <div class='c-preview__img'><img src=""    id="image0" style="width: 100%;height: 100%;" /></div>
+                                    <h2 class='c-preview__title'  id="title0"></h2> </a>
+                            </div>
+
+                            <div class="layui-col-md6">
+                                <div class="layui-col-md12">
+                                    <div class="layui-col-md6">
+                                        <a href=""  class="c-preview" style="height: 190px;"  id="href1">
+                                            <div class='c-preview__img'><img src=""    id="image1" style="width: 100%;height: 100%;" /></div>
+                                            <h2 class='c-preview__title'  id="title1"></h2> </a>
+                                    </div>
+                                   <div class="layui-col-md6">
+                                        <a href=""  class="c-preview" style="height: 190px;"  id="href2">
+                                            <div class='c-preview__img'><img src=""    id="image2" style="width: 100%;height: 100%;" /></div>
+                                            <h2 class='c-preview__title'  id="title2"></h2> </a>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md12">
+                                   <div class="layui-col-md6">
+                                        <a href=""  class="c-preview" style="height: 190px;"  id="href3">
+                                            <div class='c-preview__img'><img src=""    id="image3" style="width: 100%;height: 100%;" /></div>
+                                            <h2 class='c-preview__title'  id="title3"></h2> </a>
+                                    </div>
+                                     <div class="layui-col-md6">
+                                        <a href=""  class="c-preview" style="height: 190px;"  id="href4">
+                                            <div class='c-preview__img'><img src=""    id="image4" style="width: 100%;height: 100%;" /></div>
+                                            <h2 class='c-preview__title'  id="title4"></h2> </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-row" id="flooter"> </div>
+            </div>
+        </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/ft-carousel.min.js"></script>
+    <script type="text/javascript" src="lib/layui/layui.all.js"></script>
+    <script type="text/javascript" src="lib/layui/layui.js"></script>
+    <script type="text/javascript" src="lib/base.js"></script>
+    <script type="text/javascript" src="util.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

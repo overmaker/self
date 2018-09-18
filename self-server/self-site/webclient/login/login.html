@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="login.css" />
+        <link rel="stylesheet" href="../lib/layui/css/layui.css" />
+        <link rel="stylesheet" type="text/css" href="verify.css">
+        <script type="text/javascript" src="../lib/layui/layui.all.js"></script>
+        <script type="text/javascript" src="../lib/jquery/jquery-1.12.4.min.js"></script>
+    </head>
+
+    <body>
+        <div class="login-commend" style="background-repeat:no-repeat; background-size:100% 100%;">
+            <div class="layui-container">
+                <div class="layui-row layui-col-space30">
+                    <div class="layui-col-md6"><img src="../image/logo1.png" style="width: 100%;height: auto;" /></div>
+                    <div class="layui-col-md6">
+                        <div class="grid-demo">
+                            <div class="login-div" style="background-color:rgb(255,255,255,0.7);">
+                                <div class="layui-tab" style="margin: 0 0;">
+                                    <ul class="layui-tab-title">
+                                        <li class="layui-this">登录</li>
+                                        <li>注册</li>
+                                    </ul>
+                                    <div class="layui-tab-content">
+                                        <div class="layui-tab-item layui-show">
+                                            <h2>账号登录</h2>
+                                            <div class="layui-form-item"> <input id="loginUserName" type="text" placeholder="请输入账号" class="layui-input" maxlength="30"> </div>
+                                            <div class="layui-form-item"> <input id="loginPassword" type="password" placeholder="请输入密码" class="layui-input" maxlength="20"> </div>
+                                            <div id="mpanel1"> </div>
+                                            <p> <span class="span1">
+                                                    <input type="checkbox" checked="" /> 记住密码</span> <span class="span2">  
+                                                    <a href="#">忘记密码</a>
+                                                </span> </p> 
+                                            <div id="mpanel1"> </div> <button type="button" id="check-btn" class="verify-btn">确定</button>    
+                                            <button class="layui-btn layui-btn-danger" id="self-login" disabled="disabled">登录</button> </div>
+                                        <div class="layui-tab-item">
+                                            <h2>账号注册</h2>
+                                            <div class="layui-form-item"> <input id="registerName" type="text" placeholder="请输入账号" class="layui-input" maxlength="30"> </div>
+                                            <div class="layui-form-item"> <input id="registerPassword" type="password" placeholder="请输入密码" class="layui-input" maxlength="20"> </div>
+                                            <div class="layui-form-item"> <input id="registerMobile"  type="text" placeholder="请输入手机号" class="layui-input" maxlength="11"> </div>
+<!--                                            <div class="layui-form-item"> <input id="mobileCode"    type="text" placeholder="请输入短信验证码" class="layui-input" maxlength="11"  style="width: 50%; float: left;"> 
+                                                <input type = "button" class="layui-btn"  value = "免费获取验证码"  id="smsCode"  style="width: 26%;"  onclick = ""/>  </div>
+                                            <div>  -->
+                                                <!--<input type = "text"  style="margin-left: 6%;" id = "input" value="" />  
+                                                <input type = "button" id="code" onclick="createCode()"/> 
+                                                <input type = "button" value = "验证" onclick = "validate()"/>  -->
+                                                <div id="mpanel2"> </div> <button type="button" id="check-btn1" class="verify-btn">确定</button>
+                                                <button class="layui-btn layui-btn-danger" id="registerSubmit" disabled="disabled">注册</button> </div>
+                                            </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <script type="text/javascript" src="../lib/base.js"></script>
+        <script type="text/javascript" src="../util.js"></script>
+        <script type="text/javascript" src="login.js"></script>
+        <script type="text/javascript" src="register.js"></script>
+        <script type="text/javascript" src="jquery.min.js"></script>
+        <script type="text/javascript" src="verify.js"></script>
+        <script type="text/javascript">
+        $('#mpanel1').codeVerify({
+            type: 1,
+            width: '220px',
+            height: '40px',
+            fontSize: '30px',
+            codeLength: 6,
+            btnId: 'check-btn',
+            ready: function() {},
+            success: function() {
+                alert('验证匹配！');
+                $("#self-login").attr('disabled', false);
+            },
+            error: function() {
+                alert('验证码不匹配！');
+            }
+        });
+        
+        $('#mpanel2').codeVerify({
+            type: 1,
+            width: '250px',
+            height: '50px',
+            fontSize: '30px',
+            codeLength: 6,
+            btnId: 'check-btn1',
+            ready: function() {},
+            success: function() {
+                alert('验证匹配！');
+                $("#registerSubmit").attr('disabled', false);
+            },
+            error: function() {
+                alert('验证码不匹配！');
+            }
+        });
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+    
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="file:server-config.properties"
+          p:fileEncoding="UTF-8" />
+    
+    <import resource="classpath:cn/kepu/self/dbaccess/sql.xml" />
+    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" scope="singleton">
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations">
+            <array>
+                <value>classpath:cn/kepu/self/commons/mybatis/mapper/*.xml</value>
+                <value>classpath:cn/kepu/self/task/mybatis/mapper/*.xml</value>
+                <value>classpath:cn/kepu/self/video/mybatis/mapper/*.xml</value>
+                <value>classpath:cn/kepu/self/activity/mybatis/mapper/*.xml</value>
+                <value>classpath:cn/kepu/self/shop/mybatis/mapper/*.xml</value>
+                <value>classpath:cn/kepu/self/others/mybatis/mapper/*.xml</value>
+            </array>
+        </property>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            helperDialect=mysql
+                            reasonable=true
+                            supportMethodsArguments=true
+                            params=count=countSql
+                            autoRuntimeDialect=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+    </bean>
+    
+    <import resource="classpath:cn/kepu/self/util/util.xml" />
+    <import resource="classpath:cn/kepu/self/commons/commons.xml" />
+    <import resource="classpath:cn/kepu/self/task/task.xml" />
+    <import resource="classpath:cn/kepu/self/video/video.xml" />
+    <import resource="classpath:cn/kepu/self/activity/activity.xml" />
+    <import resource="classpath:cn/kepu/self/shop/shop.xml" />
+    <import resource="classpath:cn/kepu/self/others/others.xml" />
+    
+    <bean class="cn.kepu.self.commons.http.SelfHttpServer" scope="singleton" lazy-init="false" init-method="start" destroy-method="stop">
+        <constructor-arg index="0" value="${server.host}" />
+        <constructor-arg index="1" value="${server.port}" />
+        <constructor-arg index="2" value="${server.context}" />
+        <constructor-arg index="3" value="${server.keystore.file}" />
+        <constructor-arg index="4" value="${server.keystore.password}" />
+        <constructor-arg index="5" value="${server.debug}" />
+        <constructor-arg index="6">
+            <list>
+                <value>cn.kepu.self.commons.resource</value>
+                <value>cn.kepu.self.commons.jersey.provider</value>
+                <value>cn.kepu.self.task.resource</value>
+                <value>cn.kepu.self.video.resource</value>
+                <value>cn.kepu.self.activity.resource</value>   
+                <value>cn.kepu.self.shop.resource</value>
+                <value>cn.kepu.self.others.resource</value>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>

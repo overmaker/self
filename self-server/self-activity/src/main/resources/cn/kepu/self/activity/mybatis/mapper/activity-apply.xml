@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.activity.mybatis.mapper.ActivityApplyMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.activity.entity.ActivityApply">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="user.userName" column="username" />
+        <result property="user.id" column="uid" />
+        <result property="name" column="name" />
+        <result property="responsible" column="responsible" />
+        <result property="contact" column="contact" />
+        <result property="tel" column="tel" />
+        <result property="email" column="email" />
+        <result property="comment" column="comment" />
+        <result property="activity_plan_file" column="activity_plan_file" />
+        <result property="status" column="status" />
+    </resultMap>
+    <insert id="insertActivityApply">
+        
+        INSERT INTO kepu_self_activity_apply
+        (user, name, responsible, contact, tel, email, activity_plan_file,comment, status) 
+        VALUES
+        (#{user.id}, #{name}, #{responsible,}, #{contact}, #{tel}, #{email}, #{activity_plan_file},#{comment}, 0);
+        <!--        (5, "中国科学院", "张", "张", "15165845214", "1459875642@qq.com", "112225", "我想申办一个self活动", 0);-->
+    </insert>
+    <update id="updateActivityApply">
+        UPDATE kepu_self_activity_apply SET gmt_modified = NOW(),status = #{arg1} WHERE id=#{arg0};
+    </update>
+    <select id="findById" resultMap="resultMap">
+        SELECT a.id, 
+        a.gmt_create, 
+        a.gmt_modified, 
+        a.name name,
+        a.responsible responsible, 
+        a.contact contact, 
+        a.tel tel, 
+        a.email email, 
+        a.comment comment, 
+        a.activity_plan_file activity_plan_file, 
+        a.status STATUS, 
+        u.user_name username 
+        FROM kepu_self_activity_apply a
+        INNER JOIN kepu_self_user u ON u.id = a.user
+        WHERE a.id = #{id}
+    </select>
+    <select id="selectActivityApplyAll" resultMap="resultMap">
+        SELECT a.id, 
+        a.gmt_create, 
+        a.gmt_modified, 
+        a.name name, 
+        a.responsible responsible, 
+        a.contact contact, 
+        a.tel tel, 
+        a.email email, 
+        a.comment comment, 
+        a.activity_plan_file activity_plan_file, 
+        a.status STATUS, 
+        u.user_name username 
+        FROM kepu_self_activity_apply a
+        INNER JOIN kepu_self_user u ON u.id = a.user
+        <where>
+            <if test="name != null and name !=''">
+                AND a.name LIKE CONCAT('%',#{name},'%')
+            </if>
+        </where>
+        ORDER BY gmt_create DESC
+    </select>
+</mapper>

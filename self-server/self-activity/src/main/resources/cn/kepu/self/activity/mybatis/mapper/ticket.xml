@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.activity.mybatis.mapper.TicketMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.activity.entity.Ticket">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="name" column="name" />
+        <result property="stock" column="stock" />
+        <result property="free" column="is_free" />
+        <result property="fee" column="fee" />
+        <result property="introduction" column="introduction" />
+        <result property="personNum" column="person_num" />
+        <result property="purchaseMin" column="purchase_min" />
+        <result property="purchaseMax" column="purchase_max" />
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP" />
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP" />
+        <result property="activity.id" column="activity" />
+        <result property="status" column="status" />
+    </resultMap>
+    <insert id="insertTicket" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO kepu_self_activity_ticket
+        (name,stock,is_free,introduction,start_time,end_time,
+        <if test="free == false">
+            fee,person_num,purchase_min,purchase_max,
+        </if>
+        activity)
+        VALUES
+        (#{name},#{stock},#{free},#{introduction},#{startTime},#{endTime},
+        <if test="free == false">
+            #{fee},#{personNum},#{purchaseMin},#{purchaseMax},
+        </if>
+        #{activity.id})
+    </insert>
+    <update id="updateTicket">
+        UPDATE kepu_self_activity_ticket SET
+        name = #{name},
+        stock = #{stock},
+        introduction = #{introduction},
+        start_time = #{startTime},
+        end_time = #{endTime},
+        is_free = #{free},
+        <choose>
+            <when test = "free == false">
+                fee = #{fee},
+                person_num = #{personNum},
+                purchase_min = #{purchaseMin},
+                purchase_max = #{purchaseMax},
+            </when>
+            <otherwise>
+                fee = 0,
+                person_num = 1,
+                purchase_min = 1,
+                purchase_max = 1,
+            </otherwise>
+        </choose>
+        gmt_modified = NOW()
+        WHERE id=#{id};
+    </update>
+    <delete id="deleteTicket">
+        DELETE FROM kepu_self_activity_ticket WHERE id = #{id};
+    </delete>
+    <select id="selectByActivityId" resultMap="resultMap">
+        SELECT
+        id,
+        name,
+        stock,
+        introduction,
+        start_time,
+        end_time,
+        is_free,
+        fee,
+        person_num,
+        purchase_min,
+        purchase_max,
+        activity,
+        CASE
+        WHEN NOW() BETWEEN start_time AND end_time THEN 'joinning'
+        WHEN NOW() &lt; start_time THEN 'not_open'
+        ELSE 'over'
+        END 
+        AS status
+        FROM kepu_self_activity_ticket
+        WHERE activity=#{activity-id}
+        ORDER BY gmt_create ASC
+    </select>
+</mapper>

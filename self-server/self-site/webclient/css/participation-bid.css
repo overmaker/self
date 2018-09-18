@@ -1,0 +1,214 @@
+/* 导航条 */
+.layui-badge-rim, .layui-colla-content, .layui-colla-item, .layui-collapse, .layui-elem-field, .layui-form-pane .layui-form-item[pane], .layui-form-pane .layui-form-label, .layui-input, .layui-layedit, .layui-layedit-tool, .layui-quote-nm, .layui-select, .layui-tab-bar, .layui-tab-card, .layui-tab-title, .layui-tab-title .layui-this:after, .layui-textarea{
+    border: none !important;
+}
+.layui-tab {
+    margin: 12px 92px!important;
+    text-align: left!important;
+}
+body {
+    background: #FCFBF7;
+} 
+/*.participation-bid-body{
+    width: 70%;
+    margin: auto;
+}*/
+/* 内容  */
+.comment {
+    margin-top: 5%;
+    color:gray;
+}
+.bid-title {
+    color:black;
+}
+.bid-left {
+    float:left;
+    text-align: right;
+    padding-right:20px;
+    font-size: 16px;
+}
+.bid-left p input {
+    width:230px;
+    height: 20px;
+    border-radius: 10%;
+    margin:5px 0;
+    font-size: 14px;
+}
+.bid-right {
+    float:right;
+    font-size: 16px;
+}
+.comment-tag1 p{
+    line-height: 2rem;
+}
+#tag1-submit {
+    width:100px;
+    height: 35px;
+    margin: 0 55px;
+}
+.tag2 {
+    
+}
+.tag2-image {
+    width: 550px;
+}
+.tag3 {
+    margin-top: 3%;
+}
+.tag3-image {
+    width: 1100px;
+}
+.tag3-table-img {
+    width: 220px;
+    height: 157px;
+}
+.tag3 table tr td {
+    width: 275px;
+    height: 215px;
+    border:8px solid #EEEEEE;
+    border-color: white;
+}
+.tag3 table tr td dl dd{
+    width: 265px;
+    font-size: 12px;
+    padding: 5px 5px;
+}
+.input-group {
+    width: 500px;
+    margin-top: 10px;
+}
+a {
+    text-decoration:none!important
+}
+a:hover {
+    text-decoration:none!important
+}
+.participation-left {
+    float:left;
+    width: 240px;
+}
+.participation-right {
+    float:right;
+    width: 580px;
+    margin-top:30px;
+    font-size: 16px;
+}
+#bid-wanqi {
+    width: 100%;
+    height: 900px;
+}
+#bid-wanqi ul li {
+    width: 100%;
+    height:160px;
+    border:1px solid #F4F4F4;
+}
+/*换行 */
+.layui-tab-title li{
+    display:block !important;
+}
+/*title 和 content 两块  并排 等高 */
+.layui-tab-title, .layui-tab-content{
+    display: table-cell;
+}
+
+/*self+活动回顾*/
+
+.activity-left {
+    float:left;
+}
+.activity-right {
+    margin-right: 2%;
+    float:right;
+}
+.activity-list div input {
+    height: 27px;
+    width: 200px;
+    border-radius: 8%;
+    text-indent: 1rem;
+}
+.activity-header div {
+    padding-left: 100px;
+}
+.searchbox {
+    width:30px;
+    height:25px;
+    position: relative;
+    right: 36px;
+    bottom: 2.08px;
+    border-radius: 9%;
+}
+.activity-header {
+    margin-top: 30px;
+    text-indent: 50px;
+}
+.all-activity {
+    /*padding-top: 60px;*/
+    padding-bottom: 60px;
+    margin-left: 2%;
+}
+.all-activity table tr td {
+    width: 31%;
+    height: 100%;
+    padding: 2% 1%;
+}
+.p-activity-p {
+    height: 35px;
+}
+.ff-items-p-image {
+    /*    width: 18px;*/
+    height: 12px;
+    opacity: 0.4;
+    padding: 0 4px;
+}
+.ff-items-p-image2 {
+    /*    width: 18px;*/
+    height: 12px;
+    opacity: 0.4;
+    padding: 5px 3px;
+}
+a:hover {
+    color:rgb(255, 107, 88);
+}
+.ff-items tr td a p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.activity-image {
+    width: 305px;
+    height: 62%;
+    border-radius: 1.5%;
+}
+.activity3-left {
+    float: left;
+    margin: 45px 5px;
+}
+.activity3-right {
+    float: right;
+}
+.activity3 .activity3-left table tr td {
+    div {
+        width:100px;
+    }
+    /*    width: 202px;*/
+    height: 110px;
+    padding: 20px 5px;
+}
+.activity3 .activity3-left  .activity-image3 {
+    width: 202px;
+    height: 110px;
+}
+.activity-right-image3 {
+    width: 330px;
+    height: 290px;
+    position: absolute;
+    top:62px;
+    right: 4px;
+}
+.self-activity-img {
+    width: 35%;
+    height: 55px;
+    position: relative;
+    left: 20%;
+    bottom: 130px;
+}

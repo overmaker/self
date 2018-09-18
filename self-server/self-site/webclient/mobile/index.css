@@ -1,0 +1,17 @@
+.aui-bar-tab .aui-active {
+    color: #1aad19;
+    font-weight: bold;
+}
+
+.mui-bar {
+/*    background-color: #6b6b6b;*/
+}
+
+body > article {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: auto;
+    overflow-y: auto;
+}

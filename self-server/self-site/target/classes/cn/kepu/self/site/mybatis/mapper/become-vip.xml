@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.site.mybatis.mapper.BecomeVipMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.site.entity.BecomeVip">
+        <id property="id" column="id"  />
+        <result property="sn" column="sn" />
+        <result property="user.id" column="user" />
+        <result property="vip_type" column="vip_type" /> 
+        <result property="total_fee" column="total_fee" />       
+        <result property="pay_flag" column="pay_flag" />
+    </resultMap>
+    <select id="selectOrderById" resultMap="resultMap">
+        SELECT  user,vip_type 
+        FROM kepu_self_user_vip_order
+        WHERE sn=#{sn}
+    </select>
+    <insert id="insertOrder">
+        INSERT INTO kepu_self_user_vip_order(user,total_fee,vip_type,sn) 
+        VALUES(#{user.id},#{total_fee},#{vip_type},#{sn});
+    </insert>
+    <update id="paymentSuccess">
+        UPDATE kepu_self_user_vip_order SET pay_flag=1 WHERE sn=#{sn}
+    </update>
+</mapper>

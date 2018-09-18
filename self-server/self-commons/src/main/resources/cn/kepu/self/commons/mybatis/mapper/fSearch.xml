@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.commons.mybatis.mapper.FSearchMapper">
+	<resultMap id="resultMap" type="cn.kepu.self.commons.entity.FSearch">
+		<id property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="introduction" column="introduction" />
+		 <result property="thumbnail" column="thumbnail" />
+		 <result property="type" column="type" />
+		   <result property="eid" column="eid" />
+	</resultMap>
+	<select id="selectFsearch" resultMap="resultMap">
+				SELECT v.id as id,v.title as title,v.introduction as introduction,v.thumbnail as thumbnail,"0" as type FROM kepu_self_video v  WHERE MATCH (full_text,title,introduction)
+		AGAINST ("*${searchContent}*" IN BOOLEAN MODE) and v.is_enable=1
+<!--		UNION
+				SELECT l.id as id,l.title as title,l.introduction as introduction,l.image as thumbnail,"1" as type,"0" as eid   FROM kepu_self_live l WHERE MATCH (full_text,title,introduction)
+		AGAINST ("*${searchContent}*" IN BOOLEAN MODE) and l.is_enable=1-->
+		UNION
+				SELECT a.id as id,a.title as title,a.introduction as introduction,a.thumbnail as thumbnail,"2" as type FROM kepu_self_activity a WHERE MATCH (full_text,title,introduction)
+		AGAINST ("*${searchContent}*" IN BOOLEAN MODE)
+		
+	</select>
+</mapper>

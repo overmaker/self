@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="live-info.css" />
+        <link rel="stylesheet" href="../../css/ft-carousel.css" />
+        <link rel="stylesheet" href="../../lib/video-js/video-js.min.css">
+        <link rel="stylesheet" href="../../top.css" /> </head>
+
+    <body>
+    <div class="layui-container">
+        <div id="top"> </div>
+        <div class="commend">
+            <div class="comeend-div1">
+                <div class="zhibo-left"> <br />
+                    <h2>2018：生活不只是眼前的苟且，还有诗和远方..</h2>
+                    <dl> <dt style="height: 550px;">
+                            <video id="self-live-player" controls  class="video-js vjs-default-skin vjs-big-play-centered"  ></video>
+                            <div class="boxDom" id="boxDom"></div> 
+                            <div id="test"></div>
+                            <div class="idDom" id="idDom">  
+                                <div class="content-video-barrage">  
+                                    <input type="text" class="barrage-text" id="barrage-text"/>  
+                                    <button type="button" class="barrage-btn" id="barrage-btn">发射弹幕</button>  
+                                </div>  
+                            </div>  
+                        </dt>
+                        <dd>
+                            <hr /> <span> <img src="../../../image/laud13.png" class="video-tubiao" id="live-laud" style="margin-left: 80%;cursor: pointer;"/></span>
+<!--                             <hr />  <span> <img src="../../../image/fenxiang.jpg" class="video-tubiao" id="live-share" style="margin-left: 80%;cursor: pointer;"/></span>-->
+                            <div id="star" title="regular" style="width: 140px; float: right;"> </div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+        <div class="comment-div2">
+            <div>
+                <!-- left -->
+                <div class="commend-div2-left">
+                    <div>
+                        <div class="commend-comment">
+                            <div>
+                                <h3>评论<font id="commendCount" color="gray" size="3"></font></h3> <textarea id="self-comment" rows="10" placeholder="我来说俩句..." maxlength="300"></textarea> <input type="submit" value="评论" id="comment-submit" class="layui-btn layui-btn-danger" />
+                                <hr />
+                                <h3>热门评论</h3> <br />
+                                <ul> </ul>
+                                <div id="comment-pager"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- right -->
+            </div>
+        </div>
+        <div class="layui-row" id="flooter"> </div>
+    </div>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../lib/jq-raty/jquery.raty.min.js"></script>
+    <script src="../../lib/layui/layui.all.js"></script>
+    <script src="../../lib/layui/layui.js"></script>
+    <script type="text/javascript" src="../../lib/base.js"></script>
+    <script type="text/javascript" src="../../util.js"></script>
+    <script type="text/javascript" src="../../lib/video-js/video.min.js"></script>
+    <script type="text/javascript" src="live-info.js"></script>
+    <script>
+        $(function() {
+            var colors = ["red", "green", , "hotpink", "pink", "cyan", "yellowgreen", "purple", "deepskyblue"];
+            $("#barrage-btn").click(function() {
+                //获取随机颜色  
+                //获取随机纵坐标  
+                //创建span和相关样式  
+                var randomColor = parseInt(Math.random() * colors.length);
+                0.1 * 10
+                var randomY = parseInt(Math.random() * 185);
+                $("<span class='barrage-span'></span>").text($("#barrage-text").val()).css("color", colors[randomColor]).css("left", "1289px").css("top", randomY).animate({ left: -500 }, 10000, "linear", function() {
+                    $(this).remove(); //动画完成时,执行的函数  
+                }).appendTo("#boxDom");
+                $("#barrage-text").val("");
+            });
+            $("#barrage-text").keyup(function(e) {
+                if(e.keyCode == 13) {
+                    $("#barrage-btn").click();
+                }
+            });
+        });
+        //        layui.use('util', function() {
+        //            var util = layui.util;
+        //            //示例
+        //            var endTime = new Date(2018, 5, 1).getTime() //假设为结束日期
+        //                ,
+        //                serverTime = new Date().getTime(); //假设为当前服务器时间，这里采用的是本地时间，实际使用一般是取服务端的
+        //            util.countdown(endTime, serverTime, function(date, serverTime, timer) {
+        //                var str = date[0] + '天' + date[1] + '时' + date[2] + '分' + date[3] + '秒';
+        //                layui.$('#test').html('距离直播活动开始时间还有：' + str);
+        //            });
+        //        });
+    </script>
+    </body>
+
+</html>

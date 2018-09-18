@@ -1,0 +1,39 @@
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="/module/about/site-family.css" />
+        <link rel="stylesheet" href="../../top.css" />
+        <script src="../../lib/layui/layui.all.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../lib/layui/layui.js"></script>
+        <style>
+            #code{  
+                font-family:Arial;  
+                font-style:italic;  
+                font-weight:bold;  
+                border:0;  
+                letter-spacing:2px;  
+                color:blue;  
+            }
+        </style>
+    </head>
+    <body>
+        <div id="top"> </div>
+
+       <div>  
+        <input type = "text" id = "input" value="" />  
+        <input type = "button" id="code" onclick="createCode()"/>  刷新
+        <input type = "button"   id="btn" value = "验证" onclick = "validate()"/>  
+    </div> 
+        <div class="layui-row" id="flooter"> </div>
+        <script type="text/javascript" src="../../lib/wangEditor.min.js"></script>
+        <script type="text/javascript" src="../../lib/base.js"></script>
+        <script type="text/javascript" src="../../util.js"></script>
+        <script type="text/javascript" src="../../test.js"></script>
+    </body>
+
+</html>

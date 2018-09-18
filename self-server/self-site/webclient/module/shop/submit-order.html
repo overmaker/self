@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="../../css/ft-carousel.css" />
+        <link rel="stylesheet" href="../../top.css"  /> 
+        <script src="../../lib/layui/layui.all.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../lib/layui/layui.js"></script>
+    </head>
+    <body style="background-color: white;">
+        <!-- 导航条 -->
+        <div id="top">
+        </div>
+
+        <div style="width: 80%;padding: 40px 150px 100px;background: white;">
+            <span style="padding: 0px 20px;">收货人姓名：<input type="text" placeholder=" 请输入..." style="width:160px;height: 20px;border-radius: 10%;margin:5px 0;font-size: 14px;" /></span><br>
+            <span style="padding: 0px 20px;">收货地址：<textarea style="width: 200px;height:120px;" class="layui-textarea"></textarea></span><br>
+            <span style="padding: 0px 20px;">邮政编码：<input type="text" placeholder=" 请输入..." style="width:160px;height: 20px;border-radius: 10%;margin:5px 0;font-size: 14px;" /></span><br>
+            <span style="padding: 0px 20px;">手机号码：<input type="text" placeholder=" 请输入..." style="width:160px;height: 20px;border-radius: 10%;margin:5px 0;font-size: 14px;" /></span><br>
+            <p>支付方式：</p>
+            <span style="padding: 0px 20px;"><input type="radio" name="radio" value="1">&nbsp;&nbsp;积分：<input type="text" placeholder="余额：20积分" style="width:160px;height: 20px;border-radius: 10%;margin:5px 0;font-size: 14px;"></span><br>
+            <span style="padding: 0px 20px;"><input type="radio" name="radio" value="2">&nbsp;&nbsp;<img src="../../image/wx.png" style="width: 160px;height: 70px;"></span><br>
+            <span style="padding: 0px 20px;"><input type="radio" name="radio" value="3">&nbsp;&nbsp;<img src="../../image/zfb.png" style="width: 160px;height: 70px;"></span>
+            <p>配送方式：</p>
+            <span style="padding: 0px 20px;"><input type="radio" name="radio" value="1">&nbsp;&nbsp;<input type="text" value="北京市内快递" readonly="readonly" style="width:160px;height: 20px;border-radius: 10%;margin:5px 0;font-size: 14px;" ></span><br>
+            <span style="padding: 0px 20px;"><input type="radio" name="radio" value="2">&nbsp;&nbsp;<input type="text" value="外省市快递" readonly="readonly" style="width:160px;height: 20px;border-radius: 10%;margin:5px 0;font-size: 14px;" ></span>
+            <table class="layui-table" >
+                <colgroup>
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>商品图片</th>
+                        <th>商品名称</th>
+                        <th>价格</th>
+                        <th>数量</th>
+                        <th>小计</th>
+                    </tr> 
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><img src="../../image/bok5.png" class="img"></td>
+                        <td>郭晶晶</td>
+                        <td>500.00</td>
+                        <td>20</td>
+                        <td>10000.00</td>
+                    </tr>
+                </tbody>
+            </table> 
+            <div class="right">
+                <p>应付金额：10000.00</p>
+                <a href="cart.html">返回购物车</a>
+                <a href="payment.html"><button class="button">提交订单</button></a>
+            </div>
+        </div>
+
+        <div class="layui-row" id="flooter">
+        </div>
+        <script type="text/javascript" src="../../lib/base.js"></script>
+        <script type="text/javascript" src="../../util.js"></script>
+        <script type="text/javascript" src="submit-order.js"></script>
+    </body>
+</html>

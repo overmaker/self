@@ -1,0 +1,52 @@
+.login-commend {
+    width: 100%;
+    padding:10% 0px;
+    color:gray;
+}
+.login-left-img {
+    width: 100%;
+    height: 50%;
+}
+.login-div {
+   /* margin-left: 155%;*/
+    width: 100%;
+    height: 100%;
+    border: 1px solid #D5DCE5;
+}
+.login-div h2 {
+    padding: 20px 30px;
+}
+.login-div .layui-form-item input {
+    width: 80%;
+    height: 45px;
+    margin: 10px 30px;
+    font-size: 15px;
+    border-radius: 4%;
+}
+.login-div  p .span1 {
+    padding: 10px 30px;
+}
+.login-div  p .span2 {
+    margin-left: 158px;
+}
+.login-div button {
+    margin: 30px 30px;
+    width: 80%;
+}
+.login-div  .third-party h4 {
+    padding: 10px 30px;
+}
+.login-div  .third-party img {
+    padding: 10px 15px;
+}
+.login-div  .flooter-p {
+    padding: 10px 30px;  
+    font-size:13px;
+}
+.login-div  .flooter-p a{
+    color:#1C99DD;;
+}
+.layui-tab-title li{
+        min-width: 42.6% !important;
+        padding: 0 21px !important;
+}

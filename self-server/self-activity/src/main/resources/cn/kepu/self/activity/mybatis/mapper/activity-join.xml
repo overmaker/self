@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.activity.mybatis.mapper.ActivityJoinMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.activity.entity.ActivityJoin">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="joinTime" column="join_time" jdbcType="TIMESTAMP" />
+        <result property="check" column="is_check" />
+        <result property="checkTime" column="check_time" jdbcType="TIMESTAMP" />
+        <result property="sn" column="sn" />
+        <result property="codeUrl" column="code_url" />
+        <result property="pay" column="is_pay" />
+        <result property="sign" column="is_sign" />
+        <result property="signTime" column="sign_time" jdbcType="TIMESTAMP" />
+        <result property="confirm" column="is_confirm" />
+        <result property="num" column="num" />
+        <result property="jname" column="j_name" />
+        <result property="jmobile" column="j_mobile" />
+        <result property="jemail" column="j_email" />
+        <result property="jorg" column="j_org" />
+        <result property="jpost" column="j_post" />
+        <result property="jcomment" column="j_comment" />
+        <result property="user.id" column="userid" />
+        <result property="user.userName" column="username" />
+        <result property="userInfo.id" column="infoid" />
+        <result property="userInfo.name" column="name" />
+        <result property="userInfo.nickName" column="nickname" />
+        <result property="userInfo.photo" column="photo" />
+        <result property="activity.id" column="activityId" />
+        <result property="activity.title" column="title" />
+        <result property="activity.thumbnail" column="thumbnail" />
+        <result property="activity.startTime" column="starttime" />
+        <result property="activity.endTime" column="endtime" />
+        <result property="activity.place" column="place" />
+        <result property="activity.free" column="free" />
+        <result property="activity.fee" column="fee" />
+    </resultMap>
+    
+    <!-- 我参加过的活动-->
+    <select id="myActivity" resultMap="resultMap">
+        SELECT id as activityId,title as title,thumbnail as thumbnail ,start_time as starttime,place as place,end_time as endtime  FROM kepu_self.kepu_self_activity where id 
+        in(SELECT DISTINCT activity FROM kepu_self.kepu_self_activity_ticket where id in(SELECT ticket FROM
+        kepu_self.kepu_self_activity_ticket_user_relation where enable=1 and user=#{user.id}))
+    </select>
+</mapper>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="../../top.css"  /> 
+        <script src="../../lib/layui/layui.all.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../lib/layui/layui.js"></script>
+    </head>
+    <body style="background-color: white;">  
+        <!-- 导航条 -->
+        <div id="top">
+        </div>
+
+        <div style="width: 80%;padding: 50px 150px;background: white;">
+            <h1 style="padding: 0px 0px 10px 400px;color: #ff0000">您的订单已提交成功，正在等待您的付款！</h1>
+            <p>订单信息：</p>
+            <table class="layui-table">
+                <tr>
+                    <td>订单编号：</td>
+                    <td>56456465654<a href="#" onclick="openHtml('payment')">[查看订单]</a></td>
+                    <td>应付金额：</td>
+                    <td>200.00</td>
+                </tr>
+                <tr>
+                    <td>配送方式：</td>
+                    <td>外省市快递</td>
+                    <td>支付方式：</td>
+                    <td>微信</td>
+                </tr>
+            </table>
+            <p>支付方式选择：</p>
+            <div style="padding: 0px 10px;">
+                <span style="padding: 0px 100px;"><input type="radio" name="radio" value="1">&nbsp;&nbsp;积分：<input type="text" placeholder="余额：20积分" style="width:160px;height: 20px;border-radius: 10%;margin:5px 0;font-size: 14px;"></span>
+                <span style="padding: 0px 100px;"><input type="radio" name="radio" value="2">&nbsp;&nbsp;<img src="../../image/wx.png" style="width: 160px;height: 70px;"></span>
+                <span style="padding: 0px 100px;"><input type="radio" name="radio" value="3">&nbsp;&nbsp;<img src="../../image/zfb.png" style="width: 160px;height: 70px;"></span>
+            </div>
+            <button class="button">立即支付</button>
+        </div>
+
+        <div class="layui-row" id="flooter">
+        </div>
+        <script type="text/javascript" src="../../lib/base.js"></script>
+        <script type="text/javascript" src="../../util.js"></script>
+        <script src="../../module/user-info/personal-center.js" ></script>
+    </body>
+</html>

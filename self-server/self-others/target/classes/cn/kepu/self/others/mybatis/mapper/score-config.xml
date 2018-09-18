@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.others.mybatis.mapper.ScoreConfigMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.others.entity.ScoreConfig">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="video_comment_score" column="video_comment_score" />
+        <result property="video_hit_score" column="video_hit_score" />
+        <result property="activity_comment_score" column="activity_comment_score" />
+        <result property="activity_join_score" column="activity_join_score" />
+    </resultMap>
+    <update id="updateScoreConfig">
+        UPDATE kepu_self_score_config
+        SET gmt_modified = NOW(),
+            video_comment_score = #{video_comment_score},
+            video_hit_score = #{video_hit_score},
+            activity_comment_score = #{activity_comment_score},
+            activity_join_score = #{activity_join_score}
+        WHERE id = 1
+    </update>
+    <select id="selectScoreConfig" resultMap="resultMap">
+        SELECT id,
+        gmt_create,
+        gmt_modified,
+        video_comment_score,
+        video_hit_score,
+        activity_comment_score,
+        activity_join_score
+        FROM kepu_self_score_config
+        ORDER BY gmt_create DESC
+    </select>
+</mapper>

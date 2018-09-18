@@ -1,0 +1,632 @@
+body {
+    background: #F6F6F6;
+}
+
+.div-example {
+    background-image: url('/image/home-background.jpg');
+    padding-top: 20px;
+}
+
+.example {
+    width: 100%;
+    height: 500px;
+    font-size: 40px;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.example-perlphery {
+    width: 100%;
+    height: 400px;
+    font-size: 40px;
+    text-align: center;
+    margin: 20px auto;
+    background-color: #F1F1F1;
+    z-index: 100;
+}
+
+.perlphery {
+    /*width:80%;
+    background-color: #F1F1F1;
+    padding: 0 155px;
+    padding-top: 50px;*/
+}
+
+.perlphery-image {
+    margin-top: 40px;
+    width: 400px;
+    height: 300px;
+}
+
+.perlphery-right-image {
+    margin-left: 11px;
+    margin-right: 20px;
+}
+
+.example-perlphery .TEDto-left {
+    margin: 0 80px;
+}
+
+.perlphery .ft-carousel table {
+    width: 400px;
+    height: 180px;
+    padding: 0 15px;
+}
+
+#table a {
+    display: block;
+    position: relative;
+    /*background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);*/
+    width: 100%;
+    height: 65%;
+}
+
+.carousel-ite {
+    line-height: 336px;
+    color: #fff;
+    font-family: Arial Black
+}
+
+.remmoend-image {
+    margin-top: -40px;
+    width: 100%;
+    height: 85%;
+}
+
+.remmoend-images {
+    width: 99%;
+    height: 100%;
+}
+
+.remmoend-video {
+    /*width:80.4%;
+    padding:100px 155px 0 155px;
+    background: #F6F6F6;*/
+}
+
+.remmoend-video dl {
+    background-color: white;
+    /*width: 263px;*/
+    height: 230px;
+    margin-bottom: 30px;
+}
+
+.remmoend-video dl dd img:hover {
+    opacity: 100;
+}
+
+dl dt img:hover {
+    opacity: 0.5;
+}
+
+a:hover {
+    color: #FF6B58;
+}
+
+.self-video-img {
+    width: 15%;
+    /* height: 60px;*/
+    position: relative;
+    bottom: 230px;
+    left: 83%;
+}
+
+.home-right {
+    width: 400px;
+    height: 435px;
+    font-size: 12px;
+    position: absolute;
+    top: 190px;
+    left: 850px;
+    background: #EDEDED;
+}
+
+.Micro {
+    margin-top: 3%;
+    /*width:80.4%; 
+    height:450px;
+    padding: 0 155px;
+    margin-top: 260px;
+    margin-bottom: 100px;
+    background: #F6F6F6;*/
+}
+
+.TEDto {
+    /*    margin-top: 5%;*/
+    /*width:80.4%; 
+    height:450px;
+    padding: 0 155px;
+    margin-bottom: 100px;
+    background: #F6F6F6;*/
+}
+
+.TEDto .td1 {
+    width: 450px;
+    height: 300px;
+}
+
+.TEDto .td1 .td1-image {
+    width: 100%;
+    height: 350px;
+}
+
+.TEDto-left {
+    float: left;
+}
+
+.TEDto-right {
+    float: right;
+}
+
+.TEDto-image {
+    margin-top: 3px;
+    width: 240px;
+    height: 170px;
+}
+
+.TEDto-right td {
+    width: 240px;
+    height: 155px;
+    padding: 0 14px;
+    padding-top: 18px;
+}
+
+.TEDto-right dl dd {
+    font-size: 16px;
+    text-align: center;
+    position: absolute;
+    top: 1452px;
+    background: white;
+    width: 14%;
+    height: 15px;
+}
+
+#TEDto-right2 dl dd {
+    font-size: 16px;
+    text-align: center;
+    position: absolute;
+    top: 1645px;
+    background: white;
+    width: 14%;
+    height: 15px;
+}
+
+.TEDto-left .td2 {
+    text-align: center;
+    background: white;
+    height: 30px;
+    width: 27.5%;
+    font-size: 16px;
+    position: absolute;
+    left: 162px;
+    top: 1630px;
+    font-weight: bold;
+}
+
+.video-vip {
+    width: 35px;
+    height: 20px;
+}
+
+.community {
+    width: 80.4%;
+    padding: 0 155px;
+    margin-top: 50px;
+}
+
+.community table tr td {
+    border: 1px solid #EDEDED;
+}
+
+.community dd {
+    color: gray;
+    text-align: center;
+}
+
+.community-image {
+    width: 400px;
+    height: 230px;
+    padding: 0 6px;
+}
+
+.news {
+    width: 80.4%;
+    height: 300px;
+    padding: 0 155px;
+    margin-top: 50px;
+}
+
+.news .xuhao {
+    background: #57B556;
+    color: white;
+    padding: 8px 10px;
+    margin-right: 10px;
+}
+
+.news-right .xuhao2 {
+    color: #57B556;
+    padding: 10px 10px;
+}
+
+.news-right ul li {
+    padding: 5px 10px;
+}
+
+.news .news1 ul li {
+    margin-top: 10px;
+    padding: 9px 10px;
+    width: 400px;
+    border: 2px solid #EEEEEE;
+}
+
+.self-image {
+    float: left;
+    width: 250px;
+    height: 80px;
+    position: relative;
+    left: 110px;
+    bottom: 29px;
+}
+
+.search-image {
+    height: 25px;
+    background: white;
+    position: relative;
+    left: 154px;
+    bottom: 35px;
+}
+
+.search-item .layui-form-item .layui-input-block input {
+    width: 290px;
+    height: 33px;
+    position: relative;
+    right: 30px;
+    bottom: 3px;
+    color: black;
+}
+
+.flooter-h5 {
+    color: white;
+    position: relative;
+    top: 100px;
+    margin: 0 430px;
+}
+
+.flooter-h5 span {
+    margin: 0 20px;
+}
+
+.flooter-h5 p {
+    margin: 0 460px;
+}
+
+.news-right {
+    position: relative;
+    left: 450px;
+    bottom: 300px;
+    width: 800px;
+    height: 265px;
+    border: 2px solid #EEEEEE;
+    padding: 15px 15px;
+}
+
+#table td {
+    width: 25%;
+    padding: 0% 1%;
+}
+
+.lecturer {
+    height: 18px;
+    font-size: 13px;
+    color: gray;
+}
+
+.lecturer2 {
+    height: 40px;
+}
+
+#comment dl dd {
+    text-align: center;
+    font-weight: bold;
+    /*padding: 10px 10px;*/
+}
+
+span a:hover {
+    color: #47A547;
+    font-weight: bold;
+}
+
+.inAsk-div2 ul li {
+    color: gray;
+    width: 90%;
+    height: 115px;
+    padding: 15px 30px;
+    margin: 20px 50px;
+    border: 1px solid #EAEAEA;
+}
+
+.inAsk-div2 ul li h4 {
+    font-weight: bold;
+}
+
+.dz-span {
+    position: absolute;
+    right: 10px;
+}
+
+.hz-loc {
+    width: 20px;
+    height: 20px;
+}
+
+#myModal2 .modal-body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 500px;
+}
+
+#myModal2 .modal-body p {
+    background: white;
+    padding: 15px 15px;
+    margin-right: 50px;
+    width: 92%;
+    border: 1px solid #F4F4F4;
+    border-radius: 5%;
+}
+
+#myModal2 .modal-footer input {
+    width: 400px;
+    position: absolute;
+    bottom: 15px;
+}
+
+
+/* Q&A-info */
+
+.QA-commend {
+    margin: 10px 150px;
+    width: 80%;
+    height: 620px;
+    background: white;
+    color: gray;
+}
+
+.QA-commend .QA-left div {
+    padding: 0 20px;
+}
+
+.QA-commend .QA-right {
+    padding: 10px 20px;
+}
+
+.QA-commend .QA-right #inSelf h2 {
+    font-size: 22px;
+    padding: 0 40px;
+}
+
+.QA-commend .QA-right #inSelf p {
+    padding: 0 50px;
+}
+
+.QA-left {
+    text-align: center;
+    float: left;
+    background: white;
+    width: 18%;
+    height: 675px;
+    border: 2px solid #F4F4F4;
+}
+
+.QA-left li {
+    font-size: 15px;
+    border-bottom: 2px solid #F4F4F4;
+    margin: 10px 40px;
+    line-height: 35px;
+}
+
+.QA-left li:hover {
+    background: #FF6B58;
+}
+
+.QA-left li a:hover {
+    color: white!important;
+}
+
+.QA-right {
+    float: right;
+    background: white;
+    width: 79%;
+    height: 675px;
+    border: 2px solid #F4F4F4;
+}
+
+.comment-submit {
+    width: 100px;
+    height: 28px;
+    background: #F4F4F4;
+    border-radius: 10%;
+    margin: 5px 73.5%;
+}
+
+.inAsk-div2 {
+    width: 95%;
+    color: black;
+    height: 550px;
+    overflow: auto;
+}
+
+.comment-img {
+    width: 70px;
+    height: 62px;
+    border: 2px solid #F4F4F4;
+    border-radius: 5%;
+}
+
+.grid-demo {
+    position: relative;
+    bottom: 10px;
+    right: 22px;
+}
+
+.video-tubiao {
+    width: 20px;
+    height: 20px;
+}
+
+.video-tubiao2 {
+    width: 30px;
+}
+
+.comment-p {
+    line-height: 30px;
+    padding: 0 15px;
+    color: black;
+}
+
+.QA-left h2 {
+    font-size: 20px;
+}
+
+.QA-left li a {
+    color: gray!important;
+}
+
+.grid-demo p span a:hover {
+    color: black;
+    font-weight: bold;
+}
+
+.inAsk-ioc {
+    width: 20px;
+    height: 15px;
+}
+
+.gengduo2 {
+    width: 20px;
+    height: 20px;
+}
+
+#inAsk a {
+    color: gray;
+}
+
+#grid-demo {
+    width: 10%;
+}
+
+#inSelf h2 {
+    font-weight: bold;
+}
+
+#inSelf {
+    color: black;
+}
+
+#inSelf .slef {
+    font-size: 10px;
+}
+
+#inQA {
+    color: black;
+}
+
+#inQA p span {
+    font-weight: bold;
+}
+
+#inQA div h2 {
+    font-weight: bold;
+    font-size: 20px!important;
+    padding: 0 40px;
+}
+
+#inQA div p {
+    padding: 10px 50px;
+}
+
+#inAsk div h2 {
+    font-weight: bold;
+    padding: 5px 40px;
+}
+
+#inAsk div h3 {
+    padding: 15px 40px;
+}
+
+#inAsk div textarea {
+    width: 100%;
+    height: 90px;
+    resize: none;
+}
+
+#micro-introduce {
+    padding: 8% 10%;
+    float: left;
+}
+
+.layui-carousel[lay-arrow=always] .layui-carousel-arrow {
+    opacity: 0;
+}
+
+.layui-carousel>[carousel-item] {
+    overflow: visible;
+}
+
+.layui-carousel>[carousel-item]>* {
+    background-color: #0F0F0F;
+}
+
+.layui-this {
+    text-align: left;
+}
+
+
+/*演讲集*/
+
+.c-preview {
+    background: #000;
+    background: -moz-linear-gradient(-45deg, #000000 0%, #000000 25%, #1e539e 50%, #ff3083 75%, #7800a8 100%);
+    background-size: 400% 400%;
+    background-repeat: no-repeat;
+    display: flex;
+    width: 99%;
+    /* height: 214px;*/
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+    transition: .5s all;
+    margin: 1px auto;
+}
+
+.c-preview__img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #000 no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: .5;
+    mix-blend-mode: screen;
+}
+
+.c-preview__title {
+    opacity: 0.6;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+
+.c-preview:hover {
+    background-position: 100% 100%;
+}
+
+.c-preview:hover__title {
+    text-shadow: 0 0 20px black;
+}

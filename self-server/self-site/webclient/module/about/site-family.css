@@ -1,0 +1,99 @@
+/* 内容 */
+.layui-badge-rim, .layui-colla-content, .layui-colla-item, .layui-collapse, .layui-elem-field, .layui-form-pane .layui-form-item[pane], .layui-form-pane .layui-form-label, .layui-input, .layui-layedit, .layui-layedit-tool, .layui-quote-nm, .layui-select, .layui-tab-bar, .layui-tab-card, .layui-tab-title, .layui-tab-title .layui-this:after, .layui-textarea{
+    border: none !important;
+}
+.layui-tab {
+    margin: 12px 92px!important;
+    text-align: left!important;
+}
+.comment {
+    text-align: center;
+    background:white;
+    /*padding: 80px 190px;*/
+    height:100%;
+}
+.comment .comment-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size:18px;
+}
+.comment .activity-video-ul {
+    float: left;
+    padding: 50px 0;
+    width: 100%;
+}
+.comment .activity-video-ul {
+    margin-bottom:35px;
+}
+.comment .activity-video-ul .tr1-td td {
+    text-align: center;
+    width:70px;
+    font-size: 15px;
+    border: 2px solid #F0F0F0;
+    padding:10px 5px;
+    color:gray;
+}
+.comment .activity-video-ul  .activity-searchbox {
+    width: 300px;
+    position: absolute;
+    left: 70%;
+}
+.comment .activity-video-ul  .activity-searchbox input {
+    width: 150px;
+    height: 25px;
+    border-radius: 8px;
+}
+.comment .activity-video-ul  .activity-searchbox .searchbox-image {
+    width:25px;
+    height:20px;
+    border-radius: 9%;
+    position: absolute;
+    left: 225px;
+    top: 5px;
+
+}
+.comment .activity-video-ul .searchbox-image {
+    width:25px;
+    height:20px;
+    border-radius: 9%;
+    position: absolute;
+    left: 225px;
+    top: 5px;
+
+}
+.activity-searchbox {
+    width:25px;
+    height:20px;
+    border-radius: 9%;
+    left: 225px;
+}
+.activity-video-table2-image {
+    margin-left: 7%;
+    margin-top: 20%;
+    width: 232px;
+    height: 182px;
+}
+.activity-video-table2 tr td dl .dd1 {
+    padding: 8px 0px 5px 0 ;
+    border:1px solid #F0F0F0;
+}
+.activity-video-table2 tr td dl .dd1 a{
+    color:#66849C;
+    font-weight: bold;
+}
+.activity-video-table2 tr td dl dt {
+    border:5px solid #FFFFFF;
+    width: 250px;
+}
+.activity-video-table2 tr td dl .dd2 {
+    border:1px solid #F0F0F0;
+    height: 24px;
+    padding:5px 6px;
+    color:gray;
+}
+.layui-tab-title li{
+    display:block !important;
+}
+.layui-tab-title, .layui-tab-content{
+    display: table-cell;
+}

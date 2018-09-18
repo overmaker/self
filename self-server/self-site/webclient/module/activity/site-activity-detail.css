@@ -1,0 +1,243 @@
+body {
+    background: #F6F6F6;
+}
+
+.borderStyle{
+    /*border:2px solid red;*/
+}
+
+/********inserted by shimingxiang****/
+.clear{
+    clear:both;
+}
+
+#leftPanel{
+    border-right:1px solid gainsboro;
+    padding-right: 1.5%; 
+}
+
+#rightPanel{
+    /*border-left:1px solid gainsboro;*/
+    /*border: 1px solid blue;*/
+    padding-top: 1%;
+    margin-left:4%; 
+    /*margin-left: 2%;*/
+}
+
+#activity-fulltext{
+    line-height: 30px;
+}
+/***********************************/
+
+.activity-title {
+    font-family: Microsoft Yahei;
+    font-size: 22px;
+    max-height: 48px;
+    margin-bottom: 10%;
+}
+
+.layui-col-md4 p {
+    font-size: 14px;
+    margin-bottom: 10%;
+    margin-left: 4%;
+}
+
+.active-sig-up {
+   flex: 1;
+    width: 250px;
+    max-width: 70%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    background: #6cd070;
+    border: none;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.active-collection {
+    width: 116px;
+    height: 40px;
+    font-size: 14px;
+    margin-left: 20px;
+    padding-right: 18px;
+    padding-left: 18px;
+    color: #f90;
+    border-color: #efeeee;
+    background-color: #f9f9f9;
+    font-weight: 400;
+    border-radius: 2px;
+}
+
+.active-ticket-species{ /*inserted by shimingxiagn*/
+    margin-top: 20px;
+}
+
+.active-ticket-species-title {
+    border-bottom: 1px solid gainsboro;
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+.active-content {
+    border-bottom: 1px solid gainsboro;
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+div.et_selected {
+    border: 2px solid #468848;
+    padding: 3px;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-image: url(http://cdn.huodongxing.com/Content/img/select_icon.png?auth_key=1530013926-0-0-d8461c8…);
+}
+
+.thumbnail {
+    display: block;
+    padding: 4px;
+    height: 46px;
+    line-height: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-control {
+    font-size: 14px;
+    line-height: 1.42857143;
+    height: 20px;
+    padding: 5px 10px;
+    color: #707070;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    background-color: #fff;
+}
+
+.ticket-form .control-group {
+    margin-bottom: 15px !important;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.ticket-form .control-label {
+    color: #444444;
+    font-size: 16px;
+}
+
+.ticket-form--pc .controls {
+    padding-left: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    padding-right: 0;
+}
+
+.ticket-form .input-xxlarge {
+    display: block;
+    width: 98% !important;
+    height: auto;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 8px !important;
+}
+
+.ticket-btn-group__confirm {
+    background: #6cd070;
+    border-color: transparent;
+}
+
+.ticket-btn-group__confirm {
+    color: #fff;
+    text-decoration: none;
+}
+
+.ticket-form--pc .ticket-btn-group__confirm {
+    margin-left: 20px;
+}
+
+.ticket-btn-group__cancel {
+    flex: 1;
+    width: 90px;
+    max-width: 30%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    background: #ff7c6c;
+    border: none;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.btn-lg {
+    font-size: 16px;
+    line-height: 1.33;
+    padding: 10px 16px;
+    border-radius: 2px;
+}
+
+.ticket-btn-group__confirm {
+    flex: 1;
+    width: 250px;
+    max-width: 70%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    background: #6cd070;
+    border: none;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.checkbox-inline,
+.radio-inline {
+    font-weight: 400;
+    display: inline-block;
+    margin-bottom: 0;
+    padding-left: 20px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+/*评论*/
+.commend-comment { /*by shimingxiang*/
+    border-top:  1px solid gainsboro;
+    /*border: 1px solid red;*/
+    margin-top: 30px;
+    padding: 15px;
+    padding-bottom: 0px;
+}
+.commend-comment textarea {
+    width: 96%;
+    height: 90px;
+    resize: none;
+    padding: 0 10px;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+#comment-submit {
+    width: 100px;
+    height: 40px;
+    color: white;
+    /*float: right;*/
+    margin: 15px 10px;
+    margin-bottom:0px;
+}
+#hot-comment{
+    margin-bottom:10px;
+}
+.comment-p{
+    text-indent: 1rem;
+    margin-top: 2%;
+}

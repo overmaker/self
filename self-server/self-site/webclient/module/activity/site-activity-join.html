@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" type="text/css" href="site-activity-join.css" />
+        <link rel="stylesheet" href="../../top.css" />
+        <script src="../../lib/layui/layui.all.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../lib/base.js"></script>
+        <script type="text/javascript" src="../../util.js"></script>
+    </head>
+    <!--活动报名-->
+    <body>
+        <div id="top"></div>
+        <!--内容-->
+        <div class="layui-container">
+            <div class="activity-registration">
+                <!--图片-->
+                <div><img id="join-activity-image" style="width: 100%;height: 400px;" /></div>
+                <!--文字内容-->
+                <div class="textes" style="margin: 1% 15%;">
+                    <div id="join-activity-introduction">
+                        
+                    </div>
+                    <!--地点 时间-->
+                    <div class="date-address">
+                        <p><span id="join-activity-time"></span></p>
+                        <p><span id="join-activity-join-time"></span></p>
+                        <p><span id="join-activity-addr"></span></p>
+                    </div>
+                    <br />
+                    <p id="join-activity-note"></p>
+                </div>
+                <!--报名必填信息-->
+                <div class="information" style="margin: 1% 15%;" id="input_info_area">
+                    <div>
+                        <p> <span>姓名</span> <span>*</span> </p>
+                        <p class="inpt"> <input type="text" id="j-name" placeholder="请输入姓名" /> </p>
+                    </div>
+                    <div>
+                        <p> <span>邮箱</span> <span>*</span> </p>
+                        <p class="inpt"><input type="text" id="j-email" placeholder="请输入邮箱" /></p>
+                    </div>
+                    <div>
+                        <p> <span>手机</span> <span>*</span> </p>
+                        <p class="inpt"><input type="text" id="j-mobile" placeholder="请输入手机" /></p>
+                    </div>
+                    <div>
+                        <p><span>参加人数</span> <span>*</span> </p>
+                        <p class="inpt"><input type="text" id="j-num" placeholder="请输入参加人数" value="1" /></p>
+                        <p id="num-desc"></p>
+                    </div>
+                    <div>
+                        <p> <span>单位</span> <span>*</span> </p>
+                        <p class="inpt"><input type="text" id="j-org" placeholder="请输入单位" /></p>
+                    </div>
+                    <div>
+                        <p> <span>职务</span> <span>*</span> </p>
+                        <p class="inpt"><input type="text" id="j-post" placeholder="请输入职务" /></p>
+                    </div>
+                </div>
+            </div>
+            <!--底部文字信息-->
+            <div class="textes" style="margin: 1% 15%; display: none;" id="success_area" >
+                <p><span>感谢您报名参加SELF论坛。后续活动信息我们将于3月6日前通过邮件通知您，请留意查收。</span></p>
+                <p><span>同时，为了您第一时间知晓活动信息，我们邀请您加入活动微信公众号。如确定参会，请提交申此请表，并加微信 </span></p>
+                <p><span>zcangela，注明"姓名+ SELF参会"。</span></p>
+                <p><span>如有参会相关问题，请联系 zhaochen@geekpark.net, 或 chengcheng@geekpark.net.</span></p>
+            </div>
+            <!--提交按钮-->
+            <div class="butt" style="text-align: center;margin-top: 5%;" id="submit_area">
+                <input type="button" id="join-submit" value="提交" style="width: 89px;height: 38px;background-color: cornflowerblue;border: none;color: white;"/>
+            </div>
+            <!-- 支付按钮区域 -->
+            <div class="butt" style="text-align: center;margin-top: 5%; display: none;" id="pay_area" >
+                <input type="button" id="pay-submit" value="支付" style="width: 89px;height: 38px;background-color: cornflowerblue;border: none;color: white;"/>
+            </div>
+            <!-- 支付结果区域 -->
+            <div class="butt" style="text-align: center;margin-top: 5%; display: none;" id="pay_result_area" >
+                <div id="pay_result_desc"></div>
+                <input type="button" id="check-pay" value="刷新支付结果" style="width: 89px;height: 38px;background-color: cornflowerblue;border: none;color: white;"/>
+            </div>
+        </div>
+        <div class="layui-row" id="flooter"></div>
+        <script type="text/javascript" src="site-activity-join.js"></script>
+    </body>
+
+</html>

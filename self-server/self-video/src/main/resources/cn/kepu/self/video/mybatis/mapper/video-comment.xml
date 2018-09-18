@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+                                        
+<mapper namespace="cn.kepu.self.video.mybatis.mapper.VideoCommentMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.video.entity.VideoComment">
+        <id property="id" column="id"  />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="comment" column="comment" />
+        <result property="word" column="word" />
+        <result property="enable" column="enable" />
+        <result property="video.title" column="title" />
+        <result property="user.id" column="uid" />
+        <result property="user.userName" column="userName" />
+        <result property="userInfo.id" column="infoid" />
+        <result property="userInfo.nickName" column="nickname" />
+        <result property="userInfo.photo" column="photo" />
+        <result property="video.commentNum" column="commentNum" />
+    </resultMap>
+    <insert id="insertVideoComment">
+        INSERT INTO kepu_self_video_comment
+        ( user,video,comment, enable)
+        VALUES (#{user.id}, #{video.id}, #{comment},0);
+    </insert>
+    <delete id="deleteVideoComment">
+        DELETE FROM kepu_self_video_comment WHERE id = #{id};
+    </delete>
+    <select id="selectVideoComment" resultMap="resultMap">
+        select c.* ,
+        v.title AS title,
+        u.id AS uid,
+        u.user_name AS userName,
+        i.id AS infoid,
+        i.nickname AS nickname,
+        i.photo AS photo
+        from kepu_self.kepu_self_video_comment c
+        INNER JOIN kepu_self_video v ON c.video = v.id
+        INNER JOIN kepu_self_user u ON c.user = u.id
+        INNER JOIN kepu_self_user_info i ON c.user = i.id
+        <where>
+            <if test="video.title != null and video.title != ''">
+                AND v.title LIKE CONCAT('%',#{video.title},'%')
+            </if>
+            <if test="video.id != null">
+                AND v.id = #{video.id}
+            </if>
+            <if test="comment != null and comment != ''">
+                AND c.comment LIKE CONCAT('%',#{comment},'%')
+            </if>
+            <if test="user.id != null">
+                AND c.user = #{user.id}
+            </if>
+        </where>   and  c.enable=1
+        ORDER BY c.gmt_create DESC
+    </select>
+    <select id="selectVideoCommentCount" resultType="cn.kepu.self.video.entity.VideoComment">
+        SELECT COUNT(*) FROM kepu_self_video_comment WHERE video = #{video}
+    </select>
+    <!--后台审核-->
+    <select id="adminVideoComment" resultMap="resultMap">
+        SELECT * FROM kepu_self.kepu_self_video_comment   where enable=0 order by video
+    </select>
+    <update id="adminChangeComment" >
+        update kepu_self_video_comment set enable=1 where id= #{id}
+    </update>
+    <!--    后台审核-->
+    <select id="adminComment" resultMap="resultMap">
+        SELECT ac.id AS id, ui.id as infoid,ui.photo as photo, u.id AS uid,u.user_name as userName,ac.comment ,ac.gmt_create,v.title ,ac.enable
+        FROM kepu_self.kepu_self_video_comment ac 
+        left join kepu_self_user_info ui on ac.user=ui.id
+        left join kepu_self_user u on ac.user=u.id
+        left join kepu_self_video v on ac.video=v.id        
+        <where>
+            <if test="video != null and video.title !=null and video.title != ''">
+                AND v.title LIKE CONCAT('%',#{video.title},'%')
+            </if>
+            <if test="video != null and video.id != null">
+                AND v.id=#{video.id}
+            </if>
+            and  ac.enable=0
+        </where>
+    </select>
+    <!--    视频的评论详情页-->
+    <select id="adminCommentView" resultMap="resultMap">
+        SELECT ac.id AS id, ui.id as infoid,ui.photo as photo, u.id AS uid,u.user_name as userName,
+        ac.comment ,ac.gmt_create,v.title ,ac.enable
+        FROM kepu_self.kepu_self_video_comment ac 
+        left join kepu_self_user_info ui on ac.user=ui.id
+        left join kepu_self_user u on ac.user=u.id
+        left join kepu_self_video v on ac.video=v.id   
+        where v.id=#{id}
+    </select>
+    <!--    视频的评论详情页1-->
+    <select id="adminCommentView1" resultMap="resultMap">
+        SELECT ac.id AS id, ui.id as infoid,ui.photo as photo, u.id AS uid,u.user_name as userName,
+        ac.comment ,ac.gmt_create,v.title ,ac.enable
+        FROM kepu_self.kepu_self_video_comment ac 
+        left join kepu_self_user_info ui on ac.user=ui.id
+        left join kepu_self_user u on ac.user=u.id
+        left join kepu_self_video v on ac.video=v.id   
+        where v.id=#{id} order by gmt_create 
+    </select>
+    <!--    视频的评论详情页2-->
+    <select id="adminCommentView2" resultMap="resultMap">
+        SELECT ac.id AS id, ui.id as infoid,ui.photo as photo, u.id AS uid,u.user_name as userName,
+        ac.comment ,ac.gmt_create,v.title ,ac.enable
+        FROM kepu_self.kepu_self_video_comment ac 
+        left join kepu_self_user_info ui on ac.user=ui.id
+        left join kepu_self_user u on ac.user=u.id
+        left join kepu_self_video v on ac.video=v.id   
+        where v.id=#{id} order by gmt_create desc
+    </select>
+    <!--    参与情况统计2-评论量-->
+    <select id="count2" resultMap="resultMap">
+        SELECT u.user_name as userName,count(user) commentNum from  kepu_self.kepu_self_user u  
+        inner join kepu_self_video_comment vc on u.id=vc.user
+        group by u.id order by commentNum desc limit 10
+    </select>
+</mapper>

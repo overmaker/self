@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="css/Q&A.css" />
+        <link rel="stylesheet" href="css/ft-carousel.css" />
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/qa.js"></script>
+        <script src="lib/layui/layui.all.js"></script>
+        <script src="lib/layui/layui.js"></script>
+    </head>
+    <body onload="loader()">
+        <!-- 导航条  -->
+        <header>
+            <div class="layui-row" >
+                <div class="layui-col-xs15" align="center" >
+                    <ul class="layui-nav">
+                        <li><a href="../../index.html"><image src="../../image/self.jpg" class="self-image" /></a></li>
+                        <li class="layui-nav-item "><a href="../../index.html">首页</a></li>
+                        <li class="layui-nav-item"> <a href="../../module/video/video.html">视频</a></li>
+                        <li class="layui-nav-item ">
+                            <a  href="javascript:;">活动</a>
+                            <dl class="layui-nav-child"  >
+                                <dd><a href="../../module/video/video-zhibo.html">直播活动</a></dd>
+                                <dd><a href="../../module/activity/site-activity.html">现场活动</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">参与</a>
+                            <dl class="layui-nav-child"  >
+                                <dd><a href="../../module/user-info/lecturer-reconmmend.html">演讲者推荐</a></dd>
+                                <dd><a href="../../participation-bid.html">self +</a></dd>
+                                <dd><a href="../../module/user-info/volunteer.html">志愿者</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item"><a href="">周边</a></li>
+                        <li class="layui-nav-item   layui-this"><a href="">关于</a></li>
+                        <li class="layui-nav-item"><a href="../../module/user-info/personal-center.html">个人中心</a></li>
+                        <li class="layui-nav-item"><a href="http://auth.kepu.cn/user/login.html">登录</a></li>
+                        <li class="search-item" >
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <input type="text"   placeholder="请输入内容" class="layui-input" />
+                                </div>
+                                <a href="#"><image src="../../image/search_1.png" class="search-image"/></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <!-- 内容 -->
+        <div class="QA-commend">
+            <div class="QA-left">
+                <div>
+                    <h2>Q&A</h2>
+                    <hr />
+                </div>
+                <ul>
+                    <li><a href="#" onclick="inSelf()">关于self</a></li> 
+                    <li><a href="#" onclick="inQA()">关于疑问</a></li>
+                    <li><a href="#" onclick="inAsk()" >向我们提问</a></li>
+                </ul>
+            </div>
+            <div class="QA-right">
+                <div id="inSelf" >
+                    <div>
+                        <h2>关于SLEF</h2>
+                        <p>
+                            &nbsp;&nbsp;&nbsp;“SELF格致论道”是中国科学院计算机网络信息中心和中国科学院科学传播局联合主办的公益讲坛。
+                            SELF是 Science, Education, Life, Future的缩写，提倡以"格物致知"的精神探讨科技、教育、
+                            生活、未来的发展，鼓励自由独立的个性和思想的表达。"SELF格致论道"定位于"精英思想的跨界交流"。
+                            我们鼓励各界精英"从旁观者的角度看其他领域的发展"，期望聆听诸如科学家眼中的文化艺术，艺术大
+                            师眼里科技和社会经济，企业家眼里的教育和人生哲学……让思想跨越行业界限，打破领域"围墙",实
+                            现无边界的碰撞和交流，启迪未来的创新和发展。<br/><br />
+                            &nbsp;&nbsp;&nbsp;"SELF格致论道"每年拟举办两次公益演讲会议，汇聚
+                            关于科技、教育、经济、文化、艺术未来发展的跨界思想，期待成为全国乃至全球开放性的思想交流大舞台。 <br /><br />
+                            <img src="image/self_1.jpg" /><br /><br />
+                            <span class="slef">
+                                分享思想，启迪未来！ SELF期待您的参与！<br />
+                                主办：中国科学院计算机网络信息中心 中国科学院科学传播局<br />
+                                承办：中国科普博览
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div id="inQA">
+                    <div>
+                        <h2>关于疑问</h2>
+                        <p><span>如何注册？</span><br />
+                            在首页一级菜单栏中，找到登录，点击登录后会进入登录页面，在登录页面中在登录按钮旁边有一行小字“没有账号，快来注册吧”，点击注册就OK。<br />
+                            <image src="image/login.jpg">
+                        </p>
+                        <p><span>如何成为志愿者？</span><br />
+                            登录self平台，点击个人中心，左侧菜单栏中有一项是“成为志愿者”,点击成为志愿者，填写好基本信息，提交后，等待管理员批准就OK。
+                        </p>
+                        <p><span>视频多久更新一次？</span><br />
+                            我们的视频会不定期更新，我们会在视频更新时，会以有邮件的形式通知您，请及时查看邮件哦。
+                        </p>
+                        <p><span>最新留言模块多久更新一次？</span><br />
+                            最新留言模块，会根据用户的留言内容在不涉及敏感文字的情况下，会及时更新。
+                        </p>
+                    </div>
+                </div>
+                <div id="inAsk">
+                    <div class="inAsk-div2">
+                        <div>
+                            <a href="#myModal1" role="button" data-target="#myModal1" class="btn btn-default" data-toggle="modal">提问</a>
+                            <div id="myModal1" class="modal" data-easein="fadeIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="myModalLabel">写下您的问题</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <textarea class="form-control" rows="10" placeholder="问题内容" ></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+                                            <button class="btn btn-primary">提交问题</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="myModal2" class="modal" data-easein="fadeIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="myModalLabel">很年轻就赚到很多钱是一番怎样的体验？</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>
+                                                <strong>李先生:</strong><br />
+                                                厉害了，都不怕招贼啊。 <span class="dz-span"><img src="image/hz.png" class="hz-loc"/>99+</span>
+                                            </p>
+                                            <p>
+                                                <strong>我像只鱼：</strong><br />
+                                                年少有位啊，真羡慕你年纪轻轻就已经拥有了足够的资本了。分享一下经验呗，造福一下小老百姓。<span class="dz-span"><a href="#"><img src="image/hz.png" class="hz-loc"/>&nbsp;&nbsp;0&nbsp;&nbsp;</a></span></p>
+
+                                            <p>
+                                                <strong>星光灿烂：</strong><br />
+                                                这年头炫富的人还真是不少呢。 <span class="dz-span"><a href="#"><img src="image/hz.png" class="hz-loc"/>&nbsp;&nbsp;0&nbsp;&nbsp;</a></span>
+                                            </p>
+                                            <p>
+                                                <strong> 不负好时光：</strong><br />
+                                                别不开心…毕竟这世界上比你惨的人多了去了…… <span class="dz-span"><a href="#"><img src="image/hz.png" class="hz-loc"/>&nbsp;&nbsp;0&nbsp;&nbsp;</a></span>
+                                            </p>
+                                            <p>
+                                                <strong>红豆生南国：</strong><br />
+                                                那你现在该是享受生活了吧。 <span class="dz-span"><a href="#"><img src="image/hz.png" class="hz-loc"/>&nbsp;&nbsp;0&nbsp;&nbsp;</a></span>
+                                            </p>
+                                            <p>
+                                                <strong>偷书贼：</strong><br />
+                                                如此高调的炫富，佩服佩服。 <span class="dz-span"><a href="#"><img src="image/hz.png" class="hz-loc"/>&nbsp;&nbsp;0&nbsp;&nbsp;</a></span>
+                                            </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <input type="text" class="form-control" placeholder="我来回答..." />
+                                            <button class="btn btn-primary">提交问题</button>     
+                                            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul>
+                                <li>
+                                    <p>
+                                        女未婚，未恋 二十二岁时现金流过千万，以后每年都是超千万的年收入。
+                                        23岁的最后一天提了一辆宾利欧陆gtc定制款，大概530多万。现在24岁，
+                                        有4个20万以上的手表………
+                                    </p>
+                                    <p>
+                                        <a href="#myModal2" data-target="#myModal2" class="btn btn-default" data-toggle="modal"  >
+                                            <img src="image/pl-loc.png" class="inAsk-ioc" /> 1.00.1条评论
+                                        </a>
+                                    </p> 
+                                </li>
+                                <li>
+                                    <p>
+                                        女未婚，未恋 二十二岁时现金流过千万，以后每年都是超千万的年收入。
+                                        23岁的最后一天提了一辆宾利欧陆gtc定制款，大概530多万。现在24岁，
+                                        有4个20万以上的手表………
+                                    </p>
+                                    <p>
+                                        <a href="#myModal2" data-target="#myModal2" class="btn btn-default" data-toggle="modal"  >
+                                            <img src="image/pl-loc.png" class="inAsk-ioc" /> 1.00.1条评论
+                                        </a>
+                                    </p> 
+                                </li>
+                                <li>
+                                    <p>
+                                        女未婚，未恋 二十二岁时现金流过千万，以后每年都是超千万的年收入。
+                                        23岁的最后一天提了一辆宾利欧陆gtc定制款，大概530多万。现在24岁，
+                                        有4个20万以上的手表………
+                                    </p>
+                                    <p>
+                                        <a href="#myModal2" data-target="#myModal2" class="btn btn-default" data-toggle="modal"  >
+                                            <img src="image/pl-loc.png" class="inAsk-ioc" /> 1.00.1条评论
+                                        </a>
+                                    </p> 
+                                </li>
+                                <li>
+                                    <p>
+                                        女未婚，未恋 二十二岁时现金流过千万，以后每年都是超千万的年收入。
+                                        23岁的最后一天提了一辆宾利欧陆gtc定制款，大概530多万。现在24岁，
+                                        有4个20万以上的手表………
+                                    </p>
+                                    <p>
+                                        <a href="#myModal2" data-target="#myModal2" class="btn btn-default" data-toggle="modal"  >
+                                            <img src="image/pl-loc.png" class="inAsk-ioc" /> 1.00.1条评论
+                                        </a>
+                                    </p> 
+                                </li>
+                                <li>
+                                    <p>
+                                        女未婚，未恋 二十二岁时现金流过千万，以后每年都是超千万的年收入。
+                                        23岁的最后一天提了一辆宾利欧陆gtc定制款，大概530多万。现在24岁，
+                                        有4个20万以上的手表………
+                                    </p>
+                                    <p>
+                                        <a href="#myModal2" data-target="#myModal2" class="btn btn-default" data-toggle="modal"  >
+                                            <img src="image/pl-loc.png" class="inAsk-ioc" /> 1.00.1条评论
+                                        </a>
+                                    </p> 
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-row" id="flooter">
+            <div class="layui-col-xs15" >
+                <table>
+                    <tr>
+                        <td class="yijian"><image src="image/yijian.jpg" /></td>
+                        <td>
+                            <h2>关于我们</h2>
+                            <p>关于self</p>
+                            <p>计划和举措</p>
+                            <p>关于我们</p>
+                            <p>计划和举措</p>
+                        </td>
+                        <td><a href="Q&A-info.html" style="color:white">
+                                <h2 >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Q&A&nbsp;&nbsp;&nbsp;</h2>
+                                <p>我们关注的视频多久更新一次</p>
+                                <p>最新留言模块多长时间更新，能看到...</p>
+                                <p>关注的直播活动会有提醒吗？</p>
+                            </a>
+                        </td>
+                        <td>
+                            <h2>联系我们</h2>
+                            <p>028-69761253</p>
+                            <p>或028-69761253</p>
+                            <p>(服务时间)周一至周六9:00-18:00</p>
+                        </td>
+                        <td>
+                            <h2>订&nbsp;&nbsp;阅</h2>
+                            <p>每当新的会谈发表，会通过电子邮件通知您</p>
+                            <p><input type="checkbox" checked="checked"/>日常&nbsp;&nbsp;<input type="checkbox"/>每周</p>
+                            <p>您的电子邮件地址：</p>
+                            <p><input type="text" /></p>
+                            <p><button>提交</button></p>
+                        </td>
+                        <td><image src="image/weix.jpg" /></td>
+                    </tr>
+
+                </table>
+                <hr  class="flooter-hr" />
+                <div>
+                    <span class="flooter-h5">
+                        <span>媒体渠道</span>
+                        <span>讲坛@优酷</span>
+                        <span>讲坛@爱奇艺</span>
+                        <span>讲坛@微博</span>
+                        <span>讲坛@土豆</span>
+                        <span>讲坛@微信</span><br />
+                        <p>CopyRight self huodongia.com ,蜀ICP备17005018号-1 增值电信业务经营许可证编号川B2-20130143</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

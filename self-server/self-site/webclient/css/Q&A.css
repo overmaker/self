@@ -1,0 +1,362 @@
+body {
+    background: #FCFBF7;
+}
+header {
+    margin-top: 20px;
+    height:55px;
+}
+.layui-nav {
+    position: absolute;
+    background: white;
+    height: 50px;
+    width:100%;
+    border: 1px solid #F2F2F2;
+
+}
+.layui-nav a:hover {
+    text-decoration:none;
+}
+.layui-nav dl dd {
+    padding: 7px 0;
+}
+.layui-nav .layui-nav-item a {
+    color:gray;
+    font-size: 15px;
+}
+.layui-nav .layui-nav-item {
+    line-height:45px;
+    width: 100px;
+}
+.search-item .input-group {
+    width: 290px;
+    position: relative;
+    bottom:38px;
+    left: 455px;
+}
+
+.layui-nav .layui-nav-item a:hover {
+    color:black;
+}
+.self-image {
+    float: left;
+    width:250px;
+    height:80px;
+    position: relative;
+    left: 110px;
+    bottom: 29px;
+}
+.search-image {
+    height: 29px;
+    position: relative;
+    left:677px;
+    bottom: 108px;
+    background: white;
+}
+.search-item .layui-form-item .layui-input-block input {
+    width: 260px;
+    height: 33px;
+    position: relative;
+    left:510px;
+    bottom: 73px;
+    color: black;
+}
+tr td img:hover {
+    opacity: 0.5;
+}
+a:hover {
+    color:#FF6B58;
+    text-decoration:none;
+}
+.QA-left a:hover {
+    text-decoration:none;
+}
+
+
+
+/* 底部 */
+.flooter-video table tr td {
+    width: 270px!important;
+    height: 300px!important;
+    border: 3px solid #F4F4F4!important;
+    padding: 0 8px!important;
+}
+.flooter-img {
+    width: 280px!important;
+    height: 200px!important;
+}
+.flooter-h5 {
+    color:white!important;
+    position: relative!important;
+    top:100px!important;
+    margin: 0 430px!important;
+}
+.flooter-h5  span {
+    margin: 0 20px!important;
+}
+.flooter-h5 p {
+    margin: 0 460px!important;
+}
+#flooter {
+    width: 100%!important;
+    height:400px!important;
+    background: #454545!important;
+}
+#flooter table tr td {
+    width: 240px!important;
+    height: 120px!important;
+    padding: 0 8px!important;
+    padding-top: 18px!important;
+    font-size: 12px;
+}
+#flooter table tr td p {
+    margin: 0 0!important;
+}
+#flooter table tr td h2 {
+    font-size: 20px;
+}
+#flooter .yijian {
+    position: relative!important;
+    top:80px!important;
+    left: 20px!important;
+}
+#flooter table tr {
+    text-align: left!important;
+    width: 240px!important;
+    height: 200px!important;
+    color:white!important;
+}
+.flooter-hr {
+    height:3px!important;
+    border:none!important;
+    border-top:5px groove white!important;
+    width: 80%!important;
+    margin:  0 150px!important;
+}
+.layui-col-xs15 table tr td a {
+    text-decoration:none;
+}
+.layui-col-xs15 table tr td a:hover {
+    text-decoration:none;
+}
+
+td {
+    width: 240px;
+    height: 120px;
+    padding: 0 8px;
+    padding-top: 18px;
+
+}
+#comment dl dd {
+    font-weight:bold;
+    padding: 10px 10px;
+}
+span a:hover {
+    color:#47A547;
+    font-weight:bold;
+}
+.inAsk-div2 ul li {
+    color: gray;
+    width: 90%;
+    height: 115px;
+    padding: 15px 30px;
+    margin: 20px 50px;
+    border: 1px solid #EAEAEA;
+}
+.inAsk-div2 ul li h4 {
+    font-weight: bold;
+}
+.dz-span {
+    position: absolute;
+    right: 10px;
+}
+.hz-loc {
+    width: 20px;
+    height: 20px;
+}
+#myModal2 .modal-body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 500px;
+}
+#myModal2 .modal-body p {
+    background: white;
+    padding:15px 15px;
+    margin-right: 50px;
+    width: 92%;
+    border: 1px solid #F4F4F4;
+    border-radius: 5%;
+}
+#myModal2 .modal-footer input {
+    width: 400px;
+    position: absolute;
+    bottom: 15px;
+}
+#flooter {
+    margin-top: 70px;
+    width: 100%;
+    height:400px;
+    background: #454545;
+
+}
+#flooter .yijian {
+    position: relative;
+    top:80px;
+    left: 20px;
+}
+#flooter table {
+    text-align: center;
+}
+#flooter table tr {
+    text-align: left;
+    width: 240px;
+    height: 200px;
+    color:white;
+}
+.flooter-hr {
+    height:3px;
+    border:none;
+    border-top:5px groove white;
+    width: 80%;
+    margin:  0 150px;
+}
+
+/* Q&A-info */
+.QA-commend {
+    margin: 10px 150px;
+    width: 80%;
+    height: 620px;
+    background: white;
+    color:gray;
+}
+.QA-commend .QA-left  div  {
+    padding: 0 20px;
+}
+.QA-commend .QA-right {
+    padding: 10px 20px;
+}
+.QA-commend .QA-right #inSelf  h2 {
+    font-size: 22px;
+    padding: 0 40px;
+}
+.QA-commend .QA-right #inSelf p {
+    padding: 0 50px;
+}
+.QA-left {
+    text-align: center;
+    float: left;
+    background: white;
+    width: 18%;
+    height: 675px;
+    border: 2px solid #F4F4F4;
+}
+.QA-left li {
+    font-size: 15px;
+    border-bottom: 2px solid #F4F4F4;
+    margin: 10px 40px;
+    line-height: 35px;
+}
+.QA-left li:hover {
+    background:#FF6B58;
+}
+.QA-left li a:hover {
+    color:white!important;
+}
+.QA-right {
+    float: right;
+    background: white;
+    width: 79%;
+    height: 675px;
+    border: 2px solid #F4F4F4;
+}
+.comment-submit {
+    width:100px;
+    height: 28px;
+    background: #F4F4F4;
+    border-radius: 10%;
+    margin: 5px 73.5%;
+}
+.inAsk-div2 {
+    width:95%;
+    color: black;
+    height: 550px;
+    overflow:auto;
+}
+.comment-img {
+    width: 70px;
+    height: 62px;
+    border:2px solid #F4F4F4;
+    border-radius: 5%;
+}
+.grid-demo {
+    position: relative;
+    bottom: 20px;
+    width:90%;
+}
+.video-tubiao {
+    width:20px;
+    height:20px;
+}
+.video-tubiao2 {
+    width:30px;
+}
+.comment-p {
+    line-height: 30px;
+    padding: 0 15px;
+    color: black;
+}
+.QA-left h2 {
+    font-size: 20px;
+}
+.QA-left li a {
+    color:gray!important;
+}
+.grid-demo p span a:hover {
+    color:black;
+    font-weight: bold;
+}
+.inAsk-ioc {
+    width:20px;
+    height:15px;
+}
+#inAsk a {
+    color:gray;
+}
+#grid-demo  {
+    width: 10%;
+}
+#inSelf h2 {
+    font-weight: bold;
+}
+#inSelf  {
+    color:black;
+}
+#inSelf .slef {
+    font-size: 10px;
+}
+#inQA {
+    color:black;
+}
+#inQA p span {
+    font-weight: bold;
+
+}
+#inQA div h2 {
+    font-weight: bold;
+    font-size: 20px!important;
+    padding: 0 40px;
+}
+#inQA div p {
+    padding: 10px 50px; 
+}
+#inAsk div h2 {
+    font-weight: bold;
+    padding: 5px 40px;
+}
+#inAsk div h3 {
+    padding: 15px 40px;
+}
+#inAsk div textarea {
+    width:100%;
+    height: 90px;
+    resize:none;
+}                 

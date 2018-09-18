@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.commons.mybatis.mapper.AdminMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.commons.entity.User">
+        <id property="id" column="id" />
+        <result property="userName" column="user_name" />
+        <result property="password" column="user_password" />
+        <result property="type" column="type" />
+        <result property="uid" column="uid" />
+        <result property="role.id" column="role_id" />
+        <result property="role.name" column="role_name" />
+        <result property="token" column="token" />
+    </resultMap>
+    <insert id="insertAdmin" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO kepu_self_user(user_name,uid,type,
+        <if test="role !=null and role.id != null">
+            role,
+        </if>
+        user_password)
+        VALUES (#{userName},#{uid},'admin',
+        <if test="role != null and role.id != null">
+            #{role.id},
+        </if>
+        #{password});
+    </insert>
+    <update id="updateAdmin">
+        UPDATE kepu_self_user
+        SET gmt_modified=NOW(),
+        <if test="role!= null and role.id != null">
+            role=#{role.id},
+        </if>
+        user_password=#{password} 
+        WHERE id=#{id}
+    </update>
+    <select id="selectById" resultMap="resultMap">
+        SELECT u.id AS id,
+        u.user_name AS user_name,
+        u.user_password AS user_password,
+        r.id AS role_id,
+        r.name AS role_name
+        FROM kepu_self_user AS u
+        LEFT OUTER JOIN kepu_self_role AS r ON u.role=r.id
+        WHERE u.id=#{id}
+    </select>
+    <select id="selectAll" resultMap="resultMap">
+        SELECT u.id AS id,
+        u.user_name AS user_name,
+        r.id AS role_id,
+        r.name AS role_name
+        FROM kepu_self_user AS u
+        LEFT OUTER JOIN kepu_self_role AS r ON u.role=r.id
+        <where>
+            u.type='admin'
+            <if test="userName != null and userName != ''">
+                AND user_name LIKE CONCAT('%',#{userName},'%')
+            </if>
+        </where>
+        ORDER BY u.gmt_create DESC
+    </select>
+</mapper>

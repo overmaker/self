@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+                                        
+<mapper namespace="cn.kepu.self.video.mybatis.mapper.VideoDonationMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.video.entity.VideoDonation">
+        <id property="id" column="id"  />
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP" />
+        <result property="duringTime" column="duringTime" jdbcType="TIMESTAMP" />
+        <result property="video.id" column="vid" />
+        <result property="user.userName" column="userName" />
+        <result property="video.title" column="title" />
+        <result property="total_fee" column="amount" />
+        <result property="sn" column="sn" />
+        <result property="prepay_id" column="prepay_id" />
+        <result property="pay_flag" column="pay_flag" />
+    </resultMap>
+    <insert id="addVideoDonation">
+        INSERT INTO kepu_self_video_donation(user,video,total_fee,sn,prepay_id,pay_flag) 
+        VALUES(#{user.id},#{video.id},#{total_fee},#{sn},#{prepay_id},#{pay_flag});
+    </insert>
+    <update id="updateVideoDonation">
+        UPDATE kepu_self_video_donation SET pay_flag = #{pay_flag},gmt_modified = NOW() WHERE id = #{id};
+    </update>
+    <select id="countVideoDonation" resultMap="resultMap">
+        SELECT vd.id,
+            vd.gmt_create,
+            vd.gmt_modified,
+            vd.user,
+            vd.video, 
+            SUM(vd.total_fee) amount, 
+            v.id vid, 
+            v.title title
+        FROM kepu_self_video_donation vd
+        INNER JOIN kepu_self_video v ON v.id = vd.video
+        WHERE pay_flag = 1
+        GROUP BY vd.video ORDER BY SUM(vd.total_fee) DESC
+    </select>
+    <select id="countVideoDonation1" resultMap="resultMap">
+        SELECT vd.id,
+            vd.gmt_create,
+            vd.gmt_modified,
+            vd.user,
+            SUM(vd.total_fee) amount, 
+            u.user_name userName
+        FROM kepu_self_video_donation vd
+        INNER JOIN kepu_self_user u ON u.id = vd.user
+        WHERE pay_flag = 1
+        GROUP BY vd.user ORDER BY SUM(vd.total_fee) DESC
+    </select>
+    <select id="countVideoDonation2" resultMap="resultMap">
+        SELECT vd.id,
+            vd.gmt_create,
+            vd.gmt_modified,
+            vd.user, 
+            SUM(vd.total_fee) amount, 
+            u.user_name userName
+        FROM kepu_self_video_donation vd
+        INNER JOIN kepu_self_user u ON u.id = vd.user
+        WHERE pay_flag = 1 AND vd.video = #{video.id} 
+        GROUP BY vd.user ORDER BY SUM(vd.total_fee) DESC
+    </select>
+</mapper>

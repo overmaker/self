@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+        <link rel="stylesheet" href="../../module/user-info/task.css" />
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/jquery.min.js"></script>
+        <style>
+            dd {
+                line-height: 36px;
+            }
+            
+            body {
+                background: #FDFBF7;
+            }
+        </style>
+    </head>
+
+    <body>
+    <div class="task-comment">
+        <table class="task-comment-table">
+            <tr>
+                <td>
+                    <div class="input-group"> <span class="input-group-addon">检索条件：</span>
+                        <select name="" id="selected" style="text-indent: 1rem;">
+                            <option value="1001" class="video-review">视频评论</option>
+                            <option value="1002" class="activity-review">活动评论</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+        </table><br /><br />
+        <table class="table video-review-content" id="table1" style="display:''">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>视频标题</th>
+                    <th>评论内容</th>
+                    <th>评论时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="comment-table-tr"> </tbody>
+        </table>
+        <table class="table activity-review-content" id="table2" style="display: none;">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>活动标题</th>
+                    <th>评论内容</th>
+                    <th>评论时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="comment-table-tr1"> </tbody>
+        </table>
+    </div>
+    <script type="text/javascript" src="../../lib/base.js"></script>
+    <script type="text/javascript" src="../../util.js"></script>
+    <script src="../../module/user-info/comment.js"></script>
+    </body>
+
+</html>

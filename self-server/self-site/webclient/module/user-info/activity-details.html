@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../module/user-info/activity-details.css" />
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="stylesheet" href="../../top.css"  /> 
+        <script src="../../js/jquery.min.js"></script>
+        <script src="../../lib/layui/layui.all.js"></script>
+        <script src="../../lib/layui/layui.js"></script>
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=34LE286pfBxpzcqMjaFcGBW4wQu7ecYg"></script>
+
+        <script >
+            layui.use('element', function () {
+                var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+            });
+        </script>
+    </head>
+    <body>
+        <div id="top">
+        </div>
+
+        <div class="comment">
+            <div class="activity">
+                <div class="activity-left">
+                    <img src="../../img/part1.jpg"  draggable="false" />
+                </div>
+                <div class="activity-right">
+                    <h2>未来科学大奖“物质科学”学术报告会</h2>
+                    <h4>活动时间:<strong> 2017年12月13日 </strong>至 <strong> 2017年12月14日</strong></h4>
+                    <h4>活动地点: 北京市海淀区-中关村南四街四号 中科院软件园2号楼 507会议室</h4>
+                    <h4>活动类型: 讲座</h4>
+                    <h4>主办单位: 中国科学院计算机网络中心 中国科学院科学传播局 中国科学技术大学</h4>
+                    <h4>联系方式: <strong>01058812533 </strong></h4>
+                    <h4>活动状态: <span>已结束</span></h4>
+                </div>
+            </div>
+
+            <div class="div2">
+                <div class="activity-div2-left">
+                    <ul>
+                        <li><a href="#"  onclick="activity()" >活动详情</a></li>
+                        <li><a href="#"   onclick="baiduMap()" >活动地图</a></li>
+                    </ul>
+                    <img src="../../img/activity.jpg" class="erweima"  draggable="false" /><br /><br />
+                    <div class="tui">
+                        <img src="../../img/tuijian.png" class="tuijian" draggable="false" />&nbsp;&nbsp;&nbsp;<span>推荐活动</span>
+                    </div>
+                    <img src="../../img/hd.jpg" draggable="false" class="hd" />
+                </div>
+                <div class="activity-div2-right">
+                    <div id="activity-info" >
+                        <h2>物质的奥秘</h2>
+                        <p>&nbsp;&nbsp;&nbsp;2017年10月27日晚，中国科学技术大学，中国科学院科学传播局，中国科学计算机网络信息传播中心将联合未来论坛，特邀2017年未来科学大奖
+                            -物质科学奖的获得者，中国科学技术常务副校长，中科院量子信息与量子科技创新研究院院长，中国科学院院士潘建伟，中国科学技术大学，中科院量子信息与量子科技创新
+                            研究院教授卢征天，以及中国科学大学卡弗理论科学研究所所长张富春， 中国科学院物理所研究员，北京凝聚态国家实验首席科学家，未来大奖科学委员会委员丁洪举办未来
+                            科学大奖物质科学奖，学术报告会，中国科学院物理所研究员。</p>
+                        <p><strong>时间：2017年12月13日 至 2017年12月14日</strong></p>
+                        <p><strong>地点:北京市海淀区-中关村南四街四号 中科院软件园2号楼 507会议室</strong></p>
+
+                        <p><strong>会议日程：</strong><br />
+                            <strong>19:00:00 - 19:05:00  致辞</strong><br />
+                            丁洪：来大奖科学委员会委员，北京凝聚态国家实验首席科学家。<br />
+                            <strong>19:05:00 - 19:10:00  致辞</strong><br />
+                            卢征天:中科院量子信息与量子科技创新研究院教授.<br />
+                            <strong>19:10:00 - 19:40:00  报告</strong><br />
+                            主题：全球化量子信息通讯网络及未来展望。
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛<br /><br />
+                            <strong>18:00:00 - 18:05:00  致辞</strong><br />
+                            丁洪：来大奖科学委员会委员，北京凝聚态国家实验首席科学家。<br />
+                            <strong>18:05:00 - 18:10:00  致辞</strong><br />
+                            卢征天:中科院量子信息与量子科技创新研究院教授.<br />
+                            <strong>18:10:00 - 18:40:00  报告</strong><br />
+                            主题：全球化量子信息通讯网络及未来展望。
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                            新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛新生代城市新现在你就暗示信达财险就是代表 小商南京新百选手进行比赛
+                        </p>
+                    </div>
+                    <div id="container"></div>
+                </div>
+            </div>
+        </div>
+
+       <div class="layui-row" id="flooter">
+        </div>
+        <script src="../../module/user-info/activity-details.js"></script>
+    </body>

@@ -1,0 +1,71 @@
+/* 导航条 */
+
+body {
+    background: #FCFBF7;
+}
+
+
+/*检索*/
+
+.screen {
+    color: gray;
+    padding: 20px 12px;
+    background: #F5F5F5;
+}
+
+.screen table tr td {
+    color: gray;
+    padding: 10px 15px;
+}
+
+.screen table tr td a {
+    color: gray;
+    padding: 5px 8px;
+}
+
+.active-header {
+    margin-top: 30px;
+    text-indent: 2rem;
+}
+
+.active-header div {
+    float: right;
+}
+
+.active-left {
+    float: left;
+}
+
+
+/*活动列表*/
+
+.active-times {
+    line-height: 20px;
+    font-size: 14px;
+    color: #b1b0b0;
+}
+
+.active-title {
+    line-height: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    max-width: 100%;
+    color: #333;
+}
+
+.active-address {
+    line-height: 20px;
+    font-size: 14px;
+    color: #b1b0b0;
+}
+.active-status{
+   /* float: right;*/
+    margin-right: 5%;
+    line-height: 20px;
+    font-size: 14px;
+    color: black;
+}
+
+.am-margin-right-lg {
+    margin-right: 0.4rem;
+}

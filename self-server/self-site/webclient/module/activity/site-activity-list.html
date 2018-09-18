@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+        <link rel="stylesheet" type="text/css" href="../../module/activity/site-activity-list.css" />
+        <link rel="stylesheet" type="text/css" href="../../css/style1.css" />
+        <link rel="stylesheet" href="../../top.css" />
+        <link type="text/css" rel="stylesheet" href="../../css/reset.css" />
+        <link type="text/css" rel="stylesheet" href="../../css/style2.css" />
+        <script type="text/javascript" src="../../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../js/jquery_slide.js"></script>
+    </head>
+
+    <body>
+        <div style="height:0px;"></div>
+        <!-- 导航条  -->
+        <div id="top"> </div>
+        <div class="container_image">
+            <a href="javascript:void(0)" tip="0" class="i_btn prev_L" style=" margin-top: -13%;"></a>
+            <a href="javascript:void(0)" tip="1" class="i_btn next_R" style=" margin-top: -13%;"></a>
+            <ul class="slide_img">
+                <li class="on">
+                    <a href="javascript:void(0);"><img src="../../image/1.png" /></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"><img src="../../image/2.png" /></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"><img src="../../image/3.png" /></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"><img src="../../image/4.png" /></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"><img src="../../image/5.png" /></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"><img src="../../image/6.png" /></a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"><img src="../../image/7.png" /></a>
+                </li>
+            </ul>
+        </div>
+
+        <script type="text/javascript">
+            $(function () {
+
+                var newopt = {
+                    w2: "180", //小图宽度
+                    h2: "260"//小图高度 
+                };
+
+                i_slide($(".container_image"), newopt);
+
+            });
+        </script>
+
+        <div class="video-body">
+            <div class="layui-container">
+                <div class="comment">
+                    <!-- 筛选条件 -->
+                    <div class="screen">
+                        <table>
+                            <tr id="type"> </tr>
+                        </table>
+                    </div>
+                    <!-- 活动列表 -->
+                    <div class="activity-list">
+                        <div class="activity-header">
+                            <h2 class="activity-left">活动</h2>
+                            <select name="" id="selected" style="margin-top: 0.5%;">
+                                <option value="1000">热门选择</option>
+                                <option value="1001">最新</option>
+                                <option value="1002">最热</option>
+                            </select>
+                            <div class="activity-right"> 
+                                <ul>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="all-activity">
+                            <table class="ff-items" id="table"> </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-row" id="flooter"> </div>
+        </div>
+        <script type="text/javascript" src="../../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../../js/modernizr.custom.29473.js"></script>
+        <script type="text/javascript" src="../../lib/layui/layui.all.js"></script>
+        <script type="text/javascript" src="../../lib/base.js"></script>
+        <script type="text/javascript" src="../../util.js"></script>
+        <script type="text/javascript" src="site-activity-list.js"></script>
+    </body>
+
+</html>

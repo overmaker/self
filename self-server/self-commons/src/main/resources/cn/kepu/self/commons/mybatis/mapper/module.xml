@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.commons.mybatis.mapper.ModuleMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.commons.entity.Module">
+        <id property="id" column="id"  />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="name" column="name" />
+        <result property="displayName" column="display_name" />
+        <result property="group" column="group" />
+        <result property="grant" column="grant" />
+    </resultMap>
+    
+    <select id="selectAllModule" resultMap="resultMap">
+        SELECT id,
+        gmt_create,
+        gmt_modified,
+        name,
+        display_name,
+        `group`,
+        0 AS `grant`
+        FROM kepu_self_module
+        ORDER BY id ASC
+    </select>
+    
+    <select id="selectModulesByRoleId" resultMap="resultMap">
+        SELECT module.id AS id,
+               module.gmt_create AS gmt_create,
+               module.gmt_modified AS gmt_modified,
+               module.name AS name,
+               module.display_name AS display_name,
+               module.group AS `group`,
+               EXISTS
+               (SELECT 1 FROM kepu_self_module WHERE module.id IN
+                    (
+                    SELECT module
+                    FROM kepu_self_role_module
+                    WHERE role=#{role-id}
+                    )
+                LIMIT 1
+               ) AS `grant`
+        FROM kepu_self_module AS module
+        ORDER BY module.id ASC;
+    </select>
+    
+    <select id="selectIdByName" resultType="java.lang.Long">
+        SELECT id FROM kepu_self_module WHERE name=#{name}
+    </select>
+    
+    <select id="getModulesByUserId" resultMap="resultMap">
+        SELECT module.id AS id,
+               module.gmt_create AS gmt_create,
+               module.gmt_modified AS gmt_modified,
+               module.name AS name,
+               module.display_name AS display_name,
+               module.group AS `group`,
+               1 AS `grant`
+        FROM kepu_self_module AS module
+        INNER JOIN kepu_self_role_module AS r_m ON module.id = r_m.module
+        INNER JOIN kepu_self_role AS role ON role.id = r_m.role
+        INNER JOIN kepu_self_user AS user ON user.role = role.id
+        WHERE user.id = #{user-id}
+        ORDER BY module.group ASC, module.name ASC
+    </select>
+    
+</mapper>

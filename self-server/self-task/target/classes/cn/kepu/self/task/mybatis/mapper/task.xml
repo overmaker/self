@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+                                                                                
+<mapper namespace="cn.kepu.self.task.mybatis.mapper.TaskMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.task.entity.Task">
+        <id property="id" column="id"  />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="type.id" column="type_id" />
+        <result property="title" column="title" />
+        <result property="thumbnail" column="thumbnail" />
+        <result property="descript" column="descript" />
+        <result property="maxnum" column="maxnum" />
+        <result property="score" column="score" />
+        <result property="startTime" column="start_time"  jdbcType="TIMESTAMP" />
+        <result property="endTime" column="end_time"   jdbcType="TIMESTAMP"  />
+        <result property="status" column="status" />
+    </resultMap>
+    <insert id="insertTask">
+        INSERT INTO kepu_self_task (gmt_create, gmt_modified, type, title, thumbnail,descript, score, start_time, end_time, status) 
+        VALUES (now(),now(), #{type.id},#{title}, #{thumbnail}, #{descript}, #{score}, #{startTime}, #{endTime}, #{status});
+    </insert>
+    <update id="updateTask">
+        UPDATE kepu_self_task SET type=#{type.id}, 
+                                  title=#{title},
+                                  thumbnail=#{thumbnail}, 
+                                  descript=#{descript}, 
+                                  score=#{score}, 
+                                  start_time=#{startTime}, 
+                                  end_time=#{endTime}, 
+                                  status=#{status}
+                            WHERE id=#{id};
+    </update>
+    <update id="updateTaskByStatus">
+        UPDATE kepu_self_task SET status=#{status} WHERE id=#{id};
+    </update>
+    <select id="selectTaskList" resultMap="resultMap">
+           SELECT   t.id,
+                    t.gmt_create,
+                    t.gmt_modified,
+                    t.type,
+                    t.title,
+                    t.thumbnail,
+                    t.descript,
+                    t.score,
+                    t.start_time,
+                    t.end_time,
+                    t.status
+                FROM kepu_self_task t
+            <where>
+                <if test="title != null and title != ''" >
+                    AND title LIKE CONCAT('%',#{title},'%')
+                </if>   
+                <if test="type.id > 0" >
+                    AND type LIKE CONCAT('%',#{type.id},'%')
+                </if>
+                 <if test="status != null ">
+                    AND t.status = #{status}
+                </if>
+            </where>
+    </select>
+    <select id="selectById" resultMap="resultMap">
+        SELECT   t.id,
+                 t.gmt_create,
+                 t.gmt_modified,
+                 t.type,
+                 t.title,
+                 t.thumbnail,
+                 t.descript,
+                 t.maxnum, 
+                 t.score,
+                 t.start_time,
+                 t.end_time,
+                 t.status
+         FROM kepu_self_task t
+         WHERE t.id = #{id}
+    </select>
+</mapper>

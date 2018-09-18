@@ -1,0 +1,52 @@
+<article>
+    <style>
+        .datagrid-btable td {
+            border-right-width: 0px;
+        }
+    </style>
+    <div id="self-module-activity-panel" class="layui-fluid" style="height: 100%;">
+        <div class="layui-row" style="height: 100%;">
+            <div class="layui-col-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12" style="height: 100%;">
+                <div class="layui-tab layui-tab-brief" lay-filter="activity-tab" style="position: absolute; width: 100%; top:0px;bottom: 30px;">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">全部&nbsp;<span class="layui-badge-rim" id="activity-badge-total"></span></li>
+                        <li>报名中&nbsp;<span class="layui-badge-rim" id="activity-badge-joining"></span></li>
+                        <li>已结束&nbsp;<span class="layui-badge-rim" id="activity-badge-over"></span></li>
+                        <li>草稿&nbsp;<span class="layui-badge-rim" id="activity-badge-draft"></span></li>
+                    </ul>
+                    <div class="layui-tab-content" style="height: 100%;">
+                        <div class="layui-tab-item layui-show" style="height: 100%;">
+                            <span id="self-module-activity" style="height: 100%;">
+                            </span>
+                            <div id="self-module-activity-toolbar">
+                                <span id="self-module-activity-toolbar-name"></span>
+                                <span id="self-module-activity-toolbar-comment"></span>
+                            </div>
+                        </div>
+                        <div class="layui-tab-item" style="height: 100%;">
+                            <span id="self-module-activity-joining" style="height: 100%;">
+                            </span>
+                            <div id="self-module-activity-joining-toolbar">
+                                <span id="self-module-activity-joining-toolbar-name"></span>
+                            </div>
+                        </div>
+                        <div class="layui-tab-item" style="height: 100%;">
+                            <span id="self-module-activity-over" style="height: 100%;">
+                            </span>
+                            <div id="self-module-activity-over-toolbar">
+                                <span id="self-module-activity-over-toolbar-name"></span>
+                            </div>
+                        </div>
+                        <div class="layui-tab-item" style="height: 100%;">
+                            <span id="self-module-activity-draft" style="height: 100%;">
+                            </span>
+                            <div id="self-module-activity-draft-toolbar">
+                                <span id="self-module-activity-draft-toolbar-name"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

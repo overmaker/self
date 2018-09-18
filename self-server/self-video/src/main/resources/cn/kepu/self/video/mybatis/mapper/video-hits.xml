@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+                                        
+<mapper namespace="cn.kepu.self.video.mybatis.mapper.VideoHitsMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.video.entity.VideoHits">
+        <id property="id" column="id"  />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="user.id" column="user" />
+        <result property="user.userName" column="userName" />
+        <result property="video.id" column="video" />
+        <result property="video.title" column="title" />
+        <result property="video.thumbnail" column="thumbnail" />
+        <result property="video.hitsNum" column="hitsNum" />
+    </resultMap>
+    <insert id="insertVideoHits">
+        INSERT INTO kepu_self_video_hits
+        (user,video)
+        VALUES
+        (#{user.id},#{video.id});
+    </insert>
+    <select id="selectVideoHitsCount" resultType="cn.kepu.self.video.entity.VideoHits">
+        SELECT COUNT(*) FROM kepu_self_video_hits WHERE video = #{video.id}
+    </select>
+    <!--    参与情况统计1-点击量-->
+    <select id="count1" resultMap="resultMap">
+        SELECT u.user_name as userName,count(user) hitsNum from  kepu_self.kepu_self_user u  
+        inner join kepu_self_video_hits vh on u.id=vh.user
+        group by u.id order by hitsNum desc limit 10
+    </select>
+    
+    <!-- 我观看过的视频-->
+    <select id="selectMyHits" resultMap="resultMap">
+        SELECT id AS video ,title AS title,thumbnail  AS thumbnail,is_vip AS vip FROM kepu_self.kepu_self_video WHERE id IN
+        (SELECT DISTINCT video FROM kepu_self.kepu_self_video_hits WHERE USER=#{user.id})
+    </select>
+</mapper>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.activity.mybatis.mapper.UserTicketMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.activity.entity.UserTicket">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="user.id" column="user" />
+        <result property="ticket.id" column="ticket" />
+        <result property="num" column="num" />
+        <result property="name" column="name" />
+        <result property="mobile" column="mobile" />
+        <result property="email" column="email" />
+        <result property="status" column="status" />
+        <result property="vcode" column="vcode" />
+        <result property="totalFee" column="total_fee" />
+        <result property="enable" column="enable" />
+        <result property="sn" column="sn" />
+        <result property="activity.id" column="activityId" />
+        <result property="activity.title" column="title" />
+    </resultMap>
+    <insert id="insertUserTicket">
+        INSERT INTO kepu_self_activity_ticket_user_relation
+        (user,ticket,num,name,mobile,vcode,sn,total_fee,email)
+        VALUES
+        (#{user.id},#{ticket.id},#{num},#{name},#{mobile},#{vcode},#{sn},#{totalFee},#{email})
+    </insert>
+    <update id="paymentSuccess">
+        UPDATE kepu_self_activity_ticket_user_relation SET enable=1 WHERE sn=#{sn}
+    </update>
+    
+    <!-- 通过活动查名单-->
+    <select id="selectUserTicket" resultMap="resultMap" >
+        SELECT atur.id,
+        atur.gmt_create,
+        atur.name,
+        atur.mobile,
+        atur.email,
+        atur.status,
+        at.activity activityId,
+        a.title title,
+        atur.enable
+        FROM kepu_self_activity_ticket_user_relation atur
+        INNER JOIN kepu_self_activity_ticket AT ON at.id = atur.ticket
+        INNER JOIN kepu_self_activity a ON a.id = at.activity
+        <where>
+            at.activity=#{activity.id}
+            <if test="name != null and name != ''">
+                AND atur.name=#{name}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                AND atur.mobile=#{mobile}
+            </if>
+            <if test="email != null and email !=''">
+                AND atur.email=#{email}
+            </if>
+        </where>
+        ORDER BY atur.gmt_create
+    </select>
+    <select id="sendEmail" resultMap="resultMap" >
+        SELECT atur.id,
+        atur.gmt_create,
+        atur.name,
+        atur.mobile,
+        atur.email,
+        atur.status,
+        at.activity activityId,
+        a.title title,
+        atur.enable
+        FROM kepu_self_activity_ticket_user_relation atur
+        INNER JOIN kepu_self_activity_ticket AT ON at.id = atur.ticket
+        INNER JOIN kepu_self_activity a ON a.id = at.activity
+        WHERE at.activity=#{activity.id}
+        ORDER BY atur.gmt_create
+    </select>
+    <select id="sendMobile" resultMap="resultMap" >
+        SELECT atur.id,
+        atur.gmt_create,
+        atur.name,
+        atur.mobile,
+        atur.email,
+        atur.status,
+        at.activity activityId,
+        a.title title,
+        atur.enable
+        FROM kepu_self_activity_ticket_user_relation atur
+        INNER JOIN kepu_self_activity_ticket AT ON at.id = atur.ticket
+        INNER JOIN kepu_self_activity a ON a.id = at.activity
+        WHERE at.activity=#{activity.id}
+        ORDER BY atur.gmt_create
+    </select>
+    <!--    签到-->
+    <update id="signIn">
+        UPDATE kepu_self_activity_ticket_user_relation SET status=1 WHERE mobile =#{mobile}
+    </update>
+    
+    <!-- 验证签到手机号是否存在-->
+    <select id="phoneNumberCheck" parameterType="string" resultType="Integer">
+        SELECT COUNT(1) FROM kepu_self_activity_ticket_user_relation WHERE mobile=#{mobile}
+    </select>
+    
+</mapper>

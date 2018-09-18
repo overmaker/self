@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+    <!-- 定义拦截器 -->
+    <bean id="dao-aspect" class="cn.kepu.self.commons.aop.DAOAspect"
+          scope="singleton" />
+
+    <bean class="cn.kepu.self.commons.service.FileUploadService"
+          factory-method="getInstance" p:serverAddress="${server.address}"
+          p:uploadPath="${server.webroot}" />
+    
+    <bean id="roleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.commons.mybatis.mapper.RoleMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory" />
+    <bean id="moduleMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.commons.mybatis.mapper.ModuleMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory" />
+    <bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.commons.mybatis.mapper.UserMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory" />
+    <bean id="userInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.commons.mybatis.mapper.UserInfoMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory" />
+    <bean id="userAdvanceMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.commons.mybatis.mapper.UserAdvanceMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory" />
+    <bean id="authMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.commons.mybatis.mapper.AuthMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory" />
+    <bean id="guestMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.commons.mybatis.mapper.GuestMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory" />
+    <bean id="fSearchMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.commons.mybatis.mapper.FSearchMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory" />
+    <bean id="subscribeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.commons.mybatis.mapper.SubscribeMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="adminMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.commons.mybatis.mapper.AdminMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <aop:config proxy-target-class="true">
+        <aop:aspect ref="dao-aspect">
+            <aop:pointcut expression="execution(* cn.kepu.self.commons.daoimpl..*(..))" id="commons-dao-pointcut" />
+            <aop:before pointcut-ref="commons-dao-pointcut" method="before" />
+            <aop:after-returning pointcut-ref="commons-dao-pointcut" method="afterReturning" />
+            <aop:after-throwing pointcut-ref="commons-dao-pointcut" method="afterThrowing" throwing="err" />
+        </aop:aspect>
+    </aop:config>
+    
+    <bean id="roleDAOImpl" class="cn.kepu.self.commons.daoimpl.RoleDAOImpl">
+        <constructor-arg index="0" ref="roleMapper" />
+        <constructor-arg index="1" ref="moduleMapper" />
+        <constructor-arg index="2" ref="transactionTemplate" />
+    </bean>
+    <bean id="moduleDAOImpl" class="cn.kepu.self.commons.daoimpl.ModuleDAOImpl">
+        <constructor-arg index="0" ref="moduleMapper" />
+    </bean>
+    <bean id="userDAOImpl" class="cn.kepu.self.commons.daoimpl.UserDAOImpl">
+        <constructor-arg index="0" ref="userMapper" />
+        <constructor-arg index="1" ref="userInfoMapper" />
+        <constructor-arg index="2" ref="jdbcTemplate" />
+        <constructor-arg index="3" ref="transactionTemplate" />
+    </bean>
+    <bean id="userAdvanceDAOImpl" class="cn.kepu.self.commons.daoimpl.UserAdvanceDAOImpl">
+        <constructor-arg index="0" ref="userAdvanceMapper" />
+        <constructor-arg index="1" ref="jdbcTemplate" />
+        <constructor-arg index="2" ref="transactionTemplate" />
+    </bean>
+    <bean id="userInfoDAOImpl" class="cn.kepu.self.commons.daoimpl.UserInfoDAOImpl"
+          p:userInfoMapper-ref="userInfoMapper" />
+    <bean id="authDAOImpl" class="cn.kepu.self.commons.daoimpl.AuthDAOImpl">
+        <constructor-arg index="0" ref="authMapper" />
+        <constructor-arg index="1" value="${kpcenter.oauth.appkey}" />
+        <constructor-arg index="2" value="${kpcenter.oauth.appsecret}" />
+        <constructor-arg index="3" value="${kpcenter.oauth.redirect_url}" />
+        <constructor-arg index="4" value="${kpcenter.oauth.token_url}" />
+        <constructor-arg index="5" value="${kpcenter.oauth.userinfo_url}" />
+        <constructor-arg index="6" value="${kpself.oauth.success_callback_url}" />
+    </bean>
+    <bean id="guestDAOImpl" class="cn.kepu.self.commons.daoimpl.GuestDAOImpl"
+          p:guestMapper-ref="guestMapper" />
+    <bean id="fSearchDAOImpl" class="cn.kepu.self.commons.daoimpl.FSearchDAOImpl">
+        <constructor-arg index="0" ref="fSearchMapper" />
+    </bean>
+    <bean id="subscribeDAOImpl" class="cn.kepu.self.commons.daoimpl.SubscribeDAOImpl">
+        <constructor-arg index="0" ref="subscribeMapper" />
+    </bean>
+    <bean id="sendMail" class="cn.kepu.self.commons.util.SendMail">
+        <constructor-arg index="0" value="${mail.smtp.host}" />
+        <constructor-arg index="1" value="${mail.smtp.username}" />
+        <constructor-arg index="2" value="${mail.smtp.password}" />
+    </bean>
+	
+    <bean id="adminDaoImpl" class="cn.kepu.self.commons.daoimpl.AdminDaoImpl">
+        <constructor-arg index="0" ref="adminMapper" />
+        <constructor-arg index="1" ref="jdbcTemplate" />
+        <constructor-arg index="2" ref="transactionTemplate" />
+    </bean>
+	
+    <bean id="ipUtil" class="cn.kepu.self.commons.util.IpUtil">
+        <constructor-arg index="0" value="${ipSection}" />
+    </bean>
+    
+    <bean class="cn.kepu.self.commons.service.RoleService" factory-method="getInstance" p:roleDAO-ref="roleDAOImpl" />
+    <bean class="cn.kepu.self.commons.service.ModuleService" factory-method="getInstance" p:moduleDAO-ref="moduleDAOImpl" />
+    
+    <bean class="cn.kepu.self.commons.service.UserService"
+          p:URL="${sms.url}"
+          p:ACCOUNT="${sms.account}"
+          p:PASSWORD="${sms.password}"
+          factory-method="getInstance" p:userDAO-ref="userDAOImpl" />
+    
+    <bean class="cn.kepu.self.commons.service.UserAdvanceService"
+          factory-method="getInstance" p:userAdvanceDAO-ref="userAdvanceDAOImpl" />
+    <bean class="cn.kepu.self.commons.service.UserInfoService"
+          factory-method="getInstance" p:userInfoDAO-ref="userInfoDAOImpl" />
+    <bean class="cn.kepu.self.commons.service.AuthService"
+          factory-method="getInstance" p:authDAO-ref="authDAOImpl" />
+
+    <bean class="cn.kepu.self.commons.service.MailService"
+          factory-method="getInstance" p:sendMail-ref="sendMail" />
+    <bean class="cn.kepu.self.commons.service.IpService" factory-method="getInstance"
+          p:ipUtil-ref="ipUtil" />
+    <bean class="cn.kepu.self.commons.service.GuestService"
+          factory-method="getInstance" p:guestDAO-ref="guestDAOImpl" />
+    <bean class="cn.kepu.self.commons.service.FSearchService"
+          factory-method="getInstance" p:fSearchDAO-ref="fSearchDAOImpl" />
+    <bean class="cn.kepu.self.commons.service.SubscribeService" factory-method="getInstance"
+          p:subscribeDAO-ref="subscribeDAOImpl"
+          p:sendMail-ref="sendMail"/>
+    
+    <bean class="cn.kepu.self.commons.service.AdminService" factory-method="getInstance"
+          p:adminDao-ref="adminDaoImpl"
+          p:userInfoDAO-ref="userInfoDAOImpl" />
+</beans>

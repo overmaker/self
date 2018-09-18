@@ -1,0 +1,48 @@
+九月 14, 2018 11:19:22 上午 org.glassfish.jersey.internal.Errors logErrors
+警告: The following warnings have been detected: WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectMicro(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectDao(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+
+九月 14, 2018 11:19:22 上午 org.glassfish.grizzly.http.server.NetworkListener start
+信息: Started listener bound to [192.168.1.6:29006]
+九月 14, 2018 11:19:22 上午 org.glassfish.grizzly.http.server.HttpServer start
+信息: [HttpServer] Started.
+九月 16, 2018 8:37:51 下午 org.glassfish.jersey.internal.Errors logErrors
+警告: The following warnings have been detected: WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectMicro(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectDao(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+
+九月 16, 2018 8:45:46 下午 org.glassfish.jersey.internal.Errors logErrors
+警告: The following warnings have been detected: WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectDao(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectMicro(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+
+九月 16, 2018 8:45:47 下午 org.glassfish.grizzly.http.server.NetworkListener start
+信息: Started listener bound to [192.168.10.149:29006]
+九月 16, 2018 8:45:47 下午 org.glassfish.grizzly.http.server.HttpServer start
+信息: [HttpServer] Started.
+九月 16, 2018 9:01:53 下午 org.glassfish.jersey.internal.Errors logErrors
+警告: The following warnings have been detected: WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectDao(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectMicro(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+
+九月 16, 2018 9:01:53 下午 org.glassfish.grizzly.http.server.NetworkListener start
+信息: Started listener bound to [192.168.10.149:29006]
+九月 16, 2018 9:01:53 下午 org.glassfish.grizzly.http.server.HttpServer start
+信息: [HttpServer] Started.
+九月 17, 2018 9:25:46 上午 org.glassfish.jersey.internal.Errors logErrors
+警告: The following warnings have been detected: WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectMicro(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectDao(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+
+九月 17, 2018 9:27:40 上午 org.glassfish.jersey.internal.Errors logErrors
+警告: The following warnings have been detected: WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectMicro(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectDao(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+
+九月 17, 2018 9:27:40 上午 org.glassfish.grizzly.http.server.NetworkListener start
+信息: Started listener bound to [192.168.1.6:29006]
+九月 17, 2018 9:27:40 上午 org.glassfish.grizzly.http.server.HttpServer start
+信息: [HttpServer] Started.
+九月 17, 2018 9:52:18 下午 org.glassfish.jersey.internal.Errors logErrors
+警告: The following warnings have been detected: WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectDao(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+WARNING: A HTTP GET method, public void cn.kepu.self.video.resource.VideoResource.selectMicro(int,int,cn.kepu.self.video.entity.Video,javax.ws.rs.container.AsyncResponse), should not consume any entity.
+
+九月 17, 2018 9:52:19 下午 org.glassfish.grizzly.http.server.NetworkListener start
+信息: Started listener bound to [192.168.10.149:29006]
+九月 17, 2018 9:52:19 下午 org.glassfish.grizzly.http.server.HttpServer start
+信息: [HttpServer] Started.

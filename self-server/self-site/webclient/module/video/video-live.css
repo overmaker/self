@@ -1,0 +1,296 @@
+body {
+    background: #FCFBF7;
+} 
+/*.video-live-body{
+    width: 70%;
+    margin: auto;
+}*/
+/* 内容 */
+.commend {
+    padding: 2%;
+    background:white;
+}
+
+.commend .zhibo-list {
+    width: 100%;
+    margin-top: 20px;
+}
+.commend .zhibo-list table tr td {
+    /*    height: 123px;*/
+    width: 103%;
+    height: 500px;
+    padding: 0 13px;
+}
+.commend .zhibo-list table tr td  dl {
+    width: 100%;
+    height: 280px;
+    margin: 10px 0;
+}
+.zz-zhibo {
+    position: relative;
+    bottom: 285px;
+    left: 235px;
+    background: red;
+    width:50px;
+    height: 20px;
+    color:white;
+    border-radius: 10%;
+    text-align: center;
+}
+.zz-zhibo img {
+    width: 100px;
+    height: 30px;
+    transform:rotate(3deg); 
+}
+.zhibo-list-image {
+    margin-top: -10%;
+    /*margin-left: -50px;*/
+    width:100%;
+    height: 499px;
+}
+.zhibo-list  .zhibo-list-dd {
+    margin: 0 1px;
+    width:925px;
+    height: 130px;
+    padding: 5px 35px;
+    border: 2px solid #000006;
+    background: #000006;
+    color: white;
+    opacity: 0.5;
+    position: relative;
+    bottom: 145px;
+    font-weight:bold;
+}
+.zhibo-list  .zhibo-list-dd a {
+    color:white;
+}
+.screen {
+    color: gray;
+    width:98.2%;
+    height: 150px;
+    padding: 20px 12px;
+    background: #F5F5F5;
+}
+.screen table tr td {
+    color:gray;
+    width: 100%;
+    padding: 10px 10px;
+}
+.screen table tr td a {
+    color: gray;
+    padding: 5px 8px;
+}
+.screen .theme {
+    background: #FF6B58;
+    color:white;
+}
+.commend .comment-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size:18px;
+}
+.comment .activity-video-ul {
+    float: left;
+    padding: 50px 0;
+}
+.comment .activity-video-ul .table1 {
+    margin-bottom:35px;
+}
+.comment .activity-video-ul .tr1-td td {
+    text-align: center;
+    width:70px;
+    font-size: 15px;
+    border: 2px solid #F0F0F0;
+    padding:10px 5px;
+    color:gray;
+}
+.zhibo-list .zhibo-list-left {
+    float: left;
+    width: 22%;
+    background: #F3673E;
+    color: white;
+    margin: 10px -15px;
+    height: 238px;
+    padding: 20px 10px;
+    font-weight: bold;
+    opacity: 0.7;
+    border: 1px solid rgb(255, 107, 88);
+}
+.zhibo-list .zhibo-list-right {
+    float: right;
+    width: 76%;
+}
+.comment-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size:18px
+}
+
+
+/* 内容 */
+
+.commend {
+    /*padding: 50px 158.5px;*/
+    color: gray;
+    /*width: 80%;*/
+    height: 100%;
+    background: #F1F1F1;
+}
+
+.commend-left {
+    float: left;
+    width: 66%;
+    padding-bottom: 100px;
+}
+
+.commend-right {
+    float: right;
+    width: 32%;
+    background: white;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-bottom: 100px;
+}
+
+.commend-right-img {
+    width: 90%;
+    height: 116px;
+}
+
+.commend .layui-col-md6 .grid-demo h4 {
+    font-size: 16px;
+    color: black;
+    padding-bottom: 5px;
+}
+
+.commend-right div h2 {
+    font-size: 17px;
+    color: black;
+}
+
+.commend .toggle {
+    position: relative;
+    bottom: 20px;
+    left: 150px;
+}
+
+.commend-right ul li hr {
+    height: 1px;
+    margin: 15px 0;
+}
+
+.commend-left-div1 {
+    width: 100%;
+}
+
+.commend-left-div1 div hr {
+    height: 2px;
+    width: 98%;
+    margin: 0 5px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.video-js {
+    width: 100%;
+    height: 500px;
+}
+
+.video-title {
+    margin: 20px 0;
+    /*width: 92%;*/
+    background: white;
+    padding: 30px 25px;
+}
+
+.video-title h2 {
+    color: black;
+}
+
+.video-tubiao {
+    width: 20px;
+    height: 20px;
+}
+
+.video-tubiao2 {
+    width: 30px;
+}
+
+.video-title table tr td {
+    width: 80px;
+}
+
+.commend-comment {
+    /*width: 95%;*/
+    background: white;
+    padding: 0px 12px;
+}
+
+.commend-comment textarea {
+    width: 96%;
+    height: 90px;
+    resize: none;
+    padding: 0 10px;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
+#comment-submit {
+    width: 100px;
+    height: 40px;
+    color: white;
+    float: right;
+    margin: 15px 10px;
+}
+
+.commend-comment div hr {
+    height: 2px;
+    width: 98%;
+    margin: 20px 0;
+}
+.commend-comment div h3 {
+    font-size: 20px;
+    color: black;
+}
+.comment-img {
+    width: 75px;
+    height: 57px;
+}
+
+.comment-h {
+    border: 3px solid #F2F2F2;
+    width: 80px;
+}
+
+.comment-p {
+    line-height: 30px;
+    padding: 0 15px;
+    color: black;
+}
+
+.comment-div {
+    margin: 20px 0;
+}
+
+.zk-comment-submit {
+    width: 92%;
+    height: 30px;
+    background: #808080;
+    color: white;
+}
+
+.live-time {
+    width: 97%;
+    ;
+    opacity: 0.4;
+    background: black;
+    color: white;
+    position: relative;
+    bottom: 13px;
+    right: 202px;
+    border: 1px solid #000007!important;
+}
+
+.commend-right img:hover {
+    opacity: 0.5;
+}
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.activity.mybatis.mapper.PublicityMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.activity.entity.Publicity">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="activity_name" column="activity_name" />
+        <result property="cooperation_name" column="cooperation_name" />
+        <result property="content" column="content" />
+        <result property="publish_date" column="publish_date" jdbcType="DATE" />
+    </resultMap>
+    <insert id="insertPublicity">
+        INSERT INTO kepu_self_publicity (activity_name,cooperation_name,content,publish_date)
+        VALUES(#{activity_name},#{cooperation_name},#{content},#{publish_date})
+    </insert>
+    <update id="updatePublicity">
+        UPDATE kepu_self_publicity
+        SET gmt_modified = NOW(),
+            activity_name = #{activity_name},
+            cooperation_name = #{cooperation_name},
+            content = #{content},
+            publish_date = #{publish_date}
+        WHERE id = #{id}
+    </update>
+    <delete id="deletePublicity">
+        DELETE FROM kepu_self_publicity WHERE id = #{id};
+    </delete>
+    <select id="findById" resultMap="resultMap">
+        SELECT id,
+        gmt_create,
+        gmt_modified,
+        activity_name,
+        cooperation_name,
+        content,
+        publish_date
+        FROM kepu_self_publicity
+        WHERE id = #{id}
+    </select>
+    <select id="selectPublicity" resultMap="resultMap">
+        SELECT id,
+        gmt_create,
+        gmt_modified,
+        activity_name,
+        cooperation_name,
+        content,
+        publish_date
+        FROM kepu_self_publicity
+        <where>
+            <if test="activity_name != null and activity_name !=''">
+                AND activity_name LIKE CONCAT('%',#{activity_name},'%')
+            </if>
+            <if test="cooperation_name != null and cooperation_name !=''">
+                AND cooperation_name LIKE CONCAT('%',#{cooperation_name},'%')
+            </if>
+        </where>
+        ORDER BY gmt_create DESC
+    </select>
+</mapper>

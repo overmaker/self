@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.others.mybatis.mapper.QuestionAnswerMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.others.entity.QuestionAnswer">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="question" column="question" />
+        <result property="answer" column="answer" />
+    </resultMap>
+    <insert id="insertQuestionAnswer">
+        INSERT INTO kepu_self_question_answer(question,answer)
+        VALUES (#{question},#{answer});
+    </insert>
+    <update id="updateQuestionAnswer">
+        UPDATE kepu_self_question_answer
+        SET gmt_modified=NOW(),
+        question=#{question},
+        answer=#{answer} 
+        WHERE id=#{id}
+    </update>
+    <delete id="deleteQuestionAnswer">
+        DELETE FROM kepu_self_question_answer WHERE id=#{id}
+    </delete>
+    <select id="selectById" resultMap="resultMap">
+        SELECT id,
+        gmt_create,
+        gmt_modified,
+        question,
+        answer 
+        FROM kepu_self_question_answer WHERE id = #{id}
+    </select>
+    <select id="selectAll" resultMap="resultMap">
+        SELECT id,
+        gmt_create,
+        gmt_modified,
+        question,
+        answer 
+        FROM kepu_self_question_answer
+        ORDER BY gmt_create DESC
+    </select>
+</mapper>

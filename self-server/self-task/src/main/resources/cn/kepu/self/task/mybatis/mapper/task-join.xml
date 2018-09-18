@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+                                                                                
+<mapper namespace="cn.kepu.self.task.mybatis.mapper.TaskJoinMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.task.entity.TaskJoin">
+        <id property="id" column="id"  />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="task.id" column="task_id" />
+        <result property="task.title" column="title" />
+        <result property="mobile" column="mobile" />
+        <result property="email" column="email" />
+        <result property="status" column="status" />
+        <result property="name" column="name" />
+        <result property="score" column="score" />
+    </resultMap>
+    <insert id="insertTaskJoin">
+        INSERT INTO kepu_self_task_join (gmt_create, gmt_modified, user, task, mobile, email, status, name, score) 
+        VALUES (now(),now(),#{user.id}, #{task.id}, #{mobile}, #{email}, #{status}, #{name}, #{score});
+    </insert>
+    <update id="updateTaskJoin">
+        UPDATE kepu_self_task_join SET user=#{user.id},
+        task=#{task.id},
+        mobile=#{mobile}, 
+        email=#{email},
+        status=#{status}, 
+        name=#{name},
+        score=#{score}
+        WHERE id=#{id}
+    </update>
+    <update id="updateTaskJoinByStatus">
+        UPDATE kepu_self_task_join SET status=#{arg0}  WHERE id=#{arg1}
+    </update>
+    <update id="updateTaskJoinAllStatus">
+        UPDATE kepu_self_task_join SET status=#{arg0}  WHERE task=#{arg1}
+    </update>
+    <update id="updateTaskJoinStatus">
+        UPDATE kepu_self_task_join SET status = 2 WHERE task = #{task} AND status != 1 
+    </update>
+    <select id="selectTaskJoin" resultMap="resultMap">
+        SELECT  j.id,
+        j.gmt_create,
+        j.gmt_modified,
+        t.title as title,
+        t.id as task_id,
+        j.mobile,
+        j.email,
+        j.status,
+        i.name,
+        j.score 
+        FROM kepu_self_task_join j
+        INNER JOIN kepu_self_task t ON t.id = j.task
+        INNER JOIN kepu_self_user_info i ON i.id = j.user
+        <where>
+            <if test="name != null and name != ''">
+                AND i.name LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="mobile != null and mobile != '' ">
+                AND j.mobile LIKE CONCAT('%',#{mobile},'%')
+            </if>
+            <if test="email != null and email != ''">
+                AND j.email LIKE CONCAT('%',#{email},'%')
+            </if>
+            <if test="status != null">
+                AND j.status = #{status}
+            </if>
+        </where>
+    </select>
+    <select id="countTaskJoin" resultType="java.lang.Long">
+        SELECT ((SELECT maxnum FROM kepu_self_task WHERE id=#{arg0})-COUNT(*)) AS num FROM kepu_self_task_join WHERE task=#{arg0} AND STATUS IN(0,1);
+    </select>
+</mapper>

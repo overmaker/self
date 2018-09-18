@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+    
+    <bean id="videoTypeMapper"  class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.VideoTypeMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="sensitiveWordsMapper"  class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.SensitiveWordsMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="videoAlbumMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.VideoAlbumMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="videoThemeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.VideoThemeMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="videoScoreMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.VideoScoreMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="videoLikesMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.VideoLikesMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="videoHitsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.VideoHitsMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="videoCommentMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.VideoCommentMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="danmuMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.DanmuMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="videoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.VideoMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="videoInfoMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.VideoInfoMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="speakerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.SpeakerMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="videoThemeRelationMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.VideoThemeRelationMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="videoSpeakerRelationMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.VideoSpeakerRelationMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    <bean id="videoDonationMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.VideoDonationMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <aop:config proxy-target-class="true">
+        <aop:aspect ref="dao-aspect">
+            <aop:pointcut expression="execution(* cn.kepu.self.video.daoimpl..*(..))" id="video-dao-pointcut"/>
+            <aop:before pointcut-ref="video-dao-pointcut" method="before"/>
+            <aop:after-returning pointcut-ref="video-dao-pointcut" method="afterReturning"/>
+            <aop:after-throwing pointcut-ref="video-dao-pointcut" method="afterThrowing" throwing="err"/>
+        </aop:aspect>
+    </aop:config>
+    
+    <bean id="videoTypeDAOImpl" class="cn.kepu.self.video.daoimpl.VideoTypeDAOImpl"
+          p:videoTypeMapper-ref="videoTypeMapper" />
+    <bean id="sensitiveWordsDAOImpl" class="cn.kepu.self.video.daoimpl.SensitiveWordsDAOImpl"
+          p:sensitiveWordsMapper-ref="sensitiveWordsMapper" />
+    <bean id="videoAlbumDAOImpl" class="cn.kepu.self.video.daoimpl.VideoAlbumDAOImpl" 
+          p:videoAlbumMapper-ref="videoAlbumMapper" />
+    <bean id="videoThemeDAOImpl" class="cn.kepu.self.video.daoimpl.VideoThemeDAOImpl" 
+          p:videoThemeMapper-ref="videoThemeMapper" />
+    <bean id="videoScoreDAOImpl" class="cn.kepu.self.video.daoimpl.VideoScoreDAOImpl">
+        <constructor-arg index="0" ref="videoScoreMapper" />      
+        <constructor-arg index="1" ref="jdbcTemplate" />
+        <constructor-arg index="2" ref="transactionTemplate" />
+    </bean>
+    <bean id="videoLikesDAOImpl" class="cn.kepu.self.video.daoimpl.VideoLikesDAOImpl">
+        <constructor-arg index="0" ref="videoLikesMapper" />
+        <constructor-arg index="1" ref="jdbcTemplate" />
+        <constructor-arg index="2" ref="transactionTemplate" />
+    </bean>
+    <bean id="videoHitsDAOImpl" class="cn.kepu.self.video.daoimpl.VideoHitsDAOImpl">
+        <constructor-arg index="0" ref="videoHitsMapper" />
+        <constructor-arg index="1" ref="jdbcTemplate" />
+        <constructor-arg index="2" ref="transactionTemplate" />
+    </bean>
+    <bean id="videoCommentDAOImpl" class="cn.kepu.self.video.daoimpl.VideoCommentDAOImpl">
+        <constructor-arg index="0" ref="videoCommentMapper" />
+        <constructor-arg index="1" ref="jdbcTemplate" />
+        <constructor-arg index="2" ref="transactionTemplate" />
+    </bean>
+    <bean id="danmuDAOImpl" class="cn.kepu.self.video.daoimpl.DanmuDAOImpl">
+        <constructor-arg index="0" ref="danmuMapper" />
+        <constructor-arg index="1" ref="jdbcTemplate" />
+        <constructor-arg index="2" ref="transactionTemplate" />
+    </bean>
+    <bean id="videoDAOImpl" class="cn.kepu.self.video.daoimpl.VideoDAOImpl">
+        <constructor-arg index="0" ref="videoMapper" />
+        <constructor-arg index="1" ref="videoInfoMapper" />
+        <constructor-arg index="2" ref="videoThemeRelationMapper" />
+        <constructor-arg index="3" ref="videoSpeakerRelationMapper" />
+        <constructor-arg index="4" ref="jdbcTemplate" />
+        <constructor-arg index="5" ref="transactionTemplate" />
+    </bean>
+    
+    <bean id="videoInfoDAOImpl" class="cn.kepu.self.video.daoimpl.VideoInfoDAOImpl" 
+          p:videoInfoMapper-ref="videoInfoMapper" />
+    <bean id="speakerDAOImpl" class="cn.kepu.self.video.daoimpl.SpeakerDAOImpl" 
+          p:speakerMapper-ref="speakerMapper" />
+    <bean id="videoDonationDaoImpl" class="cn.kepu.self.video.daoimpl.VideoDonationDaoImpl">
+        <constructor-arg index="0" ref="videoDonationMapper" />
+        <constructor-arg index="1" ref="videoMapper" />
+    </bean>
+    
+    
+    <bean class="cn.kepu.self.video.service.VideoTypeService" factory-method="getInstance"
+          p:videoTypeDAO-ref="videoTypeDAOImpl" />
+    <bean class="cn.kepu.self.video.service.SensitiveWordsService" factory-method="getInstance"
+          p:sensitiveWordsDAO-ref="sensitiveWordsDAOImpl" />
+    <bean class="cn.kepu.self.video.service.VideoAlbumService" factory-method="getInstance"
+          p:videoAlbumDAO-ref="videoAlbumDAOImpl" />
+    <bean class="cn.kepu.self.video.service.VideoThemeService" factory-method="getInstance"
+          p:videoAlbumDAO-ref="videoThemeDAOImpl" />
+    <bean class="cn.kepu.self.video.service.VideoScoreService" factory-method="getInstance"
+          p:videoScoreDAO-ref="videoScoreDAOImpl" />
+    <bean class="cn.kepu.self.video.service.VideoLikesService" factory-method="getInstance"
+          p:videoLikesDAO-ref="videoLikesDAOImpl" />
+    <bean class="cn.kepu.self.video.service.VideoHitsService" factory-method="getInstance"
+          p:videoHitsDAO-ref="videoHitsDAOImpl" />
+    <bean class="cn.kepu.self.video.service.VideoCommentService" factory-method="getInstance"
+          p:videoCommentDAO-ref="videoCommentDAOImpl" />
+    <bean class="cn.kepu.self.video.service.DanmuService" factory-method="getInstance"
+          p:danmuDAO-ref="danmuDAOImpl" />
+    <bean class="cn.kepu.self.video.service.VideoService" factory-method="getInstance"
+          p:videoDAO-ref="videoDAOImpl" />
+    <bean class="cn.kepu.self.video.service.VideoInfoService" factory-method="getInstance"
+          p:videoInfoDAO-ref="videoInfoDAOImpl" />
+    <bean class="cn.kepu.self.video.service.SpeakerService" factory-method="getInstance"
+          p:speakerDAO-ref="speakerDAOImpl" />
+    <bean class="cn.kepu.self.video.service.VideoDonationService" factory-method="getInstance"
+          p:videoDonationDao-ref="videoDonationDaoImpl" />
+    
+    <bean id="speakerRecommendMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.video.mybatis.mapper.SpeakerRecommendMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="speakerRecommendDaoImpl" class="cn.kepu.self.video.daoimpl.SpeakerRecommendDaoImpl"
+          p:speakerRecommendMapper-ref="speakerRecommendMapper" />
+    
+    <bean class="cn.kepu.self.video.service.SpeakerRecommendService" factory-method="getInstance"
+          p:speakerRecommendDao-ref="speakerRecommendDaoImpl" /> 
+</beans>

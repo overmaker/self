@@ -1,0 +1,34 @@
+<article  style="background-color: white;">
+    <style type="text/css">
+    	h1{
+    	    font-size: 20px;
+    	    line-height: 50px;
+    	}
+    	p{
+            font-size: 20px;
+            line-height: 50px;
+        }
+    </style>
+    
+    <div class="layui-row" style="margin-top: 2%;text-indent: 3rem;">
+        <h1>视频审核</h1>
+        <div class="layui-col-md5">
+            <h1 id="vtitle"></h1>
+            <video width="650" height="" id="self-video-player" class="video-js vjs-default-skin vjs-big-play-centered" style="margin-left: 5%;">
+            </video>
+            <p><span><label>通过 &nbsp;</label><input type='radio' value="1" name='status' id="statust"/></span> &nbsp;&nbsp;
+                <span><label>不通过 &nbsp;</label><input type='radio' value="2" name='status' id="statusbt"/></span> &nbsp;&nbsp; <br /></p>
+        </div>
+        <div class="layui-col-md5">
+            <h1>封面图</h1>
+            <img src="" alt="" id="vimage" style="width: 300px;height: 183px;margin-left: 5%;"/>
+            <p><span>视频分类：<span id="vtype"></span></span></p>
+            <p><span>视频主题：<span id="vtheme"></span></span></p>
+            <p><span>视频专辑：<span id="valbum"></span></span></p>
+            <p><span>活动标题：<span id="atitle"></span></span></p>
+            <p><span>视频演讲者：<span id="vspeaker"></span></span></p>
+        </div>
+        <div class="layui-col-md8" style="text-align: center;">
+            <input type="submit" id="comment-submit"  value="审核"  style="width: 140px;height: 40px;color: white;background-color: #1a7bc9; border-radius: 10px;border: none;"/></div>
+    </div>
+</article>

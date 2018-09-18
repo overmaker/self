@@ -1,0 +1,38 @@
+body {
+    background: #FDFBF7;
+}
+.subscription-left {
+    float: left;
+    width: 20%;
+}
+.subscription-right {
+    padding: 20px 0;
+    float: right;
+    width: 72%;
+}
+.comment-subscription ul li {
+    width: 90%;
+    height: 190px;
+    padding: 20px 30px;
+    list-style:none;
+}
+.subscription-right span {
+    font-weight: bold;
+    font-size: 20px;
+    color:#807969;
+}
+.subscription-right p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+.subscription-left img {
+    width: 260px;
+    height: 180px;
+}
+.subscription-right  a {
+    color:gray;
+}
+.subscription-right  a:hover {
+    text-decoration:none;
+    color:black;
+}

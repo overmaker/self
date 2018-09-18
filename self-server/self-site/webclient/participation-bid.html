@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>SELF格致论道</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.3, minimum-scale=0.3 maximum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="lib/layui/css/layui.css" />
+        <link rel="stylesheet" href="css/participation-bid.css" />
+        <link rel="stylesheet" href="../../top.css" />
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="lib/layui/layui.all.js"></script>
+        <script src="../../lib/layui/layui.js"></script>
+        <style type="text/css">
+            #con p {
+                line-height: 2rem;
+            }
+            
+            #b {
+                margin: 11px 0%;
+                flex: 1;
+                width: 15%;
+                max-width: 70%;
+                line-height: 35px;
+                padding: 10px;
+                font-size: 20px;
+                color: #fff;
+                text-align: center;
+                background: brown;
+                border: none;
+                display: inline-block;
+                border-radius: 4px;
+            }
+        </style>
+    </head>
+
+    <body>
+    <div id="top"> </div>
+    <div class="layui-container">
+        <div class="participation-bid-body">
+            <!-- 内容 -->
+            <div class="comment">
+                <div class="layui-content">
+                    <!--我要申请-->
+                    <div class="layui-item" style="margin-left: 3%;">
+                        <div class="tag2">
+                            <div class="bid-title">
+                                <h2 style="line-height: 3rem;">SELF+：</h2> </div>
+                            <p id="loadCooperativenorms" style="line-height: 30px;font-size: 16px;"></p><br>
+                            <!--<input type="button" value="我要申请" id="b" />--></div>
+                    </div>
+                    <!--如何申请-->
+                    <!--id="bid-wanqi" id="table"-->
+                </div>
+            </div>
+            <!--<div id="con" style="display: none;padding: 20px;background-color:  #FCFBF7;">-->
+            <div class="layui-form">
+                <div class="layui-form-item"> <label class="layui-form-label">申请单位：</label>
+                    <div class="layui-input-inline"> <input type="text" placeholder="请输入企业名称" maxlength="30" style="width: 550px" class="layui-input" id="cooperation-name"> </div>
+                </div>
+                <div class="layui-form-item"> <label class="layui-form-label">负责人：&nbsp&nbsp&nbsp&nbsp</label>
+                    <div class="layui-input-inline"> <input type="text" placeholder="请输入联系人姓名" maxlength="10" style="width: 550px" class="layui-input" id="cooperation-contact"> </div>
+                </div>
+                <div class="layui-form-item"> <label class="layui-form-label">联系人:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</label>
+                    <div class="layui-input-inline"> <input type="text" placeholder="请输入联系人姓名" maxlength="10" style="width: 550px" class="layui-input" id="cooperation-responsible"> </div>
+                </div>
+                <div class="layui-form-item"> <label class="layui-form-label">联系电话:&nbsp&nbsp&nbsp</label>
+                    <div class="layui-input-inline"> <input type="text" placeholder="请输入联系电话" maxlength="20" style="width: 550px" class="layui-input" id="cooperation-tel"> </div>
+                </div>
+<!--                <div class="layui-form-item"><label class="layui-form-label">验证码:&nbsp&nbsp&nbsp</label>
+                    <div class="layui-input-inline"> <input id="mobileCode" type="text" placeholder="请输入短信验证码" class="layui-input" maxlength="11" style="width: 550px; float: left;" disabled="disabled"> </div>
+                    <div class="layui-input-inline"> <input type="button" class="layui-btn" value="免费获取验证码" id="smsCode"  onclick="" disabled="disabled" style="margin-left: 113%;"></div>
+                </div>-->
+                <div class="layui-form-item"> <label class="layui-form-label">联系邮箱:&nbsp&nbsp&nbsp</label>
+                    <div class="layui-input-inline"> <input type="text" placeholder="请输入联系邮箱" maxlength="30" style="width:550px" class="layui-input" id="cooperation-mail"> </div>
+                </div>
+                <div class="layui-form-item" id="plan-item">
+                    <!--                                            <blockquote class="layui-elem-quote" style="width: 550px; margin-left: 3%;">活动方案文件控制在5MB以内，要求微软Office WORD文件格式。文件名控制在20字符以内</blockquote>-->
+                    <div class="layui-inline"> <label class="layui-form-label" style="width: 96px">活动方案文件:</label>
+                        <div class="layui-inline"> <input type="text" placeholder="活动方案文件控制在5MB以内，要求微软Office WORD文件格式。文件名控制在20字符以内" autocomplete="off" class="layui-input layui-disabled" id="plan-item-viewer" style="width: 320px" readonly> </div> <button class="layui-btn layui-btn-primary" id="plan-item-selector">选择文件</button> <button class="layui-btn" id="plan-item-upload">开始上传</button> </div>
+                </div>
+                <div class="layui-form-item" style="margin-left: -3%;">
+                    <div align="left" class="title" style="margin-left: 8%;margin-top: 2%;margin-bottom: 2%;font-size: 15px">
+                        <h3>申请理由：</h3> </div>
+                    <div id="apply-reson" style="width: 80%;margin-left: 6%"></div>
+                </div>
+                <div class="layui-form-item" style="margin-left: 32%;"> <button class="layui-btn" id="apply-upload">提交申请</button> </div>
+            </div>
+        </div>
+        <!--</div>-->
+    </div>
+    <div class="layui-row" id="flooter"> </div>
+    <script type="text/javascript" src="../../lib/wangEditor.min.js"></script>
+    <script type="text/javascript" src="../../lib/base.js"></script>
+    <script type="text/javascript" src="../../util.js"></script>
+    <script type="text/javascript" src="participation-bid.js"></script>
+    </body>
+
+</html>

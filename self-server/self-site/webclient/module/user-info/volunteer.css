@@ -1,0 +1,155 @@
+body {
+    background: #FCFBF7;
+}
+.layui-badge-rim, .layui-colla-content, .layui-colla-item, .layui-collapse, .layui-elem-field, .layui-form-pane .layui-form-item[pane], .layui-form-pane .layui-form-label, .layui-input, .layui-layedit, .layui-layedit-tool, .layui-quote-nm, .layui-select, .layui-tab-bar, .layui-tab-card, .layui-tab-title, .layui-tab-title .layui-this:after, .layui-textarea{
+    border: none !important;
+}
+.layui-tab {
+    margin: 12px 92px!important;
+    text-align: left!important;
+}
+.search-image {
+    height: 29px;
+    position: relative;
+    left: 101.5px;
+    bottom: 37.5px;
+    background: white;
+}
+
+.search-item .layui-form-item .layui-input-block input {
+    width: 260px;
+    height: 33px;
+    position: relative;
+    right: 65px;
+    bottom: 3px;
+    color: black;
+}
+
+.searchbox {
+    display:none;
+}
+
+.input-group {
+    width: 350px;
+    /* float: left;*/
+    padding: 10px 5px;
+}
+
+a {
+    text-decoration: none!important;
+}
+
+a:hover {
+    text-decoration: none!important;
+}
+
+
+/* 内容  */
+
+.comment {
+    /*width: 80%;
+    padding: 70px 150px;*/
+    background: white;
+    color: gray;
+}
+
+.bid-title {
+    margin-top: 60px;
+    padding: 0 55px;
+    color: black;
+}
+
+.layui-table {
+    text-align: center;
+}
+
+.layui-table tr th {
+    text-align: center;
+}
+
+.layui-table input {
+    width: 100px;
+    height: 30px;
+    background: #F4F4F4;
+    border-radius: 10%;
+}
+
+.comment-tag1 {
+    height: 100px;
+    padding: 60px 55px;
+}
+
+.tag1-submit {
+    width: 100px;
+    height: 30px;
+    border-radius: 10%;
+    background: #F1F1F1;
+    margin: 0 55px;
+}
+
+.tag1-draft-submit {
+    width: 100px;
+    height: 30px;
+    border-radius: 10%;
+    background: #F1F1F1;
+}
+
+.tag2-title {
+    height: 100px;
+    color: black;
+    font-size: 16px;
+    margin: 40px 0;
+}
+.content-block{
+    text-align: center;
+    margin-top: 30px;
+    margin-left: 2%;
+    float: left;
+    width: 23%;
+}
+dt{
+    margin:10px 10px;
+}
+.content-block-one {
+    border-radius: 15px;
+    font-size: 18px;
+    width: 100%;
+    background-color: whitesmoke;
+    float: left;
+    box-shadow: 0px 0px 0px gray;
+    position: relative;
+}
+
+.content-block-two {
+    border-radius: 15px;
+    font-size: 18px;
+    width: 22%;
+    height: 400px;
+    background-color: black;
+    opacity: 0;
+    position: absolute;
+    font-weight: bold;
+}
+
+.content-block-two:hover {
+    box-shadow: 15px 12px 13px gray;
+    opacity: 0.75;
+    transition: all 0.5s linear;
+}
+
+.content-block-two>dl dt dd {
+    position: relative;
+    top: 0;
+    bottom: 0;
+}
+
+.content-tity {
+    text-decoration: underline;
+    margin-top: 10px;
+}
+.layui-tab-title li{
+    display:block !important;
+}
+.layui-tab-title, .layui-tab-content{
+    display: table-cell;
+}

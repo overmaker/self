@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.activity.mybatis.mapper.ActivityTemplateMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.activity.entity.ActivityTemplate">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="name" column="name" />
+        <result property="content" column="content" />
+    </resultMap>
+    <insert id="insertActivityTemplate">
+        INSERT INTO kepu_self_activity_template (name,content) VALUES (#{name},#{content});
+    </insert>
+    <delete id="deleteActivityTemplate">
+        DELETE FROM kepu_self_activity_template WHERE id = #{id};
+    </delete>
+    <update id="updateActivityTemplate">
+        UPDATE kepu_self_activity_template SET name = #{name},gmt_modified = now(), content=#{content}WHERE id = #{id};
+    </update>
+    <select id="searchActivityTemplate" resultMap="resultMap">
+        SELECT id, gmt_create, gmt_modified, name,content FROM kepu_self_activity_template
+        <where>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%',#{name},'%')
+            </if>
+        </where>
+        ORDER BY name ASC
+    </select>
+    <select id="findById" resultMap="resultMap">
+        SELECT t.id,
+        t.gmt_create,
+        t.gmt_modified,
+        t.name,
+        t.content       
+        FROM kepu_self_activity_template t
+        WHERE t.id = #{id}
+    </select>
+</mapper>

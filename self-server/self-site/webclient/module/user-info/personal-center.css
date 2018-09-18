@@ -1,0 +1,66 @@
+body {
+    background: #FCFBF7;
+} 
+
+
+/** 内容 **/
+.comment {
+    padding: 10px 0;
+    height: 1100px;
+}
+.comment-left {
+    float: left;
+    width:20%;
+    height: 1000px;
+}
+.comment-right {
+    float: right;
+    width: 78%;
+    height: 600px;
+}
+.default-user-li {
+    padding: 10px 35px!important;
+}
+.comment-left ul  {
+    height: 97%;
+    border-right: 1px solid gray!important;
+}
+.comment-left ul a {
+    color:gray;
+    text-decoration:none;
+}
+.comment-left ul a:hover {
+    color:black;
+}
+.comment-left ul li {
+    text-align: left!important;
+    padding: 13px 20px!important;
+    margin: 0 20px!important;
+    font-size: 15px!important;
+    font-weight: bold!important;
+    border-bottom: 1px dotted gray!important;
+}
+.default-user-image {
+    width: 85px;
+    height: 85px;
+    border:2px solid #DEE2ED;
+}
+.default-name {
+    position: absolute;
+    top: 115px;
+    left: 8.8%;
+    font-size:13px;
+}
+.default-integral {
+    position: absolute;
+   top: 0px;
+    left: 100%;
+}
+.modified-user-info {
+    position: absolute;
+    top: 146px;
+    left: 140px;
+}
+.default-name myScure{
+    margin: 5%
+}

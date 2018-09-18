@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+                                        
+<mapper namespace="cn.kepu.self.commons.mybatis.mapper.UserInfoMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.commons.entity.UserInfo">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="volunteer" column="is_volunteer" />
+        <result property="vip" column="is_vip" />
+        <result property="name" column="name" />
+        <result property="gender" column="gender" />
+        <result property="photo" column="photo" />
+        <result property="birthDate" column="birth_date" jdbcType="DATE" />
+        <result property="nickName" column="nickname" />
+        <result property="mobile" column="mobile" />
+        <result property="email" column="email" />
+        <result property="qq" column="qq" />
+        <result property="nativePlace" column="native_place" />
+        <result property="address" column="address" />
+        <result property="score" column="score" />
+    </resultMap>
+    
+    <insert id="insertOrUpdateUserInfo">
+        INSERT INTO kepu_self_user_info(id,
+        <if test="volunteer != null">
+            is_volunteer,
+        </if>
+        <if test="vip != null">
+            is_vip,
+        </if>
+        <if test="name != null">
+            name,
+        </if>
+        <if test="gender != null">
+            gender,
+        </if>
+        <if test="photo != null">
+            photo,
+        </if>
+        <if test="birthDate != null">
+            birth_date,
+        </if>
+        <if test="nickName != null">
+            nickname,
+        </if>
+        <if test="mobile != null">
+            mobile,
+        </if>
+        <if test="email != null">
+            email,
+        </if>
+        <if test="qq != null">
+            qq,
+        </if>
+        <if test="nativePlace != null">
+            native_place,
+        </if>
+        <if test="address != null">
+            address,
+        </if>
+        <if test="score != null and score >= 0">
+            score,
+        </if>
+        gmt_modified
+        )
+        VALUES
+        (#{id},
+        <if test="volunteer != null">
+            #{volunteer},
+        </if>
+        <if test="vip != null">
+            #{vip},
+        </if>
+        <if test="name != null">
+            #{name},
+        </if>
+        <if test="gender != null">
+            #{gender},
+        </if>
+        <if test="photo != null">
+            #{photo},
+        </if>
+        <if test="birthDate != null">
+            #{birthDate},
+        </if>
+        <if test="nickName != null">
+            #{nickName},
+        </if>
+        <if test="mobile != null">
+            #{mobile},
+        </if>
+        <if test="email != null">
+            #{email},
+        </if>
+        <if test="qq != null">
+            #{qq},
+        </if>
+        <if test="nativePlace != null">
+            #{nativePlace},
+        </if>
+        <if test="address != null">
+            #{address},
+        </if>
+        <if test="score != null and score >= 0">
+            #{score},
+        </if>
+        NOW()
+        )
+        ON DUPLICATE KEY UPDATE
+        <if test="volunteer != null">
+            is_volunteer = #{volunteer},
+        </if>
+        <if test="vip != null">
+            is_vip = #{vip},
+        </if>
+        <if test="name != null">
+            name = #{name},
+        </if>
+        <if test="gender != null">
+            gender = #{gender},
+        </if>
+        <if test="photo != null">
+            photo = #{photo},
+        </if>
+        <if test="birthDate != null">
+            birth_date = #{birthDate},
+        </if>
+        <if test="nickName != null">
+            nickname = #{nickName},
+        </if>
+        <if test="mobile != null">
+            mobile = #{mobile},
+        </if>
+        <if test="email != null">
+            email = #{email},
+        </if>
+        <if test="qq != null">
+            qq = #{qq},
+        </if>
+        <if test="nativePlace != null">
+            native_place = #{nativePlace},
+        </if>
+        <if test="address != null">
+            address = #{address},
+        </if>
+        <if test="score != null and score >= 0">
+            score = #{score},
+        </if>
+        gmt_modified = NOW();
+    </insert>
+    
+    <select id="selectUserInfo" resultMap="resultMap">
+        SELECT  i.id,
+        i.gmt_create,
+        i.gmt_modified,
+        i.photo,
+        i.name,
+        i.birth_date,
+        i.email,
+        i.qq,
+        i.native_place,
+        i.address,
+        i.score,
+        i.nickname,
+        i.gender,
+        i.mobile,
+        i.is_vip,
+        i.is_volunteer 
+        FROM kepu_self_user_info i
+        INNER JOIN kepu_self_user u ON u.id=i.id
+        <where>
+            u.type='user'
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%',#{name},'%')
+            </if>
+            <if test="nickName != null and nickName != ''">
+                AND nickname LIKE CONCAT('%',#{nickName},'%')
+            </if>
+            <if test="mobile != null and mobile != ''">
+                AND mobile LIKE CONCAT('%',#{mobile},'%')
+            </if>
+            <if test="email != null and email != ''">
+                AND email LIKE CONCAT('%',#{email},'%')
+            </if>
+            <if test="volunteer != null">
+                AND is_volunteer = #{volunteer}
+            </if>
+            <if test="vip != null">
+                AND is_vip = #{vip}
+            </if>
+        </where>
+        ORDER BY u.gmt_modified DESC 
+    </select>
+    <select id="selectUserInfoById" resultMap="resultMap">
+        SELECT  id,
+        gmt_create,
+        gmt_modified,
+        photo,
+        name,
+        birth_date,
+        email,
+        qq,
+        native_place,
+        address,
+        score,
+        nickname,
+        gender,
+        mobile,
+        is_vip,
+        is_volunteer 
+        FROM kepu_self_user_info
+        WHERE id = #{id}
+    </select>
+    <update id="updateUserInfoIsVip" >
+        UPDATE kepu_self_user_info SET is_vip=#{arg1} WHERE id=#{arg0};
+    </update>
+    <update id="updateUserInfoIsVolunteer" >
+        UPDATE kepu_self_user_info SET is_volunteer=#{arg1} WHERE id=#{arg0};
+    </update>
+</mapper>

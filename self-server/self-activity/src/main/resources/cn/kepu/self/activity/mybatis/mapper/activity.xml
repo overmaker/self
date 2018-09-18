@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kepu.self.activity.mybatis.mapper.ActivityMapper">
+    <resultMap id="resultMap" type="cn.kepu.self.activity.entity.Activity">
+        <id property="id" column="id" />
+        <result property="createTime" column="gmt_create" jdbcType="TIMESTAMP" />
+        <result property="modifiedTime" column="gmt_modified" jdbcType="TIMESTAMP" />
+        <result property="title" column="title" />
+        <result property="thumbnail" column="thumbnail" />
+        <result property="image" column="image" />
+        <result property="type.id" column="tid" />
+        <result property="type.name" column="tname" />
+        <result property="info.rollNum" column="roll_num" />
+        <result property="info.id" column="info_id" />
+        <result property="startTime" column="start_time" jdbcType="TIMESTAMP" />
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP" />
+        <result property="sn" column="sn" />
+        <result property="province" column="province" />
+        <result property="city" column="city" />
+        <result property="area" column="area" />
+        <result property="place" column="place" />
+        <result property="sponsor" column="sponsor" />
+        <result property="tel" column="tel" />
+        <result property="introduction" column="introduction" />
+        <result property="fullText" column="full_text" />
+        <result property="live" column="is_live" />
+        <result property="url" column="live_url" />
+        <result property="maxnum" column="maxnum" />
+        <result property="publish" column="is_publish" />
+        <result property="publishTime" column="publish_time" jdbcType="TIMESTAMP" />
+        <result property="userTicket.name" column="aturname" />
+        <result property="userTicket.mobile" column="aturmobile" />
+        <result property="userTicket.enable" column="aturenable" />
+    </resultMap>
+    <!--    活动首页625-->
+    <select id="complexSearch" resultMap="resultMap">
+        SELECT a.id as id ,a.title as title,a.thumbnail as thumbnail,
+        a.start_time as start_time ,a.end_time as end_time ,
+        a.place as place,a.is_live as is_live ,a.is_publish as is_publish ,
+        aty.id as tid ,aty.name as tname ,ai.id as info_id FROM kepu_self.kepu_self_activity a
+        inner join kepu_self_activity_info ai on a.id=ai.id 
+        inner join kepu_self_activity_type aty on a.type=aty.id
+        <where>
+            <if test="themes != null and themes.length > 0">
+                <bind name="Themeslength" value="themes.length"/>
+                a.id IN(SELECT activity FROM(
+                <foreach collection="themes" item="theme" index="index" separator="UNION ALL">               
+                    SELECT activity FROM kepu_self_activity_theme_relation WHERE theme=#{theme.id}
+                </foreach>
+                ) AS r GROUP BY activity HAVING COUNT(activity) =#{Themeslength})
+            </if>
+            <if test="title != null and title != ''">
+                AND a.title LIKE CONCAT('%',#{title},'%')
+            </if>
+            <if test="type !=null and type.id !=null">
+                AND a.type=#{type.id}
+            </if>
+            AND a.is_publish=1
+        </where>
+        ORDER BY
+        a.start_time desc
+    </select>
+    <insert id="insertActivity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO kepu_self_activity (title,thumbnail,image,type,start_time,end_time,sn,province,city,place,sponsor,tel,introduction,full_text,is_live,maxnum,
+        <if test="area != null">
+            area,
+        </if>
+        <if test="live == true">
+            live_url,
+        </if>
+        publish_time,
+        is_publish)
+        VALUES
+        (#{title},#{thumbnail},#{image},#{type.id},#{startTime},#{endTime},#{sn},#{province},#{city},#{place},#{sponsor},#{tel},#{introduction},#{fullText},#{live},#{maxnum},
+        <if test="area != null">
+            #{area},
+        </if>
+        <if test="live == true">
+            #{url},
+        </if>
+        NOW(),
+        #{publish});
+    </insert>
+    <update id="updateActivityById">
+        UPDATE kepu_self_activity
+        <set>
+            title = #{title},
+            thumbnail = #{thumbnail}, 
+            image = #{image},
+            type = #{type.id},
+            start_time = #{startTime},
+            end_time = #{endTime},
+            province = #{province},
+            city = #{city},
+            <if test="area != null">
+                area = #{area},
+            </if>
+            place = #{place},
+            sponsor = #{sponsor},
+            tel = #{tel},
+            introduction = #{introduction},
+            full_text = #{fullText},
+            is_live = #{live},
+            <choose>
+                <when test = "live == true">
+                    live_url = #{url},
+                </when>
+                <otherwise>
+                    live_url = NULL,
+                </otherwise>
+            </choose>
+            maxnum = #{maxnum},
+            <choose>
+                <when test = "publish == true">
+                    is_publish = 1,
+                    publish_time = NOW(),
+                </when>
+                <otherwise>
+                    is_publish = 0,
+                    publish_time = NULL,
+                </otherwise>
+            </choose>
+            gmt_modified = NOW()
+        </set>
+        WHERE id = #{id};
+    </update>
+    
+    <insert id="copyActivity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO kepu_self_activity(title,thumbnail,image,`type`,start_time,end_time,sn,province,city,area,place,sponsor,tel,introduction,full_text,is_live,live_url,maxnum,is_publish,publish_time)
+        (SELECT title,thumbnail,image,`type`,start_time,end_time,#{sn},province,city,area,place,sponsor,tel,introduction,full_text,is_live,live_url,maxnum,0,NULL FROM kepu_self_activity WHERE id=#{id})
+    </insert>
+    
+    <select id="findById" resultMap="resultMap">
+        SELECT a.id,
+        a.gmt_create,
+        a.gmt_modified,
+        a.title,
+        a.thumbnail,
+        a.image,
+        at.id tid,
+        at.name tname,
+        a.start_time,
+        a.end_time,
+        a.sn,
+        a.province,
+        a.city,
+        a.area,
+        a.place,
+        a.sponsor,
+        a.tel,
+        a.introduction,
+        a.full_text,
+        a.is_live,
+        a.live_url,
+        a.maxnum,
+        a.is_publish
+        FROM kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id = a.type
+        WHERE a.id = #{id}
+    </select>
+    <select id="selectActivityList" resultMap="resultMap">
+        SELECT a.id,
+        a.gmt_create,
+        a.gmt_modified,
+        a.title,
+        a.thumbnail,
+        a.image,
+        at.id tid,
+        at.name tname,
+        info.roll_num roll_num,
+        a.start_time,
+        a.end_time,
+        a.sn,
+        a.province,
+        a.city,
+        a.area,
+        a.place,
+        a.sponsor,
+        a.tel,
+        a.is_live,
+        a.live_url,
+        a.maxnum,
+        a.is_publish,
+        a.publish_time
+        FROM kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id=a.type
+        INNER JOIN kepu_self_activity_info info ON info.id=a.id
+        <where>
+            <if test="activity!= null and activity.title != null and activity.title != ''">
+                AND a.title LIKE CONCAT('%',#{activity.title},'%')
+            </if>
+            <if test="activity!= null and activity.publish != null">
+                AND a.is_publish=#{activity.publish}
+            </if>
+            <if test="activity!= null and activity.type != null and activity.type.id != null">
+                AND a.type = #{activity.type.id}
+            </if>
+            <if test="activity!= null and activity.live != null">
+                AND a.is_live=#{activity.live}
+            </if>
+            <if test="activity!= null and activity.startTime != null">
+                AND a.start_time &gt; #{activity.startTime}
+            </if>
+            <if test="activity!= null and activity.endTime != null">
+                AND a.end_time &lt; #{activity.endTime}
+            </if>
+            <if test="over == true">
+                AND a.end_time &lt; NOW()
+            </if>
+        </where>
+        ORDER BY publish_time DESC, a.gmt_create DESC
+    </select>
+    <select id="findByAll" resultMap="resultMap">
+        SELECT a.id,
+        a.gmt_create,
+        a.gmt_modified,
+        a.title,
+        a.thumbnail,
+        a.image,
+        at.id tid,
+        at.name tname,
+        a.start_time,
+        a.end_time,
+        a.sn,
+        a.province,
+        a.city,
+        a.area,
+        a.place,
+        a.sponsor,
+        a.tel,
+        a.is_live,
+        a.live_url,
+        a.maxnum,
+        a.is_publish
+        FROM kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id = a.type 
+        WHERE a.gmt_create &lt;= NOW()
+        ORDER BY a.gmt_create DESC
+    </select>
+    <select id="findActivityAll" resultMap="resultMap">
+        SELECT a.id,
+        a.gmt_create,
+        a.gmt_modified,
+        a.title,
+        a.thumbnail,
+        a.image,
+        at.id tid,
+        at.name tname,
+        a.start_time,
+        a.end_time,
+        a.sn,
+        a.province,
+        a.city,
+        a.area,
+        a.place,
+        a.sponsor,
+        a.tel,
+        a.is_live,
+        a.live_url,
+        a.maxnum,
+        a.is_publish
+        FROM kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id = a.type
+        <where>
+            <if test="title != null and title != ''">
+                AND a.title LIKE CONCAT('%',#{title},'%')
+            </if>
+            <if test="publish != null">
+                AND a.is_publish=#{publish}
+            </if>
+            <if test="type != null and type.id != null">
+                AND a.type = #{type.id}
+            </if>
+        </where>
+        ORDER BY a.gmt_create DESC
+    </select>
+    
+    <select id="newestActivity" resultMap="resultMap">
+        SELECT a.id,
+        a.gmt_create,
+        a.gmt_modified,
+        a.title,
+        a.thumbnail,
+        a.image,
+        at.id tid,
+        at.name tname,
+        a.start_time,
+        a.end_time,
+        a.sn,
+        a.province,
+        a.city,
+        a.area,
+        a.place,
+        a.sponsor,
+        a.tel,
+        a.is_live,
+        a.live_url,
+        a.maxnum,
+        a.is_publish
+        FROM kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id = a.type
+        WHERE is_publish=1
+        ORDER BY a.gmt_create DESC
+        LIMIT 3
+    </select>
+    
+    <select id="pastActivity" resultMap="resultMap">
+        SELECT a.id,
+        a.gmt_create,
+        a.gmt_modified,
+        a.title,
+        a.thumbnail,
+        a.image,
+        at.id tid,
+        at.name tname,
+        a.start_time,
+        a.end_time,
+        a.sn,
+        a.province,
+        a.city,
+        a.area,
+        a.place,
+        a.sponsor,
+        a.tel,
+        a.is_live,
+        a.live_url,
+        a.maxnum,
+        a.is_publish
+        FROM kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id = a.type
+        WHERE is_publish=1
+        AND a.end_time &lt;= NOW()
+        ORDER BY a.gmt_create DESC
+        LIMIT 6
+    </select>
+    <!--   最新和最热-->
+    <select id="selectByTime" resultMap="resultMap" >
+        SELECT a.id,
+        a.gmt_create,
+        a.gmt_modified,
+        a.title,
+        a.thumbnail,
+        a.image,
+        at.id tid,
+        at.name tname,
+        a.start_time,
+        a.end_time,
+        a.sn,
+        a.province,
+        a.city,
+        a.area,
+        a.place,
+        a.sponsor,
+        a.tel,
+        a.is_live,
+        a.live_url,
+        a.maxnum,
+        a.is_publish
+        FROM kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id = a.type
+        WHERE is_publish=1
+        ORDER BY a.gmt_create DESC     
+    </select>
+    
+    <select id="selectByFee" resultMap="resultMap" >
+        SELECT a.id,
+        a.gmt_create,
+        a.gmt_modified,
+        a.title,
+        a.thumbnail,
+        a.image,
+        at.id tid,
+        at.name tname,
+        a.start_time,
+        a.end_time,
+        a.sn,
+        a.province,
+        a.city,
+        a.area,
+        a.place,
+        a.sponsor,
+        a.tel,
+        a.is_live,
+        a.live_url,
+        a.maxnum,
+        a.is_publish
+        FROM kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id = a.type
+        WHERE is_publish=1
+        ORDER BY a.gmt_create 
+    </select>
+    
+    <!--    直播活动首页123-->
+    <select id="selectFutureLive" resultMap="resultMap" >
+        SELECT * FROM kepu_self.kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id = a.type
+        where is_live=1 and is_publish=1
+    </select>
+    <select id="selectLiving" resultMap="resultMap" >
+        SELECT * FROM kepu_self.kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id = a.type
+        where and a.is_live=1 and a.is_publish=1
+    </select>
+    <select id="selectPastLive" resultMap="resultMap" >
+        SELECT * FROM kepu_self.kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id = a.type
+        where is_live=1 and is_publish=1
+    </select>
+    <!--    直播活动通过id查询-->
+    <select id="selectLiveById" resultMap="resultMap" >
+        SELECT * FROM kepu_self.kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id = a.type
+        where is_live=1 and is_publish=1 and a.id=#{id}
+    </select>
+    <!--    self+活动回顾-->
+    <select id="selectPastSelf" resultMap="resultMap" >
+        SELECT * FROM kepu_self.kepu_self_activity a
+        INNER JOIN kepu_self_activity_type at ON at.id = a.type
+        <where>
+            <if test="title != null and title != ''">
+                AND a.title LIKE CONCAT('%',#{title},'%')
+            </if>
+            <if test="publish != null">
+                AND a.is_publish=#{publish}
+            </if>
+            <if test="type != null and type.id != null and type.id > 0">
+                AND a.type = #{type.id}
+            </if>
+        </where>
+        and a.is_publish=1 and a.end_time &lt;=now()
+    </select>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                           http://www.springframework.org/schema/task
+                           http://www.springframework.org/schema/task/spring-task-4.3.xsd">
+    
+    <aop:config proxy-target-class="true">
+        <aop:aspect ref="dao-aspect">
+            <aop:pointcut expression="execution(* cn.kepu.self.site.daoimpl..*(..))" id="site-dao-pointcut"/>
+            <aop:before pointcut-ref="site-dao-pointcut" method="before"/>
+            <aop:after-returning pointcut-ref="site-dao-pointcut" method="afterReturning"/>
+            <aop:after-throwing pointcut-ref="site-dao-pointcut" method="afterThrowing" throwing="err"/>
+        </aop:aspect>
+    </aop:config>
+    
+    <bean id="weiXinDAOImpl" class="cn.kepu.self.site.daoimpl.WeiXinDAOImpl" >
+    </bean>
+    
+    <bean class="cn.kepu.self.site.service.WeiXinService" factory-method="getInstance"
+          p:weiXinDAO-ref="weiXinDAOImpl"
+          p:appid="${weixin.appid}"
+          p:secret="${weixin.secret}"
+          p:siteURL="${weixin.url}"/>
+    
+    <bean id="Donation2Mapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.site.mybatis.mapper.Donation2Mapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="Donation2DaoImpl" class="cn.kepu.self.site.daoimpl.Donation2DaoImpl">
+        <constructor-arg index="0" ref="Donation2Mapper" />
+    </bean>
+    
+    <bean class="cn.kepu.self.site.service.DonationService" factory-method="getInstance"
+          p:appId="${weixin.appid}"
+          p:mchId="${weixin.mchid}"
+          p:apiKey="${weixin.apikey}"
+          p:notifyURL="${weixin.pay_notify_url}"
+          p:donationDAO-ref="Donation2DaoImpl" />
+    
+    <bean id="BecomeVipMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+          p:mapperInterface="cn.kepu.self.site.mybatis.mapper.BecomeVipMapper"
+          p:sqlSessionFactory-ref="sqlSessionFactory"/>
+    
+    <bean id="BecomeVipDaoImpl" class="cn.kepu.self.site.daoimpl.BecomeVipDaoImpl">
+        <constructor-arg index="0" ref="BecomeVipMapper" />
+        <constructor-arg index="1" ref="jdbcTemplate" />
+        <constructor-arg index="2" ref="transactionTemplate" />
+    </bean>
+    
+    <bean class="cn.kepu.self.site.service.BecomeVipService" factory-method="getInstance"
+          p:appId="${weixin.appid}"
+          p:mchId="${weixin.mchid}"
+          p:apiKey="${weixin.apikey}"
+          p:notifyURL="${vip.pay_notify_url}"
+          p:becomeVipDAO-ref="BecomeVipDaoImpl" />
+    
+    <context:component-scan base-package="cn.kepu.self.site.weixin" />
+    <task:annotation-driven scheduler="wxScheduler" mode="proxy"/>  
+    <task:scheduler id="wxScheduler" pool-size="10"/>
+</beans>
